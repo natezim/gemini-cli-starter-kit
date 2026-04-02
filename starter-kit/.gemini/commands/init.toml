@@ -1,36 +1,19 @@
-description = "Session start — loads context, gives a quick status, asks what you're doing today"
+description = "Session start — loads everything, gives a status, asks what you're doing"
 prompt = """
-Start a new session.
+Silently load: CONTEXT.md, context/ files, queries/, session-log, /memory show.
+Check if .env exists (don't read values).
 
-1. Read ./CONTEXT.md. If it's missing or only has placeholder text (HTML comments, empty sections),
-   say: "No project context yet. Let's set that up now." and run the /setup flow directly.
-   Do not stop and make the user type a separate command.
+If CONTEXT.md is missing or just placeholders, run the /setup flow directly — don't stop.
 
-2. Silently load context:
-   - Read ./CONTEXT.md
-   - Scan ./context/ — for each file, note what it covers (not just filenames)
-   - Scan ./queries/ — note how many saved queries exist and their names
-   - Check if .env or .env.* files exist. If they do, note that environment variables
-     are available but do NOT read them yet. You'll ask before using them.
-   - Check ./output/session-log.md for recent entries (if it exists)
-   - Run /memory show
+Give a compact status:
+- Project and current focus
+- What's in context/ (what each file covers, not just names)
+- Available queries (list names from queries/)
+- If .env exists: "Environment variables available — I'll ask before using them"
+- Recent session history or memory (if any)
+Skip anything that doesn't exist. No empty sections.
 
-3. Give a brief status — 3-6 lines max:
-   - Project and current focus (from CONTEXT.md)
-   - What's in context/ (e.g., "You have a BigQuery cost control reference and an auth guide loaded")
-   - If .env exists, mention: "Environment variables are available — I'll ask before using them"
-   - Saved queries (e.g., "3 queries in your library: top-jobs.sql, daily-revenue.sql, slot-usage.sql")
-   - Any relevant memory or recent session history
-   - Skip anything that doesn't exist yet — don't mention empty logs or missing history
+Ask: "What are we working on?"
 
-4. Ask one question: "What are we working on today?"
-
-5. Once answered, write ./SESSION.md:
-   # Session — [DATE]
-   ## Goal
-   <their answer>
-   ## Context
-   <relevant details from what you loaded>
-
-6. Say: "Ready. What's first?"
+Write SESSION.md with their answer. Say: "Ready."
 """

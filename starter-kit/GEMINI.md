@@ -116,20 +116,36 @@ a one-line description from each file's header comment.
 
 ## Data & Command Safety
 
-Applies to any database, query tool, API, CLI, or data system.
-Project-specific tools and connections are defined in CONTEXT.md.
+Read-only by default. Every database action is classified:
 
-Before running any query or command:
-  → Show it in full and wait for confirmation.
-  → If a dry run or preview mode exists, use it first and report the result.
-  → Report any cost, row count, or impact estimate before executing.
-  → If estimated impact exceeds limits in CONTEXT.md, stop and ask.
+  SAFE — proceed without asking:
+    SELECT, SHOW, DESCRIBE, EXPLAIN, dry runs
 
-Hard rules:
-  → Only run read operations unless explicitly told otherwise.
-  → Never modify, delete, or write to production systems without CRITICAL-level approval.
-  → Never use wildcard selects on unknown data sources. Always specify fields.
-  → Always apply row or result limits on exploratory queries.
+  MEDIUM — confirm once before running:
+    CREATE VIEW, CREATE TABLE (non-production)
+    INSERT into staging/test tables
+
+  CRITICAL — require explicit, specific approval. Never assume permission:
+    ALTER, DROP, TRUNCATE, DELETE, UPDATE, MERGE
+    GRANT, REVOKE, or any permission change
+    CREATE/ALTER on production tables, views, schemas
+    Any DDL against production
+
+Never modify production views, tables, schemas, or permissions unless the user
+spells out exactly what to change and confirms. "Clean up the database" is not
+approval to DROP anything.
+
+Cost awareness:
+  → Estimate bytes scanned and cost before running any query
+  → Use LIMIT on exploratory queries — always
+  → Prefer EXPLAIN or dry run before expensive operations
+  → If a query will scan >1 TB, stop and warn before executing
+  → LIMIT does not reduce bytes scanned on non-clustered tables — warn about this
+
+Before running any command:
+  → Show it in full and wait for confirmation
+  → Report estimated impact (rows, bytes, cost)
+  → If impact exceeds limits in CONTEXT.md, stop and ask
 
 ## Output & File Management
 

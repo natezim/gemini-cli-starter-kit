@@ -1,47 +1,20 @@
-description = "First-time setup wizard — reviews context files, interviews the user, and builds CONTEXT.md"
+description = "First-time setup — scans what exists, asks smart questions, writes CONTEXT.md"
 prompt = """
-A new user is setting up this Gemini CLI workspace for the first time.
+Scan everything: context/ files, .env variable names (not values), queries/.
 
-STEP 1 — Review what's already here
-Check ./context/ for reference files, .env and .env.* for configured services, and ./queries/ for saved queries.
+Summarize what you found. Then ask only what's missing — skip what you already know.
+If .env exists, list the variable names and ask: "What do these connect to?"
 
-If any of these exist:
-- Read every file in ./context/
-- If .env or .env.* files exist, list the variable NAMES you found (never the values)
-  and ask the user: "I see these environment variables — can you tell me what they connect to?"
-  Use their answers to understand the stack. Never read values without asking.
-- Check ./queries/ for existing SQL files
-- Build a mental model: what the project does, what tools/services are connected, what's already set up
-- Summarize: "Here's what I can see about this project:" followed by a brief summary
-- Note what you still don't know — these gaps become your interview questions
+Default questions (skip any you can answer from files):
+1. What's this project and what does the end result look like?
+2. Walk me through your stack — tools, services, databases, and how they connect.
+3. What does a typical work session look like?
+4. What's bitten you before? Gotchas, fragile systems, things to never touch?
+5. How do you know a task is done?
+6. What are you focused on right now?
 
-If nothing exists, proceed directly to the interview.
+One question at a time. Confirm each answer.
 
-STEP 2 — Interview
-Say: "I'll ask you a few questions to set things up. One at a time."
-
-If context files were found, tailor your questions to what's missing. Skip anything you already know. For each question, mention what you inferred and ask the user to confirm or correct.
-
-If no context files were found, ask these questions ONE AT A TIME. Wait for each answer.
-
-1. "What's this project? What are you building or working on, and what does the end result look like?"
-
-2. "Walk me through your stack. What tools, systems, and services are involved — and how do they connect?"
-   Follow up if they mention databases: "Which tables or datasets do you hit most? Any that are off-limits or expensive to query?"
-
-3. "What does a typical work session look like for you? What tasks do you repeat most often?"
-
-4. "What's bitten you before? Any gotchas, fragile systems, or things I should never touch without asking?"
-
-5. "When you hand me a task, how should I know it's done? What does 'good enough to ship' mean here?"
-
-6. "What are you focused on right now — this week or this sprint?"
-
-STEP 3 — Write CONTEXT.md
-Once all answers are collected:
-- Write a complete ./CONTEXT.md combining what you learned from context files and the interview. No placeholder text.
-- Leave a section blank only if they had nothing to say about it.
-- Show a summary and ask: "Does this look right? Anything to add or change?"
-- Apply any corrections.
-- Say: "CONTEXT.md is ready. Run /init to start your first session."
+Write CONTEXT.md with everything. Show a summary, ask for corrections.
+Say: "Done. Run /init to start."
 """
