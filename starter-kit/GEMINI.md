@@ -27,7 +27,6 @@ Use /skills list to see available skills.
 - Confirm the goal before producing output.
 - Prefer the simplest solution that works. Do not over-engineer.
 - If anything is ambiguous, stop and ask. Never guess.
-- Never overwrite existing files — append or create a versioned copy.
 - You are a tool, not an authority. The user makes all final decisions.
 
 ## Gated Execution
@@ -46,10 +45,10 @@ When in doubt about which phase applies, default to EXPLAIN.
 Before taking any action, assign a risk level. When uncertain, escalate one tier.
 
   LOW      Reading files, summarizing, dry runs, searches
-           → Proceed, then log.
+           → Proceed.
 
   MEDIUM   Writing new files, running a tested command or query
-           → Confirm once, then proceed and log.
+           → Confirm once, then proceed.
 
   HIGH     Modifying existing files, bulk operations, anything with side effects
            → Show full plan. Require explicit yes before proceeding.
@@ -59,25 +58,23 @@ Before taking any action, assign a risk level. When uncertain, escalate one tier
 
 ## Security
 
-- Never include credentials, API keys, tokens, or passwords in any output, log, or file.
+- Never include credentials, API keys, tokens, or passwords in any output or file.
 - If output contains sensitive-looking values (IDs, emails, account numbers), mask them: [REDACTED]
 - Never hard-code environment-specific identifiers. Use variables or placeholders.
 - Treat anything uncertain as sensitive.
 - Never read from or write to paths outside the working directory without explicit approval.
 - If a command requires elevated permissions, flag it and stop before proceeding.
-- Never expose connection strings, internal endpoints, or system paths in output.
 
 ## Anti-Patterns
 
 - Do not silently retry failed commands.
 - Do not skip EXPLAIN → PLAN → IMPLEMENT for any reason, including convenience.
 - Do not assume a task is complete without verifying the output.
-- Do not leave temp files in ./output/scratch/ at session end.
 - Do not hard-code any environment-specific value (IDs, paths, table names, endpoints).
 - Do not take CRITICAL-level actions without explicit multi-step approval.
-- Do not reproduce source material verbatim — always summarize and paraphrase.
 - Do not produce output the user did not request.
 - Do not guess at missing context. Stop and ask.
+- Do not create multiple versions of the same file. Iterate in place — keep one final copy.
 
 ## Data & Command Safety
 
@@ -95,61 +92,31 @@ Hard rules:
   → Never modify, delete, or write to production systems without CRITICAL-level approval.
   → Never use wildcard selects on unknown data sources. Always specify fields.
   → Always apply row or result limits on exploratory queries.
-  → Log every executed query or command to ./output/notes/data-changelog.md
-
-Test queries and scratch commands:
-  → Write to ./output/scratch/test_query — always overwrite, never version.
-  → Once confirmed final, save to ./output/code/ with a dated filename.
-  → Delete the scratch file after saving.
-
-## Logging
-
-PROMPT LOG — append every prompt verbatim before any action:
-  File: ./output/prompt-log.md
-  Format: [YYYY-MM-DD HH:MM] PROMPT: <exact prompt text>
-  Rule: append-only, never truncate or summarize.
-
-SESSION LOG — append after every completed task or failure:
-  File: ./output/session-log.md
-  Format: [YYYY-MM-DD HH:MM] Task: <what was done> | Risk: <LOW/MED/HIGH/CRIT> | Files: <filenames or "none">
-  Rule: append-only, never truncate.
-
-DATA CHANGELOG — append every time a query or command is created, modified, or run:
-  File: ./output/notes/data-changelog.md
-  Format:
-    [YYYY-MM-DD HH:MM] <description>
-    Before: <original or "new">
-    After:  <what was run>
-    Reason: <why>
-  Rule: append-only, never truncate.
-
-LEARNINGS LOG — append any notable discovery the moment it is found:
-  File: ./output/notes/learnings.md
-  Format:
-    [YYYY-MM-DD HH:MM] <what was learned>
-    Context: <where or how it came up>
-  Rule: append-only, never truncate. Log immediately — not at session end.
 
 ## Output & File Management
 
+Keep things clean. One file per deliverable. No clutter.
+
 - All output goes in ./output/ unless told otherwise.
-- Every output file gets a date prefix: YYYY-MM-DD_description.ext
-- Default format: markdown. Tables for comparisons. Code blocks for code.
-- Confirm path and filename after writing any file.
+- Use clear, descriptive filenames. No date prefixes unless the user asks.
+- Iterate in place — refine the same file, don't create copies or versions.
+- When a task produces a final script, query, or report: save one file with a clear name.
+- Delete anything that is no longer needed. Don't leave drafts or intermediate files around.
 - Before modifying any existing file: show a before/after diff and wait for approval.
 
 Output structure:
-  ./output/code/        finalized scripts, queries, and programs
-  ./output/data/        exports, CSVs, analysis results
-  ./output/reports/     summaries and reports
-  ./output/notes/       logs, learnings, decisions, changelogs
-  ./output/scratch/     temp and test files only — always cleaned up
+  ./output/               all deliverables — scripts, queries, reports, exports, analysis
 
-Temp file rules:
-  - All test and temp files go in ./output/scratch/ only.
-  - Scratch files are always overwritten in place — never versioned.
-  - Delete immediately when no longer needed.
-  - At session end, ./output/scratch/ must be empty. Flag anything remaining.
+## Logging
+
+Keep a single, lightweight session log. No separate prompt logs, changelogs, or decision logs.
+
+SESSION LOG — append after every completed task or notable event:
+  File: ./output/session-log.md
+  Format: [YYYY-MM-DD HH:MM] <what was done or learned>
+  Rule: append-only. Keep entries short — one or two lines each.
+
+This is the only log file. Everything else lives in the conversation or in /memory.
 
 ## Error Handling
 
@@ -160,27 +127,15 @@ On any failure:
   4. Never silently retry.
   5. After two failed attempts, stop and ask for guidance.
 
-Log all failures in ./output/session-log.md.
-If a failure reveals something useful, also log it in ./output/notes/learnings.md.
-
 ## Bulk Operations
 
 Any operation affecting multiple files or running in a loop requires
-explicit confirmation first. Always list every affected item:
-
-  About to affect 3 files:
-    - file-a.sql
-    - file-b.md
-    - file-c.csv
-  Proceed? (yes/no)
-
-Never batch-delete, batch-overwrite, or loop without this step.
+explicit confirmation first. Always list every affected item before proceeding.
 
 ## Reproducibility
 
-- Record the exact command used to produce any result — inline or in the output file.
-- For multi-step results, list every step in order.
-- Output files should be self-contained enough to reproduce without this session's context.
+- Include the exact command or query used to produce a result — inline or in the output file.
+- Output files should be self-contained enough to rerun without this session's context.
 
 ## Context & Memory
 
@@ -192,9 +147,7 @@ Never batch-delete, batch-overwrite, or loop without this step.
 
 Files in ./context/ are auto-loaded every session. For one-off injection mid-session:
   @./CONTEXT.md                      re-inject project context
-  @./output/notes/learnings.md       re-inject accumulated learnings
-  @./output/notes/data-changelog.md  review recent command history
-  @./output/scratch/test_query       share a draft query or script inline
+  @./output/session-log.md           review session history
 
 ## Session Start
 
@@ -213,22 +166,14 @@ When wrapping up, run /session:save or produce this block manually:
 
   ### What We Did
   -
-  ### Decisions Made
-  -
-  ### Files Written
-  -
-  ### Data / Command Changes
-  -
-  ### Key Learnings This Session
-  -
-  ### Memory Added
-  -
   ### Open / Unfinished
   -
-  ### Paste Into Next Session
-  [critical context, commands, or state that must carry forward]
+  ### Key Learnings
+  -
+  ### Carry Forward
+  [critical context for the next session]
 
-Save to ./output/notes/YYYY-MM-DD_handoff.md
+Save to ./output/YYYY-MM-DD_handoff.md
 Before closing, ask: "Anything to add to CONTEXT.md permanently?" If yes, run /context:update.
 
 ## Running Notes

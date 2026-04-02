@@ -20,14 +20,8 @@ build/
 secrets/
 credentials/
 
-# Scratch — temp files should never feed back as context
-output/scratch/
-
-# Logs — these grow over time and waste context tokens
-# They're written to by Gemini but shouldn't be auto-loaded
-output/prompt-log.md
+# Session log — grows over time, shouldn't be auto-loaded as context
 output/session-log.md
-output/notes/data-changelog.md
 
 # Large files unlikely to be useful as context
 *.log

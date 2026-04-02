@@ -6,30 +6,30 @@ STEP 1 — Review context files
 Check if ./context/ contains any files. If it does:
 - Read every file in the folder.
 - Build a mental model of the project: what it does, what tools and systems are involved, what patterns or conventions are visible, and any constraints you can infer.
-- Summarize what you found: "I reviewed the files in context/ and here's what I gathered about this project:" followed by a brief summary.
+- Summarize what you found: "I reviewed the files in context/ and here's what I gathered:" followed by a brief summary.
 - Note what you still don't know — these gaps become your interview questions.
 
 If ./context/ is empty, proceed directly to the interview.
 
 STEP 2 — Interview
-Say: "I'll ask you a few questions to fill in the gaps. One at a time."
+Say: "I'll ask you a few questions to set things up. One at a time."
 
-If context files were found, tailor your questions to what's missing. Skip anything you already know from the files. For each question, mention what you inferred and ask the user to confirm or correct it.
+If context files were found, tailor your questions to what's missing. Skip anything you already know. For each question, mention what you inferred and ask the user to confirm or correct.
 
-If no context files were found, ask these questions ONE AT A TIME:
+If no context files were found, ask these questions ONE AT A TIME. Wait for each answer.
 
-1. "What are we working on? Give me a 2-3 sentence description of this project or workspace."
-2. "What tools and systems will we be using? For example: databases, APIs, CLIs, cloud platforms, file systems."
-3. "How do you connect or authenticate to those systems?"
-4. "Are there specific tables, files, APIs, or data sources we'll use regularly?"
-5. "What are the recurring tasks you do most often in this workspace?"
-6. "Any known gotchas or constraints I should always remember — quirks, things that have caused problems, things to never touch?"
-7. "Any naming or formatting conventions for output files?"
-8. "Are there cost or safety limits where I should stop and ask before proceeding?"
-9. "What does 'done' look like for a typical task here?"
-10. "What are you working on right now specifically?"
+1. "What's this project? What are you building or working on, and what does the end result look like?"
 
-Confirm each answer before moving on.
+2. "Walk me through your stack. What tools, systems, and services are involved — and how do they connect?"
+   Follow up if they mention databases: "Which tables or datasets do you hit most? Any that are off-limits or expensive to query?"
+
+3. "What does a typical work session look like for you? What tasks do you repeat most often?"
+
+4. "What's bitten you before? Any gotchas, fragile systems, or things I should never touch without asking?"
+
+5. "When you hand me a task, how should I know it's done? What does 'good enough to ship' mean here?"
+
+6. "What are you focused on right now — this week or this sprint?"
 
 STEP 3 — Write CONTEXT.md
 Once all answers are collected:

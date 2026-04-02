@@ -10,7 +10,7 @@ A plug-and-play best practices system for [Gemini CLI](https://github.com/google
 - **Risk classification** -- every action is classified (Low / Medium / High / Critical) before execution
 - **Automatic logging** -- prompts, tasks, data commands, learnings, and decisions are logged without you asking
 - **Session management** -- structured start (`/init`, `/brief`) and end (`/session:save`) with handoff docs
-- **Custom slash commands** -- `/setup`, `/init`, `/brief`, `/session:save`, `/learnings:add`, `/context:update`
+- **Custom slash commands** -- `/setup`, `/init`, `/brief`, `/session:save`, `/context:update`
 - **Security defaults** -- credentials never in output, checkpointing enabled
 - **Output organization** -- clean folder structure for code, data, reports, notes, and scratch files
 
@@ -65,16 +65,8 @@ context/                   # Drop reference files here -- auto-loaded every sess
   skills/                  # Drop skill folders here (each with a SKILL.md)
 
 output/
-  prompt-log.md            # Every prompt, auto-logged
-  session-log.md           # Every task + risk level, auto-logged
-  code/                    # Finalized scripts and queries
-  data/                    # Exports, CSVs, analysis results
-  reports/                 # Summaries and reports
-  scratch/                 # Temp files -- always cleaned up
-  notes/
-    learnings.md           # Discoveries, logged as they happen
-    decisions.md           # Decision log
-    data-changelog.md      # Every query/command with before/after
+  session-log.md           # Lightweight session log, auto-appended
+                           # All deliverables (scripts, queries, reports) go here too
 ```
 
 ## Commands
@@ -85,7 +77,6 @@ output/
 | `/init` | Full session start with intake questions |
 | `/brief` | Fast session start, one question |
 | `/session:save` | Session end -- writes handoff doc, checks memory |
-| `/learnings:add` | Log a discovery to `learnings.md` right now |
 | `/context:update` | Add something permanent to `CONTEXT.md` |
 | `/stats` | Check context window usage |
 | `/memory add <fact>` | Persist a fact across sessions |
@@ -94,14 +85,12 @@ output/
 
 ## What Runs Automatically
 
-- Every prompt logged to `output/prompt-log.md`
-- Every task logged with risk level to `output/session-log.md`
-- Every data command logged with before/after diff
+- Tasks logged to `output/session-log.md`
 - Diff shown before any existing file is modified
 - Dry run used before data commands when available
 - Bulk operations require itemized list + explicit approval
-- Scratch files cleaned up at session end
-- Failures logged with error message and plain-language explanation
+- Commands shown and confirmed before execution
+- Failures explained in plain language with proposed fix
 
 ## Skills
 

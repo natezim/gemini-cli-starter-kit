@@ -19,9 +19,8 @@ If ./context/ contains files, scan them for anything new or relevant.
 If any files have been added or changed since the last session, briefly note what's new.
 
 STEP 4 — Check session history
-If ./output/session-log.md exists, summarize the last 3 entries.
-If ./output/notes/learnings.md exists, summarize the 5 most recent entries.
-If neither exists, note this is an early session.
+If ./output/session-log.md exists, summarize the last 3-5 entries.
+If it doesn't exist, note this is an early session.
 
 STEP 5 — Surface persisted memory
 Run /memory show. Summarize anything relevant to today's work.

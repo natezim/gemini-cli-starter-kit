@@ -2,26 +2,18 @@ description = "End of session — writes handoff doc, checks memory, prompts for
 prompt = """
 The session is ending. Do the following in order.
 
-1. Write a handoff document to ./output/notes/[YYYY-MM-DD]_handoff.md:
+1. Write a handoff document to ./output/[YYYY-MM-DD]_handoff.md:
 
    ## Handoff — [DATE TIME]
 
    ### What We Did
    -
-   ### Decisions Made
-   -
-   ### Files Written
-   -
-   ### Data / Command Changes
-   (summarize from ./output/notes/data-changelog.md)
-   ### Key Learnings This Session
-   (summarize from ./output/notes/learnings.md)
-   ### Memory Added
-   -
    ### Open / Unfinished
    -
-   ### Paste Into Next Session
-   [critical context, commands, or decisions that must carry forward]
+   ### Key Learnings
+   -
+   ### Carry Forward
+   [critical context for the next session]
 
 2. Run /memory show.
    If anything critical from this session is not yet persisted, add it now with /memory add.

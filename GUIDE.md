@@ -28,18 +28,9 @@ any tool, any user. Drop it in, run /setup, and go.
       /context:update    Add something permanently to CONTEXT.md
     skills/              Drop skill folders here — each with a SKILL.md
 
-  output/                Everything Gemini writes goes here
-    prompt-log.md        Every prompt, auto-logged
-    session-log.md       Every task, auto-logged with risk level
-    code/                Finalized scripts and queries
-    data/                Exports and analysis
-    reports/             Summaries and reports
-    scratch/             Temp files — always cleaned up
-    notes/
-      learnings.md       Discoveries, logged as they happen
-      decisions.md       Decisions made, running log
-      data-changelog.md  Every query/command, before and after
-      YYYY-MM-DD_handoff.md   Session wrap-up docs
+  output/                All deliverables and logs go here
+    session-log.md       Lightweight session log, auto-appended
+                         Scripts, queries, reports, exports — all saved here with clear names
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -100,16 +91,8 @@ Re-inject context at any time with @
 If Gemini loses the thread mid-session, inject any file directly:
 
   @./CONTEXT.md                      Re-inject project context
-  @./output/notes/learnings.md       Re-inject accumulated learnings
-  @./output/notes/data-changelog.md  Review recent command history
-  @./output/scratch/test_query       Share a draft query or script
-
-Log a discovery immediately
-When something worth remembering comes up:
-
-  /learnings:add
-
-Don't wait until session end. Things get compressed away.
+  @./output/session-log.md           Review session history
+  @./output/my-query.sql             Share a file inline
 
 Add something permanently to your context
 When a discovery should follow you into every future session:
@@ -132,7 +115,7 @@ Chat history gets compressed. /memory does not.
   /session:save
 
 Gemini will:
-→ Write a full handoff doc to output/notes/YYYY-MM-DD_handoff.md
+→ Write a handoff doc to output/YYYY-MM-DD_handoff.md
 → Check /memory show and persist anything critical not yet saved
 → Ask if anything should be added to CONTEXT.md permanently
 → Confirm everything is closed out
@@ -145,7 +128,6 @@ Gemini will:
   /init             Full session start with intake
   /brief            Fast session start, one question
   /session:save     Session end, handoff doc, memory check
-  /learnings:add    Log a discovery to learnings.md right now
   /context:update   Add something permanent to CONTEXT.md
   /stats            Check context window usage
   /memory add       Persist a fact across sessions
@@ -161,15 +143,13 @@ Gemini will:
 
 You never have to ask for any of these:
 
-  ✓ Every prompt logged verbatim to output/prompt-log.md
-  ✓ Every task logged with risk level to output/session-log.md
-  ✓ Every data command logged with before/after to output/notes/data-changelog.md
+  ✓ Tasks logged to output/session-log.md
   ✓ Diff shown before any existing file is modified
   ✓ Dry run used before any data command if the tool supports it
   ✓ Bulk operations require an itemized list + explicit yes
   ✓ Every command shown and confirmed before execution
-  ✓ Scratch files cleaned up at session end
-  ✓ Failures logged with error message and plain-language explanation
+  ✓ Files iterated in place — one final copy, no clutter
+  ✓ Failures explained in plain language with proposed fix
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -183,15 +163,12 @@ guides, example outputs. They're loaded automatically every session.
 The more you put into CONTEXT.md upfront, the less you explain every session.
 Include recurring tasks, known gotchas, naming conventions, and safety limits.
 
-/learnings:add in the moment beats waiting.
-Context gets compressed during long sessions. Log discoveries immediately.
-
 @./CONTEXT.md is your reset button.
 If Gemini loses the thread, inject it and everything reloads mid-session.
 
 /memory add for the most critical facts.
-learnings.md is a file — it has to be re-read each session.
-/memory entries are natively persistent and survive compression automatically.
+Memory entries are natively persistent and survive compression automatically.
+Use it for gotchas, key decisions, and anything you'd hate to re-explain.
 
 /context:update before closing.
 Before every session ends, ask: did we learn anything that should be permanent?
