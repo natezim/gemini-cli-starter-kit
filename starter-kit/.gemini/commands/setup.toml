@@ -7,9 +7,9 @@ Check ./context/ for reference files, .env and .env.* for configured services, a
 
 If any of these exist:
 - Read every file in ./context/
-- Read .env files — note the variable NAMES to understand what databases, APIs, and services
-  are configured. NEVER output the actual values. Use names to infer capabilities
-  (e.g., DATABASE_URL → Postgres is available, BIGQUERY_PROJECT → BigQuery is set up)
+- If .env or .env.* files exist, list the variable NAMES you found (never the values)
+  and ask the user: "I see these environment variables — can you tell me what they connect to?"
+  Use their answers to understand the stack. Never read values without asking.
 - Check ./queries/ for existing SQL files
 - Build a mental model: what the project does, what tools/services are connected, what's already set up
 - Summarize: "Here's what I can see about this project:" followed by a brief summary

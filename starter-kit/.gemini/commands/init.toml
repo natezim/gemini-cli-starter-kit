@@ -10,17 +10,15 @@ Start a new session.
    - Read ./CONTEXT.md
    - Scan ./context/ — for each file, note what it covers (not just filenames)
    - Scan ./queries/ — note how many saved queries exist and their names
-   - Read .env and any .env.* files if they exist — note the variable NAMES to understand
-     what services, databases, and APIs are configured. NEVER output the values.
-     Use this to know your capabilities (e.g., if DATABASE_URL exists, you can query that database;
-     if BIGQUERY_PROJECT exists, you can run BigQuery queries).
+   - Check if .env or .env.* files exist. If they do, note that environment variables
+     are available but do NOT read them yet. You'll ask before using them.
    - Check ./output/session-log.md for recent entries (if it exists)
    - Run /memory show
 
 3. Give a brief status — 3-6 lines max:
    - Project and current focus (from CONTEXT.md)
    - What's in context/ (e.g., "You have a BigQuery cost control reference and an auth guide loaded")
-   - Available connections (from .env — e.g., "You have Postgres and BigQuery configured")
+   - If .env exists, mention: "Environment variables are available — I'll ask before using them"
    - Saved queries (e.g., "3 queries in your library: top-jobs.sql, daily-revenue.sql, slot-usage.sql")
    - Any relevant memory or recent session history
    - Skip anything that doesn't exist yet — don't mention empty logs or missing history

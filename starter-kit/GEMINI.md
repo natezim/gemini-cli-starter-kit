@@ -58,18 +58,16 @@ Before taking any action, assign a risk level. When uncertain, escalate one tier
 
 ## Environment Awareness
 
-Read .env and .env.* files at session start to know what's available.
-Use the variable NAMES to understand your capabilities — which databases, APIs,
-and services are configured. Use the VALUES when connecting or running queries.
-NEVER include values in output, logs, files, or conversation. Reference by variable name only.
+When a task might need database connections, API keys, or service credentials:
+  → Check if .env or .env.* files exist
+  → List the variable NAMES you found (never the values) and ask the user:
+    "I found these environment variables: DATABASE_URL, BIGQUERY_PROJECT, OPENAI_API_KEY.
+    Can I use these for this task?"
+  → Only read the values after the user confirms
+  → NEVER include values in output, logs, files, or conversation
 
-Examples:
-  DATABASE_URL is set     → you can connect to Postgres
-  BIGQUERY_PROJECT is set → you can run BigQuery queries
-  OPENAI_API_KEY is set   → you can call the OpenAI API
-
-If a user asks you to do something and the credentials are in .env, just do it.
-Don't say "I can't" — check .env first.
+Do not read .env silently or automatically. Always ask first.
+Do not say "I can't connect" without checking if .env has what you need.
 
 ## Security
 
