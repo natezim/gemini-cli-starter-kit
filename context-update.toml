@@ -1,0 +1,56 @@
+name = "init"
+description = "Full session start — loads context, checks history, runs intake interview, writes SESSION.md"
+prompt = """
+Start a new session. Follow these steps in order.
+
+STEP 1 — Check CONTEXT.md
+If ./CONTEXT.md is missing or contains only placeholder text, say:
+"CONTEXT.md hasn't been filled in yet. Run /setup first — it only takes a few minutes."
+Then stop.
+
+STEP 2 — Load persistent context
+Read ./CONTEXT.md. Summarize:
+- What this project is
+- Tools and environment in use
+- Active focus area
+- Any gotchas or constraints worth flagging
+
+STEP 3 — Check session history
+If ./output/session-log.md exists, summarize the last 3 entries.
+If ./output/notes/learnings.md exists, summarize the 5 most recent entries.
+If neither exists, note this is an early session.
+
+STEP 4 — Surface persisted memory
+Run /memory show. Summarize anything relevant to today's work.
+
+STEP 5 — Intake interview
+Ask ONE question at a time. Wait for each answer.
+1. "What are we working on today?"
+2. "Any specific resources, files, or systems to focus on?"
+3. "Any constraints for today — scope limits, things to avoid?"
+4. "What does done look like today?"
+
+STEP 6 — Write SESSION.md
+Write ./SESSION.md:
+
+  # Session Brief — [DATE TIME]
+
+  ## Goal
+  <what we're trying to accomplish>
+
+  ## Scope
+  <resources, systems, or files in play>
+
+  ## Constraints
+  <limits, things to avoid>
+
+  ## Definition of Done
+  <what success looks like>
+
+  ## Loaded Context
+  - Environment: <from CONTEXT.md>
+  - Recent history: <summary from session log>
+  - Persisted memory: <summary from /memory show>
+
+Confirm SESSION.md was written. Say: "Ready. What's the first task?"
+"""
