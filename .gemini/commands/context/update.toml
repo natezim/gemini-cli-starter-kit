@@ -1,4 +1,3 @@
-name = "context:update"
 description = "Add a discovery or note to CONTEXT.md permanently"
 prompt = """
 Ask: "What should be added to the permanent project context?

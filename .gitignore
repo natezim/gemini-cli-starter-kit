@@ -33,6 +33,9 @@ build/
 *.parquet
 *.avro
 
+# Claude Code local config
+.claude/
+
 # OS and IDE artifacts
 .DS_Store
 Thumbs.db

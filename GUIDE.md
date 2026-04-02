@@ -9,7 +9,7 @@ any tool, any user. Drop it in, run /setup, and go.
 
 ## WHAT'S IN THE KIT
 
-  GEMINI.md              All rules. Auto-loaded every session. Never edit this.
+  GEMINI.md              Base rules. Auto-loaded every session. Customize as needed.
   CONTEXT.md             Your project context. Fill once, update often.
   SESSION.md             Created fresh each session. Tracks today's goal.
   settings.json          Enables checkpointing and security settings.

@@ -11,7 +11,7 @@ A plug-and-play best practices system for [Gemini CLI](https://github.com/google
 - **Automatic logging** -- prompts, tasks, data commands, learnings, and decisions are logged without you asking
 - **Session management** -- structured start (`/init`, `/brief`) and end (`/session:save`) with handoff docs
 - **Custom slash commands** -- `/setup`, `/init`, `/brief`, `/session:save`, `/learnings:add`, `/context:update`
-- **Security defaults** -- credentials never in output, checkpointing enabled, YOLO mode disabled
+- **Security defaults** -- credentials never in output, checkpointing enabled
 - **Output organization** -- clean folder structure for code, data, reports, notes, and scratch files
 
 ## Quick Start
@@ -56,9 +56,9 @@ settings.json              # Checkpointing + security settings
   setup.toml               # /setup -- first-time context builder
   init.toml                # /init -- full session start
   brief.toml               # /brief -- fast session start
-  session-save.toml        # /session:save -- session end + handoff
-  learnings-add.toml       # /learnings:add -- log a discovery immediately
-  context-update.toml      # /context:update -- add to CONTEXT.md permanently
+  session/save.toml        # /session:save -- session end + handoff
+  learnings/add.toml       # /learnings:add -- log a discovery immediately
+  context/update.toml      # /context:update -- add to CONTEXT.md permanently
 
 output/
   prompt-log.md            # Every prompt, auto-logged

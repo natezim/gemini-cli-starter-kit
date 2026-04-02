@@ -1,12 +1,20 @@
 {
-  "checkpointing": {
-    "enabled": true
+  "general": {
+    "checkpointing": {
+      "enabled": true
+    },
+    "sessionRetention": {
+      "enabled": true,
+      "maxAge": "30d",
+      "maxCount": 50
+    }
   },
   "context": {
     "fileName": ["GEMINI.md"]
   },
-  "security": {
-    "disableYoloMode": true,
-    "environmentVariableRedaction": true
+  "model": {
+    "chatCompression": {
+      "contextPercentageThreshold": 0.4
+    }
   }
 }

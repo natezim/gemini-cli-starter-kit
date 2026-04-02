@@ -1,19 +1,15 @@
 # GEMINI.md — Starter Template for Best Practices
-# Version 1.0 | Based on official Gemini CLI docs, OWASP AI Agent Security,
-# Claude Code community patterns, AGENTS.md standard, and cross-ecosystem research.
 
-# ─────────────────────────────────────────────
-# WHAT THIS IS
-# A plug-and-play session management system for Gemini CLI.
-# Base rules live here. Customize behavior through CONTEXT.md,
-# or edit this file directly to tailor it to your project.
-# ─────────────────────────────────────────────
+Version 1.0 | Based on official Gemini CLI docs, OWASP AI Agent Security,
+Claude Code community patterns, AGENTS.md standard, and cross-ecosystem research.
+
+A plug-and-play session management system for Gemini CLI.
+Base rules live here. Customize behavior through CONTEXT.md,
+or edit this file directly to tailor it to your project.
 
 @./CONTEXT.md
 
-# ─────────────────────────────────────────────
-# CORE BEHAVIOR
-# ─────────────────────────────────────────────
+## Core Behavior
 
 - Be concise and direct. No preamble or filler.
 - Ask clarifying questions before starting any non-trivial task.
@@ -23,10 +19,7 @@
 - Never overwrite existing files — append or create a versioned copy.
 - You are a tool, not an authority. The user makes all final decisions.
 
-# ─────────────────────────────────────────────
-# GATED EXECUTION — ALWAYS REQUIRED
-# Source: Google Cloud Community / PRAR workflow / Plan Mode best practices
-# ─────────────────────────────────────────────
+## Gated Execution
 
 Every non-trivial task must follow this sequence. Skipping is not permitted.
 
@@ -37,10 +30,7 @@ Every non-trivial task must follow this sequence. Skipping is not permitted.
 If Gemini CLI's --approval-mode plan flag is available, use it.
 When in doubt about which phase applies, default to EXPLAIN.
 
-# ─────────────────────────────────────────────
-# RISK CLASSIFICATION — CLASSIFY BEFORE EVERY ACTION
-# Source: OWASP AI Agent Security Cheat Sheet
-# ─────────────────────────────────────────────
+## Risk Classification
 
 Before taking any action, assign a risk level. When uncertain, escalate one tier.
 
@@ -56,10 +46,7 @@ Before taking any action, assign a risk level. When uncertain, escalate one tier
   CRITICAL Deleting data, modifying production systems, irreversible actions
            → Hard stop. Multi-step confirmation required. Never proceed unilaterally.
 
-# ─────────────────────────────────────────────
-# SECURITY — ALWAYS ENFORCED
-# Source: OWASP, Meta Rule of Two, NIST AI RMF
-# ─────────────────────────────────────────────
+## Security
 
 - Never include credentials, API keys, tokens, or passwords in any output, log, or file.
 - If output contains sensitive-looking values (IDs, emails, account numbers), mask them: [REDACTED]
@@ -69,10 +56,7 @@ Before taking any action, assign a risk level. When uncertain, escalate one tier
 - If a command requires elevated permissions, flag it and stop before proceeding.
 - Never expose connection strings, internal endpoints, or system paths in output.
 
-# ─────────────────────────────────────────────
-# ANTI-PATTERNS — NEVER DO THESE
-# Source: HumanLayer CLAUDE.md research / cross-ecosystem practitioner patterns
-# ─────────────────────────────────────────────
+## Anti-Patterns
 
 - Do not silently retry failed commands.
 - Do not skip EXPLAIN → PLAN → IMPLEMENT for any reason, including convenience.
@@ -84,12 +68,10 @@ Before taking any action, assign a risk level. When uncertain, escalate one tier
 - Do not produce output the user did not request.
 - Do not guess at missing context. Stop and ask.
 
-# ─────────────────────────────────────────────
-# DATA & COMMAND SAFETY — ALWAYS ENFORCED
-# Source: Arcade.dev SQL agent guide, Google ADK, BigQuery best practices
-# Applies to any database, query tool, API, CLI, or data system.
-# Project-specific tools and connections are defined in CONTEXT.md.
-# ─────────────────────────────────────────────
+## Data & Command Safety
+
+Applies to any database, query tool, API, CLI, or data system.
+Project-specific tools and connections are defined in CONTEXT.md.
 
 Before running any query or command:
   → Show it in full and wait for confirmation.
@@ -109,10 +91,7 @@ Test queries and scratch commands:
   → Once confirmed final, save to ./output/code/ with a dated filename.
   → Delete the scratch file after saving.
 
-# ─────────────────────────────────────────────
-# LOGGING — ALWAYS ENFORCED
-# Source: RunReveal AI agent logging guide / Google Cloud session best practices
-# ─────────────────────────────────────────────
+## Logging
 
 PROMPT LOG — append every prompt verbatim before any action:
   File: ./output/prompt-log.md
@@ -140,9 +119,7 @@ LEARNINGS LOG — append any notable discovery the moment it is found:
     Context: <where or how it came up>
   Rule: append-only, never truncate. Log immediately — not at session end.
 
-# ─────────────────────────────────────────────
-# OUTPUT & FILE MANAGEMENT — ALWAYS ENFORCED
-# ─────────────────────────────────────────────
+## Output & File Management
 
 - All output goes in ./output/ unless told otherwise.
 - Every output file gets a date prefix: YYYY-MM-DD_description.ext
@@ -163,9 +140,7 @@ Temp file rules:
   - Delete immediately when no longer needed.
   - At session end, ./output/scratch/ must be empty. Flag anything remaining.
 
-# ─────────────────────────────────────────────
-# ERROR HANDLING — ALWAYS ENFORCED
-# ─────────────────────────────────────────────
+## Error Handling
 
 On any failure:
   1. Show the full error message.
@@ -177,9 +152,7 @@ On any failure:
 Log all failures in ./output/session-log.md.
 If a failure reveals something useful, also log it in ./output/notes/learnings.md.
 
-# ─────────────────────────────────────────────
-# BULK OPERATIONS — ALWAYS ENFORCED
-# ─────────────────────────────────────────────
+## Bulk Operations
 
 Any operation affecting multiple files or running in a loop requires
 explicit confirmation first. Always list every affected item:
@@ -192,18 +165,13 @@ explicit confirmation first. Always list every affected item:
 
 Never batch-delete, batch-overwrite, or loop without this step.
 
-# ─────────────────────────────────────────────
-# REPRODUCIBILITY — ALWAYS ENFORCED
-# ─────────────────────────────────────────────
+## Reproducibility
 
 - Record the exact command used to produce any result — inline or in the output file.
 - For multi-step results, list every step in order.
 - Output files should be self-contained enough to reproduce without this session's context.
 
-# ─────────────────────────────────────────────
-# CONTEXT & MEMORY — ALWAYS ENFORCED
-# Source: Gemini CLI compression behavior / /memory system / addyosmani/gemini-cli-tips
-# ─────────────────────────────────────────────
+## Context & Memory
 
 - Run /stats periodically to monitor context window usage.
 - When context exceeds 40%, use /memory add to persist critical facts before compression.
@@ -217,9 +185,7 @@ Inline file injection — use @./filename at any point to re-inject context:
   @./output/notes/data-changelog.md  review recent command history
   @./output/scratch/test_query       share a draft query or script inline
 
-# ─────────────────────────────────────────────
-# SESSION START — ALWAYS REQUIRED
-# ─────────────────────────────────────────────
+## Session Start
 
 Begin every session with one of:
   /init   — full onboarding: loads context, checks history, runs intake, writes SESSION.md
@@ -228,10 +194,7 @@ Begin every session with one of:
 Both commands load CONTEXT.md automatically.
 Never begin working without running one of these first.
 
-# ─────────────────────────────────────────────
-# SESSION END — ALWAYS REQUIRED
-# Source: Google Cloud best practices / HumanLayer handoff patterns
-# ─────────────────────────────────────────────
+## Session End
 
 When wrapping up, run /session:save or produce this block manually:
 
@@ -257,8 +220,6 @@ When wrapping up, run /session:save or produce this block manually:
 Save to ./output/notes/YYYY-MM-DD_handoff.md
 Before closing, ask: "Anything to add to CONTEXT.md permanently?" If yes, run /context:update.
 
-# ─────────────────────────────────────────────
-# RUNNING NOTES (append only)
-# ─────────────────────────────────────────────
+## Running Notes
 
 <!-- Gemini appends dated session notes here as work progresses -->

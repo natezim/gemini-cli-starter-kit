@@ -1,4 +1,3 @@
-name = "session:save"
 description = "End of session — writes handoff doc, checks memory, prompts for context update"
 prompt = """
 The session is ending. Do the following in order.

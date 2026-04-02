@@ -1,4 +1,3 @@
-name = "brief"
 description = "Fast session start — one question, reads context silently, writes SESSION.md"
 prompt = """
 Check if ./CONTEXT.md exists and has real content.

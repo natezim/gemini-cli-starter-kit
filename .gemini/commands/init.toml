@@ -1,4 +1,3 @@
-name = "init"
 description = "Full session start — loads context, checks history, runs intake interview, writes SESSION.md"
 prompt = """
 Start a new session. Follow these steps in order.
