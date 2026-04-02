@@ -1,19 +1,6 @@
-description = "Fast session start — one question, reads context silently, writes SESSION.md"
+description = "Instant session start — loads context silently, ready immediately"
 prompt = """
-Check if ./CONTEXT.md exists and has real content.
-If not, say: "Run /setup first to build your project context."
-Then stop.
-
-Ask ONE question only:
-"Quick brief — what are we doing today and anything I need to know upfront?"
-
-Once answered:
-1. Read ./CONTEXT.md silently and note anything relevant to their answer.
-2. Write a minimal ./SESSION.md:
-   # Session Brief — [DATE TIME]
-   ## What We're Doing
-   <their answer>
-   ## Relevant Context
-   <anything applicable from CONTEXT.md>
-3. Say: "Got it. Ready when you are."
+1. Read ./CONTEXT.md silently. If it's missing or just placeholders, say "Run /setup first." and stop.
+2. Scan ./context/ silently.
+3. Say: "Ready. What are we doing?"
 """

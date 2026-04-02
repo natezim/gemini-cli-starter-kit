@@ -1,59 +1,29 @@
-description = "Full session start — loads context, checks history, runs intake interview, writes SESSION.md"
+description = "Session start — loads context, gives a quick status, asks what you're doing today"
 prompt = """
-Start a new session. Follow these steps in order.
+Start a new session.
 
-STEP 1 — Check CONTEXT.md
-If ./CONTEXT.md is missing or contains only placeholder text, say:
-"CONTEXT.md hasn't been filled in yet. Run /setup first — it only takes a few minutes."
-Then stop.
+1. Read ./CONTEXT.md. If it's missing or just placeholders, say "Run /setup first." and stop.
 
-STEP 2 — Load persistent context
-Read ./CONTEXT.md. Summarize:
-- What this project is
-- Tools and environment in use
-- Active focus area
-- Any gotchas or constraints worth flagging
+2. Silently load context:
+   - Read ./CONTEXT.md
+   - Scan ./context/ for files
+   - Check ./output/session-log.md for recent entries (if it exists)
+   - Run /memory show
 
-STEP 3 — Check context files
-If ./context/ contains files, scan them for anything new or relevant.
-If any files have been added or changed since the last session, briefly note what's new.
+3. Give a brief status — 3-4 lines max:
+   - Project and current focus (from CONTEXT.md)
+   - Anything new in context/ since last session
+   - Any relevant memory or recent session history
+   - Skip anything that doesn't exist yet — don't mention empty logs or missing history
 
-STEP 4 — Check session history
-If ./output/session-log.md exists, summarize the last 3-5 entries.
-If it doesn't exist, note this is an early session.
+4. Ask one question: "What are we working on today?"
 
-STEP 5 — Surface persisted memory
-Run /memory show. Summarize anything relevant to today's work.
+5. Once answered, write ./SESSION.md:
+   # Session — [DATE]
+   ## Goal
+   <their answer>
+   ## Context
+   <relevant details from what you loaded>
 
-STEP 6 — Intake interview
-Ask ONE question at a time. Wait for each answer.
-1. "What are we working on today?"
-2. "Any specific resources, files, or systems to focus on?"
-3. "Any constraints for today — scope limits, things to avoid?"
-4. "What does done look like today?"
-
-STEP 7 — Write SESSION.md
-Write ./SESSION.md:
-
-  # Session Brief — [DATE TIME]
-
-  ## Goal
-  <what we're trying to accomplish>
-
-  ## Scope
-  <resources, systems, or files in play>
-
-  ## Constraints
-  <limits, things to avoid>
-
-  ## Definition of Done
-  <what success looks like>
-
-  ## Loaded Context
-  - Environment: <from CONTEXT.md>
-  - Context files: <list of files in context/, note anything new>
-  - Recent history: <summary from session log>
-  - Persisted memory: <summary from /memory show>
-
-Confirm SESSION.md was written. Say: "Ready. What's the first task?"
+6. Say: "Ready. What's first?"
 """
