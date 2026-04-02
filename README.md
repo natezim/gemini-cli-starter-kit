@@ -18,14 +18,13 @@ A plug-and-play best practices system for [Gemini CLI](https://github.com/google
 
 ### 1. Copy the kit into your project
 
-Download or clone this repo, then copy everything into your project root:
+Clone this repo (or download the zip), then copy the contents of `starter-kit/` into your project root:
 
-```bash
-git clone https://github.com/natezim/gemini-cli-starter-kit.git
-cp -r gemini-cli-starter-kit/{.gemini,.geminiignore,GEMINI.md,CONTEXT.md,GUIDE.md,settings.json,output} your-project/
+```
+starter-kit/    <-- copy everything inside this folder into your project
 ```
 
-Or just download the zip and copy the files manually.
+That's it -- just the contents of `starter-kit/`, nothing else from the repo.
 
 ### 2. Run first-time setup
 
@@ -42,14 +41,14 @@ Gemini interviews you with 10 questions (one at a time) and writes `CONTEXT.md` 
 /brief    # Fast start -- one question, ready in seconds
 ```
 
-That's it. Everything else runs automatically.
+Everything else runs automatically.
 
-## File Structure
+## What's in `starter-kit/`
 
 ```
 GEMINI.md                  # Core rules -- auto-loaded every session
 CONTEXT.md                 # Your project context -- fill via /setup, update via /context:update
-settings.json              # Checkpointing + security settings
+settings.json              # Checkpointing, session retention, compression settings
 .geminiignore              # Keeps secrets and noise out of context
 
 .gemini/commands/
