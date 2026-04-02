@@ -1,7 +1,7 @@
 description = "Instant session start — loads context silently, ready immediately"
 prompt = """
 1. Read ./CONTEXT.md silently. If it's missing or just placeholders, run the /setup flow directly.
-2. Scan ./context/ and ./queries/ silently.
+2. Scan ./context/, ./queries/, and .env files silently. Note available connections but NEVER output values.
 3. Ask: "What are we doing?"
 4. Once answered, write a minimal ./SESSION.md:
    # Session — [DATE]

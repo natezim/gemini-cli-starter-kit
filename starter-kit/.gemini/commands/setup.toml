@@ -2,14 +2,20 @@ description = "First-time setup wizard — reviews context files, interviews the
 prompt = """
 A new user is setting up this Gemini CLI workspace for the first time.
 
-STEP 1 — Review context files
-Check if ./context/ contains any files. If it does:
-- Read every file in the folder.
-- Build a mental model of the project: what it does, what tools and systems are involved, what patterns or conventions are visible, and any constraints you can infer.
-- Summarize what you found: "I reviewed the files in context/ and here's what I gathered:" followed by a brief summary.
-- Note what you still don't know — these gaps become your interview questions.
+STEP 1 — Review what's already here
+Check ./context/ for reference files, .env and .env.* for configured services, and ./queries/ for saved queries.
 
-If ./context/ is empty, proceed directly to the interview.
+If any of these exist:
+- Read every file in ./context/
+- Read .env files — note the variable NAMES to understand what databases, APIs, and services
+  are configured. NEVER output the actual values. Use names to infer capabilities
+  (e.g., DATABASE_URL → Postgres is available, BIGQUERY_PROJECT → BigQuery is set up)
+- Check ./queries/ for existing SQL files
+- Build a mental model: what the project does, what tools/services are connected, what's already set up
+- Summarize: "Here's what I can see about this project:" followed by a brief summary
+- Note what you still don't know — these gaps become your interview questions
+
+If nothing exists, proceed directly to the interview.
 
 STEP 2 — Interview
 Say: "I'll ask you a few questions to set things up. One at a time."

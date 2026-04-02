@@ -56,6 +56,21 @@ Before taking any action, assign a risk level. When uncertain, escalate one tier
   CRITICAL Deleting data, modifying production systems, irreversible actions
            → Hard stop. Multi-step confirmation required. Never proceed unilaterally.
 
+## Environment Awareness
+
+Read .env and .env.* files at session start to know what's available.
+Use the variable NAMES to understand your capabilities — which databases, APIs,
+and services are configured. Use the VALUES when connecting or running queries.
+NEVER include values in output, logs, files, or conversation. Reference by variable name only.
+
+Examples:
+  DATABASE_URL is set     → you can connect to Postgres
+  BIGQUERY_PROJECT is set → you can run BigQuery queries
+  OPENAI_API_KEY is set   → you can call the OpenAI API
+
+If a user asks you to do something and the credentials are in .env, just do it.
+Don't say "I can't" — check .env first.
+
 ## Security
 
 - Never include credentials, API keys, tokens, or passwords in any output or file.
