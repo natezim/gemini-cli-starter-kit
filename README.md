@@ -54,13 +54,15 @@ settings.json              # Checkpointing, session retention, compression setti
 context/                   # Drop reference files here -- auto-loaded every session
                            # (specs, docs, schemas, examples, etc.)
 
-.gemini/commands/
-  setup.toml               # /setup -- first-time context builder
-  init.toml                # /init -- full session start
-  brief.toml               # /brief -- fast session start
-  session/save.toml        # /session:save -- session end + handoff
-  learnings/add.toml       # /learnings:add -- log a discovery immediately
-  context/update.toml      # /context:update -- add to CONTEXT.md permanently
+.gemini/
+  commands/
+    setup.toml             # /setup -- first-time context builder
+    init.toml              # /init -- full session start
+    brief.toml             # /brief -- fast session start
+    session/save.toml      # /session:save -- session end + handoff
+    learnings/add.toml     # /learnings:add -- log a discovery immediately
+    context/update.toml    # /context:update -- add to CONTEXT.md permanently
+  skills/                  # Drop skill folders here (each with a SKILL.md)
 
 output/
   prompt-log.md            # Every prompt, auto-logged
@@ -87,6 +89,7 @@ output/
 | `/context:update` | Add something permanent to `CONTEXT.md` |
 | `/stats` | Check context window usage |
 | `/memory add <fact>` | Persist a fact across sessions |
+| `/skills list` | View all discovered skills |
 | `@./filename` | Inject any file into context mid-session |
 
 ## What Runs Automatically
@@ -99,6 +102,22 @@ output/
 - Bulk operations require itemized list + explicit approval
 - Scratch files cleaned up at session end
 - Failures logged with error message and plain-language explanation
+
+## Skills
+
+Gemini CLI has a native skills system. A skill is a folder with a `SKILL.md` file that teaches Gemini specialized knowledge. Drop skill folders into `.gemini/skills/` and Gemini activates them when relevant.
+
+The `examples/skills/` folder in this repo contains sample skills you can copy into your project:
+
+- **`tableau-bigquery/`** -- Tableau + BigQuery live connection expertise (SQL push-down, cost control, auth, monitoring)
+
+To install a skill:
+
+```
+cp -r examples/skills/tableau-bigquery your-project/.gemini/skills/
+```
+
+To create your own, add a folder with a `SKILL.md` to `.gemini/skills/`. See the [Gemini CLI skills docs](https://geminicli.com/docs/cli/skills/) for details.
 
 ## Based On
 

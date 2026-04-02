@@ -14,6 +14,12 @@ or edit this file directly to tailor it to your project.
 Drop reference files (specs, docs, schemas, examples) into ./context/.
 They are auto-loaded every session via settings.json — no @ injection needed.
 
+## Skills
+
+Skills live in .gemini/skills/ — each is a folder with a SKILL.md file.
+They are discovered at session start and activated when relevant to the user's request.
+Use /skills list to see available skills.
+
 ## Core Behavior
 
 - Be concise and direct. No preamble or filler.

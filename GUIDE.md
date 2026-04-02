@@ -18,13 +18,15 @@ any tool, any user. Drop it in, run /setup, and go.
   context/               Drop reference files here — auto-loaded every session.
                          Specs, docs, schemas, examples, anything Gemini should know.
 
-  .gemini/commands/
-    /setup               First-time wizard — builds CONTEXT.md via interview
-    /init                Full session start with intake interview
-    /brief               Fast session start, one question
-    /session:save        Session end — handoff doc + memory check
-    /learnings:add       Log a discovery immediately
-    /context:update      Add something permanently to CONTEXT.md
+  .gemini/
+    commands/
+      /setup             First-time wizard — builds CONTEXT.md via interview
+      /init              Full session start with intake interview
+      /brief             Fast session start, one question
+      /session:save      Session end — handoff doc + memory check
+      /learnings:add     Log a discovery immediately
+      /context:update    Add something permanently to CONTEXT.md
+    skills/              Drop skill folders here — each with a SKILL.md
 
   output/                Everything Gemini writes goes here
     prompt-log.md        Every prompt, auto-logged
@@ -89,6 +91,11 @@ Add reference files to context/
 Drop specs, docs, schemas, or examples into ./context/ and they'll be
 auto-loaded every session. No @ injection needed for persistent files.
 
+Add skills for specialized expertise
+Drop a skill folder (containing a SKILL.md) into .gemini/skills/.
+Gemini discovers skills at session start and activates them when relevant.
+Use /skills list to see available skills and /skills reload after adding new ones.
+
 Re-inject context at any time with @
 If Gemini loses the thread mid-session, inject any file directly:
 
@@ -143,6 +150,8 @@ Gemini will:
   /stats            Check context window usage
   /memory add       Persist a fact across sessions
   /memory show      See facts persisted from past sessions
+  /skills list      View all discovered skills
+  /skills reload    Reload skills after adding new ones
   /restore          Undo a file change (requires checkpointing)
   @./filename       Inject any file into context mid-session
 

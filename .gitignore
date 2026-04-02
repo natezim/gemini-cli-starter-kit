@@ -33,6 +33,9 @@ build/
 *.parquet
 *.avro
 
+# Skill archives (extracted into examples/skills/)
+*.skill
+
 # Claude Code local config
 .claude/
 
