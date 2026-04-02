@@ -43,15 +43,19 @@ any tool, any user. Drop it in, run /setup, and go.
 
 ## FIRST-TIME SETUP (do this once)
 
-1. Copy the entire kit into your project folder.
+1. Copy the contents of starter-kit/ into your project root.
    Keep the folder structure exactly as-is.
 
-2. Run /setup
+2. Drop any reference files into ./context/
+   Specs, docs, schemas, API references, examples — anything Gemini should know.
+   These are auto-loaded every session and /setup will use them to tailor its questions.
+
+3. Run /setup
    Gemini interviews you — 10 questions, one at a time.
    It writes CONTEXT.md with your actual answers. No placeholders.
    Takes about 5 minutes. The better your context, the better every session.
 
-3. Done.
+4. Done.
    settings.json enables checkpointing automatically.
    You can undo any file change with /restore or double-Esc.
 

@@ -2,6 +2,9 @@
 # Run /setup to fill this out automatically.
 # Or fill it manually — every section you complete improves every session.
 # Update anytime with /context:update.
+#
+# Tip: Drop reference files (specs, docs, schemas) into ./context/
+# They're auto-loaded every session and /setup uses them to tailor its questions.
 
 ## What We're Working On
 <!-- 2-4 sentence description of this project or workspace -->

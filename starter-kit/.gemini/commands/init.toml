@@ -14,22 +14,26 @@ Read ./CONTEXT.md. Summarize:
 - Active focus area
 - Any gotchas or constraints worth flagging
 
-STEP 3 — Check session history
+STEP 3 — Check context files
+If ./context/ contains files, scan them for anything new or relevant.
+If any files have been added or changed since the last session, briefly note what's new.
+
+STEP 4 — Check session history
 If ./output/session-log.md exists, summarize the last 3 entries.
 If ./output/notes/learnings.md exists, summarize the 5 most recent entries.
 If neither exists, note this is an early session.
 
-STEP 4 — Surface persisted memory
+STEP 5 — Surface persisted memory
 Run /memory show. Summarize anything relevant to today's work.
 
-STEP 5 — Intake interview
+STEP 6 — Intake interview
 Ask ONE question at a time. Wait for each answer.
 1. "What are we working on today?"
 2. "Any specific resources, files, or systems to focus on?"
 3. "Any constraints for today — scope limits, things to avoid?"
 4. "What does done look like today?"
 
-STEP 6 — Write SESSION.md
+STEP 7 — Write SESSION.md
 Write ./SESSION.md:
 
   # Session Brief — [DATE TIME]
@@ -48,6 +52,7 @@ Write ./SESSION.md:
 
   ## Loaded Context
   - Environment: <from CONTEXT.md>
+  - Context files: <list of files in context/, note anything new>
   - Recent history: <summary from session log>
   - Persisted memory: <summary from /memory show>
 
