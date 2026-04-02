@@ -20,8 +20,9 @@ build/
 secrets/
 credentials/
 
-# Session log — grows over time, shouldn't be auto-loaded as context
+# Logs — grow over time, shouldn't be auto-loaded as context
 output/session-log.md
+output/query-log.md
 
 # Large files unlikely to be useful as context
 *.log

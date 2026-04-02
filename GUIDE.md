@@ -16,7 +16,7 @@ any tool, any user. Drop it in, run /setup, and go.
   .geminiignore          Keeps noise and secrets out of context.
 
   context/               Drop reference files here — auto-loaded every session.
-                         Specs, docs, schemas, examples, anything Gemini should know.
+  queries/               SQL query library — one .sql per query, iterated in place.
 
   .gemini/
     commands/
@@ -28,9 +28,9 @@ any tool, any user. Drop it in, run /setup, and go.
       /context:update    Add something permanently to CONTEXT.md
     skills/              Drop skill folders here — each with a SKILL.md
 
-  output/                All deliverables and logs go here
+  output/                Deliverables and logs
     session-log.md       Lightweight session log, auto-appended
-                         Scripts, queries, reports, exports — all saved here with clear names
+    query-log.md         Query execution log — what ran, rows, bytes, cost
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -144,6 +144,7 @@ Gemini will:
 You never have to ask for any of these:
 
   ✓ Tasks logged to output/session-log.md
+  ✓ SQL queries saved to queries/, tested before finalizing, executions logged
   ✓ Diff shown before any existing file is modified
   ✓ Dry run used before any data command if the tool supports it
   ✓ Bulk operations require an itemized list + explicit yes

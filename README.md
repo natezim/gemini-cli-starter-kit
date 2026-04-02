@@ -52,7 +52,7 @@ settings.json              # Checkpointing, session retention, compression setti
 .geminiignore              # Keeps secrets and noise out of context
 
 context/                   # Drop reference files here -- auto-loaded every session
-                           # (specs, docs, schemas, examples, etc.)
+queries/                   # SQL query library -- one .sql per query, iterated in place
 
 .gemini/
   commands/
@@ -65,8 +65,8 @@ context/                   # Drop reference files here -- auto-loaded every sess
   skills/                  # Drop skill folders here (each with a SKILL.md)
 
 output/
-  session-log.md           # Lightweight session log, auto-appended
-                           # All deliverables (scripts, queries, reports) go here too
+  session-log.md           # Lightweight session log
+  query-log.md             # Query execution log (what ran, rows, bytes, cost)
 ```
 
 ## Commands
@@ -86,6 +86,7 @@ output/
 ## What Runs Automatically
 
 - Tasks logged to `output/session-log.md`
+- SQL queries saved to `queries/`, tested before finalizing, executions logged to `output/query-log.md`
 - Diff shown before any existing file is modified
 - Dry run used before data commands when available
 - Bulk operations require itemized list + explicit approval

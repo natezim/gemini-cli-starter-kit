@@ -76,6 +76,31 @@ Before taking any action, assign a risk level. When uncertain, escalate one tier
 - Do not guess at missing context. Stop and ask.
 - Do not create multiple versions of the same file. Iterate in place — keep one final copy.
 
+## SQL & Query Management
+
+All queries live in ./queries/ as .sql files. This is the query library — one file per query,
+iterated in place. Never create copies or versions.
+
+Writing queries:
+  → Save to ./queries/ with a clear name (e.g., top-expensive-jobs.sql, daily-revenue.sql)
+  → Include a comment header: purpose, target table/dataset, date last modified
+  → When iterating, update the same file — don't create new ones
+
+Testing queries — be self-sufficient:
+  → After writing a query, run it with a LIMIT or dry run to verify it works
+  → Check: does it parse? Does it return expected columns? Are results reasonable?
+  → Report back: row count, bytes scanned, estimated cost, any errors
+  → Fix any issues before saving the final version — don't hand back broken SQL
+  → Only save to ./queries/ once the query is verified working
+
+Execution logging:
+  → After every query execution, append to ./output/query-log.md:
+    [YYYY-MM-DD HH:MM] RAN: <filename> | Rows: <count> | Bytes: <scanned> | Cost: ~$<est> | Env: <test/prod>
+  → This tracks what was run, when, and how much it cost
+
+When the user asks "what queries do we have" — list the contents of ./queries/ with
+a one-line description from each file's header comment.
+
 ## Data & Command Safety
 
 Applies to any database, query tool, API, CLI, or data system.
@@ -105,7 +130,9 @@ Keep things clean. One file per deliverable. No clutter.
 - Before modifying any existing file: show a before/after diff and wait for approval.
 
 Output structure:
-  ./output/               all deliverables — scripts, queries, reports, exports, analysis
+  ./queries/              SQL query library — one .sql file per query, iterated in place
+  ./output/               all other deliverables — reports, exports, analysis
+  ./output/query-log.md   execution log — what was run, when, cost
 
 ## Logging
 

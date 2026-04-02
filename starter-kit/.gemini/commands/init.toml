@@ -2,17 +2,21 @@ description = "Session start — loads context, gives a quick status, asks what 
 prompt = """
 Start a new session.
 
-1. Read ./CONTEXT.md. If it's missing or just placeholders, say "Run /setup first." and stop.
+1. Read ./CONTEXT.md. If it's missing or only has placeholder text (HTML comments, empty sections),
+   say: "No project context yet. Let's set that up now." and run the /setup flow directly.
+   Do not stop and make the user type a separate command.
 
 2. Silently load context:
    - Read ./CONTEXT.md
-   - Scan ./context/ for files
+   - Scan ./context/ — for each file, note what it covers (not just filenames)
+   - Scan ./queries/ — note how many saved queries exist and their names
    - Check ./output/session-log.md for recent entries (if it exists)
    - Run /memory show
 
-3. Give a brief status — 3-4 lines max:
+3. Give a brief status — 3-5 lines max:
    - Project and current focus (from CONTEXT.md)
-   - Anything new in context/ since last session
+   - What's in context/ (e.g., "You have a BigQuery cost control reference and an auth guide loaded")
+   - Saved queries (e.g., "3 queries in your library: top-jobs.sql, daily-revenue.sql, slot-usage.sql")
    - Any relevant memory or recent session history
    - Skip anything that doesn't exist yet — don't mention empty logs or missing history
 

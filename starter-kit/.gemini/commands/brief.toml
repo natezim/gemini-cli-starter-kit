@@ -1,6 +1,11 @@
 description = "Instant session start — loads context silently, ready immediately"
 prompt = """
-1. Read ./CONTEXT.md silently. If it's missing or just placeholders, say "Run /setup first." and stop.
-2. Scan ./context/ silently.
-3. Say: "Ready. What are we doing?"
+1. Read ./CONTEXT.md silently. If it's missing or just placeholders, run the /setup flow directly.
+2. Scan ./context/ and ./queries/ silently.
+3. Ask: "What are we doing?"
+4. Once answered, write a minimal ./SESSION.md:
+   # Session — [DATE]
+   ## Goal
+   <their answer>
+5. Say: "Got it. Let's go."
 """
