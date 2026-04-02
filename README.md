@@ -51,6 +51,9 @@ CONTEXT.md                 # Your project context -- fill via /setup, update via
 settings.json              # Checkpointing, session retention, compression settings
 .geminiignore              # Keeps secrets and noise out of context
 
+context/                   # Drop reference files here -- auto-loaded every session
+                           # (specs, docs, schemas, examples, etc.)
+
 .gemini/commands/
   setup.toml               # /setup -- first-time context builder
   init.toml                # /init -- full session start

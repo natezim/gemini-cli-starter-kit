@@ -10,7 +10,8 @@
     }
   },
   "context": {
-    "fileName": ["GEMINI.md"]
+    "fileName": ["GEMINI.md"],
+    "includeDirectories": ["context"]
   },
   "model": {
     "chatCompression": {

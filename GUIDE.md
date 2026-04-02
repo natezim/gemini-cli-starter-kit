@@ -12,8 +12,11 @@ any tool, any user. Drop it in, run /setup, and go.
   GEMINI.md              Base rules. Auto-loaded every session. Customize as needed.
   CONTEXT.md             Your project context. Fill once, update often.
   SESSION.md             Created fresh each session. Tracks today's goal.
-  settings.json          Enables checkpointing and security settings.
+  settings.json          Checkpointing, session retention, compression settings.
   .geminiignore          Keeps noise and secrets out of context.
+
+  context/               Drop reference files here — auto-loaded every session.
+                         Specs, docs, schemas, examples, anything Gemini should know.
 
   .gemini/commands/
     /setup               First-time wizard — builds CONTEXT.md via interview
@@ -77,6 +80,10 @@ any tool, any user. Drop it in, run /setup, and go.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ## DURING A SESSION
+
+Add reference files to context/
+Drop specs, docs, schemas, or examples into ./context/ and they'll be
+auto-loaded every session. No @ injection needed for persistent files.
 
 Re-inject context at any time with @
 If Gemini loses the thread mid-session, inject any file directly:
@@ -154,6 +161,10 @@ You never have to ask for any of these:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ## TIPS
+
+The context/ folder is your library.
+Drop any file Gemini should always know about — API specs, schema docs, style
+guides, example outputs. They're loaded automatically every session.
 
 /setup is worth doing properly.
 The more you put into CONTEXT.md upfront, the less you explain every session.

@@ -9,6 +9,11 @@ or edit this file directly to tailor it to your project.
 
 @./CONTEXT.md
 
+## Project Context Files
+
+Drop reference files (specs, docs, schemas, examples) into ./context/.
+They are auto-loaded every session via settings.json — no @ injection needed.
+
 ## Core Behavior
 
 - Be concise and direct. No preamble or filler.
@@ -179,8 +184,8 @@ Never batch-delete, batch-overwrite, or loop without this step.
 - Memory entries survive context compression. Chat history does not.
 - At session end, run /memory show to confirm all critical facts are persisted.
 
-Inline file injection — use @./filename at any point to re-inject context:
-  @./CONTEXT.md                      re-inject project context mid-session
+Files in ./context/ are auto-loaded every session. For one-off injection mid-session:
+  @./CONTEXT.md                      re-inject project context
   @./output/notes/learnings.md       re-inject accumulated learnings
   @./output/notes/data-changelog.md  review recent command history
   @./output/scratch/test_query       share a draft query or script inline
