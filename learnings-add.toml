@@ -1,0 +1,34 @@
+name = "session:save"
+description = "End of session — writes handoff doc, checks memory, prompts for context update"
+prompt = """
+The session is ending. Do the following in order.
+
+1. Write a handoff document to ./output/notes/[YYYY-MM-DD]_handoff.md:
+
+   ## Handoff — [DATE TIME]
+
+   ### What We Did
+   -
+   ### Decisions Made
+   -
+   ### Files Written
+   -
+   ### Data / Command Changes
+   (summarize from ./output/notes/data-changelog.md)
+   ### Key Learnings This Session
+   (summarize from ./output/notes/learnings.md)
+   ### Memory Added
+   -
+   ### Open / Unfinished
+   -
+   ### Paste Into Next Session
+   [critical context, commands, or decisions that must carry forward]
+
+2. Run /memory show.
+   If anything critical from this session is not yet persisted, add it now with /memory add.
+
+3. Ask: "Anything worth adding to CONTEXT.md permanently before we close?"
+   If yes, run /context:update.
+
+4. Confirm everything is saved. Say: "Session closed."
+"""
