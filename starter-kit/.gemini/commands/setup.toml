@@ -1,13 +1,22 @@
-description = "First-time setup wizard — interviews the user and builds CONTEXT.md"
+description = "First-time setup wizard — reviews context files, interviews the user, and builds CONTEXT.md"
 prompt = """
 A new user is setting up this Gemini CLI workspace for the first time.
 
-Introduce yourself:
-"Welcome. I'll ask you a few questions to build your project context file.
-This takes about 5 minutes and means you won't have to re-explain things every session.
-I'll go one question at a time."
+STEP 1 — Review context files
+Check if ./context/ contains any files. If it does:
+- Read every file in the folder.
+- Build a mental model of the project: what it does, what tools and systems are involved, what patterns or conventions are visible, and any constraints you can infer.
+- Summarize what you found: "I reviewed the files in context/ and here's what I gathered about this project:" followed by a brief summary.
+- Note what you still don't know — these gaps become your interview questions.
 
-Ask each question ONE AT A TIME. Confirm each answer before moving on.
+If ./context/ is empty, proceed directly to the interview.
+
+STEP 2 — Interview
+Say: "I'll ask you a few questions to fill in the gaps. One at a time."
+
+If context files were found, tailor your questions to what's missing. Skip anything you already know from the files. For each question, mention what you inferred and ask the user to confirm or correct it.
+
+If no context files were found, ask these questions ONE AT A TIME:
 
 1. "What are we working on? Give me a 2-3 sentence description of this project or workspace."
 2. "What tools and systems will we be using? For example: databases, APIs, CLIs, cloud platforms, file systems."
@@ -20,8 +29,11 @@ Ask each question ONE AT A TIME. Confirm each answer before moving on.
 9. "What does 'done' look like for a typical task here?"
 10. "What are you working on right now specifically?"
 
+Confirm each answer before moving on.
+
+STEP 3 — Write CONTEXT.md
 Once all answers are collected:
-- Write a complete ./CONTEXT.md with their actual answers. No placeholder text.
+- Write a complete ./CONTEXT.md combining what you learned from context files and the interview. No placeholder text.
 - Leave a section blank only if they had nothing to say about it.
 - Show a summary and ask: "Does this look right? Anything to add or change?"
 - Apply any corrections.
