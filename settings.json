@@ -1,0 +1,12 @@
+{
+  "checkpointing": {
+    "enabled": true
+  },
+  "context": {
+    "fileName": ["GEMINI.md", "AGENTS.md"]
+  },
+  "security": {
+    "disableYoloMode": true,
+    "environmentVariableRedaction": true
+  }
+}
