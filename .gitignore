@@ -1,0 +1,40 @@
+# Session file -- generated fresh each session, don't commit
+SESSION.md
+
+# Scratch -- temp files only, always cleaned up
+output/scratch/
+
+# Secrets and credentials
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials/
+
+# Dependencies
+node_modules/
+vendor/
+.venv/
+__pycache__/
+*.pyc
+*.class
+
+# Build output
+dist/
+build/
+
+# Large files
+*.log
+*.zip
+*.tar.gz
+*.parquet
+*.avro
+
+# OS and IDE artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -2,6 +2,8 @@
 
 A plug-and-play best practices system for [Gemini CLI](https://github.com/google-gemini/gemini-cli). Drop it into any project to get structured session management, persistent memory, automatic logging, safety guardrails, and custom slash commands -- out of the box.
 
+> **New here?** See the [full guide](GUIDE.md) for detailed usage, tips, and command reference.
+
 ## What You Get
 
 - **Gated execution** -- Gemini follows an Explain > Plan > Implement workflow for every non-trivial task
@@ -14,14 +16,16 @@ A plug-and-play best practices system for [Gemini CLI](https://github.com/google
 
 ## Quick Start
 
-### 1. Clone into your project
+### 1. Copy the kit into your project
+
+Download or clone this repo, then copy everything into your project root:
 
 ```bash
 git clone https://github.com/natezim/gemini-cli-starter-kit.git
-cp -r gemini-cli-starter-kit/* gemini-cli-starter-kit/.gemini gemini-cli-starter-kit/.geminiignore your-project/
+cp -r gemini-cli-starter-kit/{.gemini,.geminiignore,GEMINI.md,CONTEXT.md,GUIDE.md,settings.json,output} your-project/
 ```
 
-Or copy the files manually into your project root.
+Or just download the zip and copy the files manually.
 
 ### 2. Run first-time setup
 
@@ -43,7 +47,7 @@ That's it. Everything else runs automatically.
 ## File Structure
 
 ```
-GEMINI.md                  # Core rules -- auto-loaded every session, don't edit
+GEMINI.md                  # Core rules -- auto-loaded every session
 CONTEXT.md                 # Your project context -- fill via /setup, update via /context:update
 settings.json              # Checkpointing + security settings
 .geminiignore              # Keeps secrets and noise out of context
@@ -96,13 +100,15 @@ output/
 
 ## Based On
 
-- [Gemini CLI docs](https://github.com/google-gemini/gemini-cli) (GEMINI.md system, /memory, checkpointing)
-- [OWASP AI Agent Security Cheat Sheet](https://owasp.org/www-project-ai-security/) (risk-tiered action classification)
-- [HumanLayer CLAUDE.md research](https://humanlayer.dev/) (instruction design patterns)
-- [Google Cloud Community PRAR workflow](https://cloud.google.com/) (gated execution)
-- [AGENTS.md standard](https://agents-md.org/) (cross-tool compatibility)
-- [addyosmani/gemini-cli-tips](https://github.com/nichochar/open-source-agentic-coding-book/blob/main/src/tips-and-tricks.md) (compression-aware memory management)
+- Official Gemini CLI documentation (GEMINI.md system, /memory, checkpointing)
+- OWASP AI Agent Security Cheat Sheet (risk-tiered action classification)
+- HumanLayer CLAUDE.md research (instruction design patterns)
+- Google Cloud Community PRAR workflow (gated execution)
+- AGENTS.md standard (cross-tool compatibility)
+- addyosmani/gemini-cli-tips (compression-aware memory management)
+
+See [GUIDE.md](GUIDE.md) for the full list of sources.
 
 ## License
 
-MIT
+[MIT](LICENSE)

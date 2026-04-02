@@ -5,8 +5,8 @@
 # ─────────────────────────────────────────────
 # WHAT THIS IS
 # A plug-and-play session management system for Gemini CLI.
-# Rules in this file are always enforced. They cannot be overridden.
-# Project-specific context lives in CONTEXT.md (loaded below).
+# Base rules live here. Customize behavior through CONTEXT.md,
+# or edit this file directly to tailor it to your project.
 # ─────────────────────────────────────────────
 
 @./CONTEXT.md
