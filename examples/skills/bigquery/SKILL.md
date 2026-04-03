@@ -83,4 +83,5 @@ Load the appropriate reference based on the user's question:
 | `references/cost-optimization.md` | Storage pricing, zombie tables, long-term storage, logical vs physical billing, editions, autoscaling |
 | `references/schema-design.md` | JSON type, STRUCT/ARRAY denormalization, search indexes, wildcard tables, PK/FK constraints |
 | `references/scripting-advanced.md` | DECLARE/SET, control flow, EXECUTE IMMEDIATE, transactions, recursive CTEs, pipe syntax, 2024-2026 features |
+| `references/bq-cli.md` | bq CLI flags, gcloud storage, authentication, job management, data loading/export, .bigqueryrc, monitoring queries |
 | `references/security.md` | Row-level security, column-level security, policy tags, dynamic data masking, IAM best practices |
