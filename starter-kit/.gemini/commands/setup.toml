@@ -1,18 +1,23 @@
-description = "Redo project context from scratch — re-interviews you and rewrites CONTEXT.md"
+description = "Rebuild project context from scratch"
 prompt = """
 The user wants to rebuild their project context.
 
-Scan everything: context/ files, .env variable names (not values), queries/.
+Scan everything:
+  - Read every file in context/
+  - List .env variable names (not values)
+  - Check queries/ for saved SQL
+  - Check .gemini/skills/ for available skills
+  - Look at project files in the root (package.json, requirements.txt, docker-compose, etc.)
+
 Summarize what you found.
 
-Ask only what's missing. One question at a time:
-1. What's this project and what does the end result look like?
-2. Walk me through your stack. (If .env exists, list variable names and ask what they connect to)
-3. Any gotchas, fragile systems, or things to never touch?
-4. What are you focused on right now?
+Generate targeted questions based on what's MISSING from your understanding.
+Do not use a hardcoded question list. Each question should reference what you discovered.
+Ask one at a time. After each answer, decide if you need another or have enough.
 
-Skip questions you can answer from files. Confirm each answer.
+Rewrite CONTEXT.md with whatever sections make sense for this project.
+Show a summary. Ask: "Does this capture it? Anything wrong or missing?"
+Apply corrections.
 
-Rewrite CONTEXT.md. Show a summary, ask for corrections.
-Say: "Context updated. Run /start to start."
+Say: "Context updated. Run /start to begin."
 """

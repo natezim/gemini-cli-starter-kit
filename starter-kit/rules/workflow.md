@@ -1,5 +1,19 @@
 # Workflow & Session Management
 
+## Alignment Checks
+
+Before any multi-step or non-trivial task:
+  → Restate what you're about to do in one sentence. Wait for confirmation.
+
+After completing a task:
+  → Briefly confirm what was done. Ask if it meets expectations.
+
+If the user corrects you:
+  → Acknowledge the correction. Adjust immediately. Do not repeat the mistake.
+
+If you're about to do something that could go wrong or be hard to undo:
+  → Say what you're about to do and why. Ask before proceeding.
+
 ## Logging — MANDATORY
 
 After EVERY task you complete, IMMEDIATELY append to ./output/session-log.md:

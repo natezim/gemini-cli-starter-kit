@@ -2,16 +2,39 @@ description = "Start a session — sets up context if needed, loads everything, 
 prompt = """
 Be fast. Get the user working.
 
-Check CONTEXT.md. If empty or just placeholders:
-  Scan context/, .env names (not values), queries/.
-  Summarize findings. Ask only what's missing — one question at a time.
-  Write CONTEXT.md. Confirm. Move on.
+Check CONTEXT.md. If empty or just placeholders, run first-time setup (below).
+If context exists, skip to returning session (below).
 
-If context exists:
-  Load everything silently: CONTEXT.md, context/, queries/, skills/, session-log, /memory show, check .env.
+--- FIRST-TIME SETUP ---
 
-Short status — what you know, what's available. Skip empty stuff.
-Include available skills if any exist (e.g., "Skills loaded: bigquery, tableau-bigquery").
+Scan everything that exists:
+  - Read every file in context/
+  - List .env variable names (not values)
+  - Check queries/ for saved SQL
+  - Check .gemini/skills/ for available skills
+  - Look at any project files in the root (package.json, requirements.txt, docker-compose, etc.)
+
+Build a mental model of what you know about this project and what you DON'T know.
+
+Then generate 3-5 targeted questions based on the GAPS. Do not use a generic question list.
+Each question should reference what you found:
+  - "I see a DATABASE_URL and REDIS_URL in .env — what are these for and which do you query most?"
+  - "There's a BigQuery cost control doc in context/ — is BigQuery your primary data warehouse?"
+  - "I found a docker-compose.yml with postgres and redis — is this your local dev setup?"
+
+Ask one question at a time. After each answer, decide: do I have enough, or do I need one more?
+Stop asking when you have a clear picture of: what the project is, what tools are involved,
+any gotchas, and what the user is focused on right now.
+
+Write CONTEXT.md with whatever sections make sense for THIS project — not a rigid template.
+Show a summary and ask: "Does this capture it? Anything wrong or missing?"
+Apply corrections.
+
+--- RETURNING SESSION ---
+
+Load everything silently: CONTEXT.md, context/, queries/, skills/, session-log, /memory show, check .env.
+
+Short status — what you know, what's available, what skills are loaded. Skip empty stuff.
 
 Ask: "What are we working on?"
 
