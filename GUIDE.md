@@ -9,10 +9,14 @@ any tool, any user. Drop it in, run /setup, and go.
 
 ## WHAT'S IN THE KIT
 
-  GEMINI.md              Base rules. Auto-loaded every session. Customize as needed.
+  GEMINI.md              Core rules (~70 lines). Imports detailed rules from rules/.
+  rules/
+    safety.md            Data & command safety, action classification, anti-patterns.
+    sql.md               Query library, testing, hygiene, execution logging.
+    workflow.md           Session management, logging, output, context & memory.
   CONTEXT.md             Your project context. Fill once, update often.
   SESSION.md             Created fresh each session. Tracks today's goal.
-  settings.json          Checkpointing, session retention, compression settings.
+  settings.json          Checkpointing, session retention, compression, safe tools.
   .geminiignore          Keeps noise and secrets out of context.
 
   context/               Drop reference files here — auto-loaded every session.

@@ -6,13 +6,12 @@ A plug-and-play best practices system for [Gemini CLI](https://github.com/google
 
 ## What You Get
 
-- **Gated execution** -- Gemini follows an Explain > Plan > Implement workflow for every non-trivial task
-- **Risk classification** -- every action is classified (Low / Medium / High / Critical) before execution
+- **Risk-based execution** -- actions classified by risk level, with approval gates scaled to severity
 - **Automatic logging** -- tasks and query executions logged automatically after every action
 - **Session management** -- `/init` handles everything (first-time setup or returning session)
 - **Custom slash commands** -- `/init`, `/setup`, `/session:save`, `/context:update`
-- **Security defaults** -- credentials never in output, checkpointing enabled
-- **Output organization** -- clean folder structure for code, data, reports, notes, and scratch files
+- **Production safety** -- no `SELECT *`, mandatory dry runs, `>1TB` warnings, DDL requires explicit approval
+- **Modular rules** -- lean GEMINI.md (~70 lines) imports detailed safety, SQL, and workflow rules
 
 ## Quick Start
 
@@ -38,7 +37,11 @@ Returning? It loads everything and asks what you're working on. One command, eve
 ## What's in `starter-kit/`
 
 ```
-GEMINI.md                  # Core rules -- auto-loaded every session
+GEMINI.md                  # Core rules (lean ~70 lines, imports detailed rules)
+rules/
+  safety.md                # Data & command safety, action classification, anti-patterns
+  sql.md                   # Query library, testing, hygiene, execution logging
+  workflow.md              # Session management, logging, output, context & memory
 CONTEXT.md                 # Your project context -- fill via /setup, update via /context:update
 settings.json              # Checkpointing, session retention, compression settings
 .geminiignore              # Keeps secrets and noise out of context

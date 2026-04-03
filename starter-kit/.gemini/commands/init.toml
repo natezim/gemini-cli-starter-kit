@@ -1,25 +1,16 @@
 description = "Start a session — sets up context if needed, loads everything, gets you working"
 prompt = """
-You are starting a session. Be fast. Get the user working.
+Be fast. Get the user working.
 
-FIRST — check if CONTEXT.md has real content (not just placeholders/comments).
+Check CONTEXT.md. If empty or just placeholders:
+  Scan context/, .env names (not values), queries/.
+  Summarize findings. Ask only what's missing — one question at a time.
+  Write CONTEXT.md. Confirm. Move on.
 
-IF NO CONTEXT:
-  Scan what exists: context/ files, .env variable names (not values), queries/.
-  Summarize what you found.
-  Then fill the gaps — ask only what you can't infer. One question at a time:
-  - What's this project?
-  - What's your stack? (If .env exists, list the variable names and ask what they connect to)
-  - Any gotchas or things to never touch?
-  - What are you focused on right now?
-  Skip questions you can answer from the files. Don't ask what you already know.
-  Write CONTEXT.md with everything. Show a summary, confirm, move on.
+If context exists:
+  Load everything silently: CONTEXT.md, context/, queries/, session-log, /memory show, check .env.
 
-IF CONTEXT EXISTS:
-  Silently load: CONTEXT.md, context/, queries/, session-log, /memory show.
-  Check if .env exists.
-
-THEN — give a short status. What you know, what's available, what's ready. Skip empty stuff.
+Short status — what you know, what's available. Skip empty stuff.
 
 Ask: "What are we working on?"
 

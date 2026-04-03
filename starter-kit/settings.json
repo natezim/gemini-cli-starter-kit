@@ -15,7 +15,18 @@
   },
   "model": {
     "chatCompression": {
-      "contextPercentageThreshold": 0.4
+      "contextPercentageThreshold": 0.2
     }
+  },
+  "tools": {
+    "allowed": [
+      "run_shell_command(git status)",
+      "run_shell_command(git diff)",
+      "run_shell_command(git log)",
+      "read_file",
+      "list_directory",
+      "search_file_content",
+      "glob"
+    ]
   }
 }
