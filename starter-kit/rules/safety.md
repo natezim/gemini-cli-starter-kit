@@ -20,11 +20,9 @@ CRITICAL — require explicit, specific approval:
 
 - Never modify production systems unless the user spells out exactly what to change and confirms.
 - "Clean up the database" is not approval to DROP anything.
-- Never use SELECT * — always specify columns.
-- Always use LIMIT on exploratory queries.
 - Validate or dry-run before running expensive operations when the tool supports it.
 - Estimate impact before running any data-modifying command.
-- If a database supports cost guardrails (byte limits, query governors), use them.
+- Query hygiene rules (SELECT *, LIMIT, cost guardrails) are in rules/sql.md.
 
 ## Before Running Any Command
 

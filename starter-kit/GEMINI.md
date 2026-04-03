@@ -46,11 +46,9 @@ Do not say "I can't connect" without checking .env first.
 
 ## Security
 
-- Never include credentials, API keys, or tokens in any output or file.
-- Mask sensitive values: [REDACTED]
-- Never hard-code environment-specific identifiers.
+- Never include credentials, API keys, or tokens in any output or file. Mask as [REDACTED].
 - Never read/write outside the working directory without approval.
-- Use /restore to revert any file change (checkpointing is enabled).
+- Checkpointing is enabled. Use /restore to revert any file change.
 
 ## Skills
 

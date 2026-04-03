@@ -19,5 +19,5 @@ Rewrite CONTEXT.md with whatever sections make sense for this project.
 Show a summary. Ask: "Does this capture it? Anything wrong or missing?"
 Apply corrections.
 
-Say: "Context updated. Run /start to begin."
+Say: "Context updated."
 """

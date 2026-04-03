@@ -4,14 +4,15 @@
 
 A task is NOT complete until all of these are true:
   1. The work is done.
-  2. It is logged in ./output/session-log.md.
-  3. If a query was run, it is logged in ./output/query-log.md.
+  2. If it produces output (code, queries, scripts): you tested it and the user confirmed it.
+  3. It is logged in ./output/session-log.md.
+  4. If a query was run, it is logged in ./output/query-log.md.
 
 Logging is not a separate step — it is part of finishing the task.
 Do not respond to the user until the log entry is written.
 
 Session log format:   [YYYY-MM-DD HH:MM] <what you did>
-Query log format:     [YYYY-MM-DD HH:MM] RAN: <query or filename> | Rows: <count> | Bytes: <scanned> | Cost: ~$<est>
+Query log format:     [YYYY-MM-DD HH:MM] RAN: <filename or description> | Rows: <count> | Result: <summary>
 
 ## Alignment Checks
 
