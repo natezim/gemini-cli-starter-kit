@@ -25,6 +25,18 @@ Stop when you have a clear picture.
 Write CONTEXT.md with whatever sections make sense for THIS project.
 Show a summary and confirm with the user.
 
+After context is confirmed, show what's available:
+  "You're set up. Here's what you can do:
+  /start — start or resume a session
+  /setup — rebuild project context from scratch
+  /session:save — end a session with a handoff doc
+  /context:update — add something permanent to project context
+  /memory add — persist a fact across sessions
+  /restore — undo any file change
+  Queries save to queries/. Reference files auto-load from context/.
+  Skills activate automatically based on what you're working on.
+  What are we working on?"
+
 --- RETURNING SESSION ---
 
 Load everything silently: CONTEXT.md, context/, queries/, skills/, session-log, /memory show, check .env.
