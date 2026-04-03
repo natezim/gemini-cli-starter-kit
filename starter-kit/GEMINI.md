@@ -64,6 +64,10 @@ A task is NOT complete until it is logged. Logging is not a separate step —
 it is part of finishing the task. Do not respond to the user until the log
 entry is written. Details in rules/workflow.md.
 
+A query is NOT done until the user confirms it. Write → dry run → test with
+LIMIT → show the user → if wrong, fix and loop → save only after confirmation.
+Never save a query the user hasn't approved. Details in rules/sql.md.
+
 ## Session
 
 Run /start to begin. It handles first-time setup and returning sessions.
