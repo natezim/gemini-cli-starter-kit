@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/google-gemini/gemini-cli/main/schemas/settings.schema.json",
   "general": {
     "checkpointing": {
       "enabled": true
@@ -14,9 +15,7 @@
     "includeDirectories": ["context"]
   },
   "model": {
-    "chatCompression": {
-      "contextPercentageThreshold": 0.2
-    }
+    "compressionThreshold": 0.4
   },
   "tools": {
     "allowed": [
@@ -25,7 +24,7 @@
       "run_shell_command(git log)",
       "read_file",
       "list_directory",
-      "search_file_content",
+      "grep_search",
       "glob"
     ]
   }

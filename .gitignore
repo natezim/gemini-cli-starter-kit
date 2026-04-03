@@ -36,6 +36,8 @@ build/
 # Skill archives and research artifacts
 *.skill
 compass_artifact_*
+gcloud*research*
+bigquery*
 
 # Claude Code local config
 .claude/

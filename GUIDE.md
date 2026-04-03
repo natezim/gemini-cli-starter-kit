@@ -23,7 +23,7 @@ rules/
   sql.md               Query library, testing, hygiene, execution logging
   workflow.md           Logging, output, session management, context & memory
 CONTEXT.md             Your project context — built by /start, updated by /context:update
-settings.json          Checkpointing, compression, session retention, safe tool pre-approvals
+.gemini/settings.json  Checkpointing, compression, session retention, safe tool pre-approvals
 .geminiignore          Keeps secrets and noise out of context
 
 context/               Reference files — auto-loaded every session

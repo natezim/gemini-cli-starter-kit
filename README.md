@@ -19,12 +19,13 @@ Returning? Loads everything, shows status, asks what you're doing. One command.
 GEMINI.md              Core rules (~70 lines, imports from rules/)
 rules/                 safety.md, sql.md, workflow.md
 CONTEXT.md             Your project context (built by /start)
-settings.json          Checkpointing, compression, safe tool pre-approvals
 .geminiignore          Keeps secrets out of context
 context/               Reference files -- auto-loaded every session
 queries/               SQL query library -- one .sql per query
-.gemini/commands/      /start, /setup, /session:save, /context:update
-.gemini/skills/        Skill folders (each with a SKILL.md)
+.gemini/
+  settings.json        Checkpointing, compression, safe tool pre-approvals
+  commands/            /start, /setup, /session:save, /context:update
+  skills/              Skill folders (each with a SKILL.md)
 output/                session-log.md, query-log.md, deliverables
 ```
 
@@ -43,7 +44,7 @@ output/                session-log.md, query-log.md, deliverables
 
 ## Example Skills
 
-The `examples/skills/` folder contains skills you can copy into `.gemini/skills/`:
+The `examples/skills/` folder in this repo contains skills you can copy into your project's `.gemini/skills/`:
 
 - **bigquery/** -- BigQuery optimization expert (partitioning, clustering, joins, HLL++, cost control, schema design, scripting, 2024-2025 features)
 - **tableau-bigquery/** -- Tableau + BigQuery live connections (SQL push-down, cost control, auth, monitoring)
