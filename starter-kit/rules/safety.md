@@ -26,7 +26,7 @@ CRITICAL — require explicit, specific approval:
 - Always run --dry_run or EXPLAIN first on expensive operations.
 - Estimate bytes scanned and cost before running any query.
 - If a query will scan >1 TB, stop and warn before executing.
-- If a tool supports `maximumBytesBilled`, use it to cap costs.
+- Always set `--maximum_bytes_billed` (or equivalent) as a cost guardrail on every query.
 
 ## Before Running Any Command
 

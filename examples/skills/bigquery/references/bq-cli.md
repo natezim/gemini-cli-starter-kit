@@ -23,16 +23,17 @@ Set permanently in ~/.bigqueryrc:
 --use_legacy_sql=false
 ```
 
-### --dry_run: free validation and cost estimation
+### --dry_run: free validation and cost estimation — MANDATORY before expensive queries
 ```bash
 BYTES=$(bq query --nouse_legacy_sql --dry_run \
   'SELECT * FROM `project.dataset.table`' 2>&1 | \
   grep -oP '\d+(?= bytes)')
 echo "Cost estimate: \$$(echo "scale=4; $BYTES/1099511627776*6.25" | bc)"
 ```
+If estimated scan >1 TB ($6.25+), STOP and warn the user before executing.
 
-### --maximum_bytes_billed: essential cost guardrail
-Fails immediately with zero cost if query would exceed limit.
+### --maximum_bytes_billed: ALWAYS set this as a cost guardrail
+Fails immediately with zero cost if query would exceed limit. Set globally in .bigqueryrc.
 ```bash
 bq query --nouse_legacy_sql --maximum_bytes_billed=10000000000 'SELECT ...'
 ```

@@ -23,9 +23,14 @@ column. Unused columns waste bytes and money.
 LIMIT does NOT reduce bytes scanned on standard tables (exception: clustered tables).
 But it reduces data transfer and client memory. Always include it on exploration.
 
+### bq CLI defaults to legacy SQL — always use --nouse_legacy_sql
+Or set permanently in ~/.bigqueryrc. Legacy SQL lacks parameterized queries, scripting,
+STRUCT types, and most modern functions. Backtick table references fail without this flag.
+
 ### Always dry-run first on expensive queries
 Use `--dry_run` flag or EXPLAIN to estimate bytes before executing.
-If estimated scan >1 TB, warn the user before running.
+If estimated scan >1 TB, stop and warn the user before running.
+Always set `--maximum_bytes_billed` as a cost guardrail on every query.
 
 ### Partition pruning breaks silently
 These kill partition pruning — never do them:
