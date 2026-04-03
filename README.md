@@ -1,116 +1,51 @@
 # Gemini CLI Starter Kit
 
-A plug-and-play best practices system for [Gemini CLI](https://github.com/google-gemini/gemini-cli). Drop it into any project to get structured session management, persistent memory, automatic logging, safety guardrails, and custom slash commands -- out of the box.
+A plug-and-play best practices system for [Gemini CLI](https://github.com/google-gemini/gemini-cli). Structured sessions, automatic logging, production safety, SQL management, and modular rules -- out of the box.
 
-> **New here?** See the [full guide](GUIDE.md) for detailed usage, tips, and command reference.
-
-## What You Get
-
-- **Risk-based execution** -- actions classified by risk level, with approval gates scaled to severity
-- **Automatic logging** -- tasks and query executions logged automatically after every action
-- **Session management** -- `/init` handles everything (first-time setup or returning session)
-- **Custom slash commands** -- `/init`, `/setup`, `/session:save`, `/context:update`
-- **Production safety** -- no `SELECT *`, mandatory dry runs, `>1TB` warnings, DDL requires explicit approval
-- **Modular rules** -- lean GEMINI.md (~70 lines) imports detailed safety, SQL, and workflow rules
+> See the [full guide](GUIDE.md) for detailed usage.
 
 ## Quick Start
 
-### 1. Copy the kit into your project
+1. Copy `starter-kit/` contents into your project root.
+2. Drop any reference files into `context/`.
+3. Run `/init`.
 
-Clone this repo (or download the zip), then copy the contents of `starter-kit/` into your project root:
+First time? It scans your project, asks smart questions, builds your context.
+Returning? Loads everything, shows status, asks what you're doing. One command.
 
-```
-starter-kit/    <-- copy everything inside this folder into your project
-```
-
-That's it -- just the contents of `starter-kit/`, nothing else from the repo.
-
-### 2. Start
+## What's Inside
 
 ```
-/init
-```
-
-First time? It scans your project, asks a few smart questions, and builds your context.
-Returning? It loads everything and asks what you're working on. One command, every time.
-
-## What's in `starter-kit/`
-
-```
-GEMINI.md                  # Core rules (lean ~70 lines, imports detailed rules)
-rules/
-  safety.md                # Data & command safety, action classification, anti-patterns
-  sql.md                   # Query library, testing, hygiene, execution logging
-  workflow.md              # Session management, logging, output, context & memory
-CONTEXT.md                 # Your project context -- fill via /setup, update via /context:update
-settings.json              # Checkpointing, session retention, compression settings
-.geminiignore              # Keeps secrets and noise out of context
-
-context/                   # Drop reference files here -- auto-loaded every session
-queries/                   # SQL query library -- one .sql per query, iterated in place
-
-.gemini/
-  commands/
-    init.toml              # /init -- start a session (first-time + returning)
-    setup.toml             # /setup -- rebuild context from scratch
-    session/save.toml      # /session:save -- session end + handoff
-    context/update.toml    # /context:update -- add to CONTEXT.md permanently
-  skills/                  # Drop skill folders here (each with a SKILL.md)
-
-output/
-  session-log.md           # Lightweight session log
-  query-log.md             # Query execution log (what ran, rows, bytes, cost)
+GEMINI.md              Core rules (~70 lines, imports from rules/)
+rules/                 safety.md, sql.md, workflow.md
+CONTEXT.md             Your project context (built by /init)
+settings.json          Checkpointing, compression, safe tool pre-approvals
+.geminiignore          Keeps secrets out of context
+context/               Reference files -- auto-loaded every session
+queries/               SQL query library -- one .sql per query
+.gemini/commands/      /init, /setup, /session:save, /context:update
+.gemini/skills/        Skill folders (each with a SKILL.md)
+output/                session-log.md, query-log.md, deliverables
 ```
 
 ## Commands
 
 | Command | What it does |
 |---|---|
-| `/init` | Start a session -- sets up context if needed, loads everything, gets you working |
+| `/init` | Start a session (first-time setup or returning) |
 | `/setup` | Rebuild context from scratch |
-| `/session:save` | Session end -- writes handoff doc, checks memory |
-| `/context:update` | Add something permanent to `CONTEXT.md` |
+| `/session:save` | End session -- handoff doc + memory check |
+| `/context:update` | Add something permanent to CONTEXT.md |
 | `/stats` | Check context window usage |
-| `/memory add <fact>` | Persist a fact across sessions |
-| `/skills list` | View all discovered skills |
-| `@./filename` | Inject any file into context mid-session |
+| `/memory add` | Persist a fact across sessions |
+| `/skills list` | View discovered skills |
+| `/restore` | Undo a file change |
 
-## What Runs Automatically
+## Example Skills
 
-- Tasks logged to `output/session-log.md`
-- SQL queries saved to `queries/`, tested before finalizing, executions logged to `output/query-log.md`
-- Diff shown before any existing file is modified
-- Dry run used before data commands when available
-- Bulk operations require itemized list + explicit approval
-- Commands shown and confirmed before execution
-- Failures explained in plain language with proposed fix
+The `examples/skills/` folder contains skills you can copy into `.gemini/skills/`:
 
-## Skills
-
-Gemini CLI has a native skills system. A skill is a folder with a `SKILL.md` file that teaches Gemini specialized knowledge. Drop skill folders into `.gemini/skills/` and Gemini activates them when relevant.
-
-The `examples/skills/` folder in this repo contains sample skills you can copy into your project:
-
-- **`tableau-bigquery/`** -- Tableau + BigQuery live connection expertise (SQL push-down, cost control, auth, monitoring)
-
-To install a skill:
-
-```
-cp -r examples/skills/tableau-bigquery your-project/.gemini/skills/
-```
-
-To create your own, add a folder with a `SKILL.md` to `.gemini/skills/`. See the [Gemini CLI skills docs](https://geminicli.com/docs/cli/skills/) for details.
-
-## Based On
-
-- Official Gemini CLI documentation (GEMINI.md system, /memory, checkpointing)
-- OWASP AI Agent Security Cheat Sheet (risk-tiered action classification)
-- HumanLayer CLAUDE.md research (instruction design patterns)
-- Google Cloud Community PRAR workflow (gated execution)
-- AGENTS.md standard (cross-tool compatibility)
-- addyosmani/gemini-cli-tips (compression-aware memory management)
-
-See [GUIDE.md](GUIDE.md) for the full list of sources.
+- **tableau-bigquery/** -- Tableau + BigQuery live connections (SQL push-down, cost control, auth, monitoring)
 
 ## License
 
