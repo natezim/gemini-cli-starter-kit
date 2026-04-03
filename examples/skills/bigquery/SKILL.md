@@ -11,7 +11,7 @@ description: >
 # BigQuery Expert
 
 Production-grade BigQuery optimization. Covers partitioning, clustering, joins, aggregation,
-window functions, cost control, schema design, scripting, and 2024-2025 features.
+window functions, cost control, schema design, scripting, security, and 2024-2026 features.
 
 ## Critical rules — always apply
 
@@ -48,6 +48,16 @@ Always use NOT EXISTS. It also short-circuits and handles NULLs correctly.
 Non-recursive CTEs are inlined and re-executed each time referenced.
 If a CTE is referenced more than once, use a temporary table instead.
 
+### JOIN table ordering
+Place the largest table first, then smallest, then remaining in decreasing size.
+BigQuery only auto-reorders under specific conditions. Filter before joining.
+
+### Use LIKE over REGEXP_CONTAINS
+LIKE is faster. Only use REGEXP_CONTAINS when regex is truly needed.
+
+### Prefer SQL UDFs over JavaScript UDFs
+The optimizer can inline SQL UDFs. JavaScript UDFs require a separate runtime.
+
 ### Cost formula
 ```
 Cost ($) = (bytes_processed / 1,099,511,627,776) × $6.25
@@ -72,4 +82,5 @@ Load the appropriate reference based on the user's question:
 | `references/joins-aggregation.md` | Join optimization, broadcast vs hash, HLL++ sketches, GROUPING SETS, window functions, QUALIFY |
 | `references/cost-optimization.md` | Storage pricing, zombie tables, long-term storage, logical vs physical billing, editions, autoscaling |
 | `references/schema-design.md` | JSON type, STRUCT/ARRAY denormalization, search indexes, wildcard tables, PK/FK constraints |
-| `references/scripting-advanced.md` | DECLARE/SET, control flow, EXECUTE IMMEDIATE, transactions, recursive CTEs, pipe syntax, 2024-2025 features |
+| `references/scripting-advanced.md` | DECLARE/SET, control flow, EXECUTE IMMEDIATE, transactions, recursive CTEs, pipe syntax, 2024-2026 features |
+| `references/security.md` | Row-level security, column-level security, policy tags, dynamic data masking, IAM best practices |

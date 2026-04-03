@@ -88,11 +88,30 @@ FROM events
 - Same optimizer, same cost — purely syntactic.
 - Eliminates deep nesting and repetitive CTEs.
 
-## 2024-2025 features
+## 2024-2026 features
+
+**Advanced runtime** (default for all projects, late 2025):
+- Improved query execution time and slot usage. Includes short-query optimizations.
+- Automatic — no configuration needed.
 
 **History-Based Optimizations** (GA October 2024):
 - Learns from prior executions. Auto-improves join ordering, pushdown, semijoin reduction.
 - Up to 100x improvement observed. No configuration needed.
+
+**Anti-pattern recognition tool** (2025):
+- Scans SQL and provides optimization recommendations.
+- Reads from INFORMATION_SCHEMA, outputs to BigQuery table.
+
+**Automatic partition/clustering recommendations**:
+- BigQuery recommender system suggests optimal partitioning and clustering columns.
+- Check via Cloud Console or `gcloud recommender recommendations list`.
+
+**AI functions** (GA):
+- `AI.GENERATE` / `AI.GENERATE_TABLE`: text, image, video, audio, document input.
+- `AI.EMBED()`: embedding generation.
+- `AI.SIMILARITY()`: semantic similarity scores.
+- `AI.FORECAST`: time-series forecasting powered by TimesFM.
+- Gemini 3.0 Pro/Flash model support.
 
 **Non-incremental materialized views** (GA April 2024):
 - `allow_non_incremental_definition = true` for complex JOINs, UNION ALL, analytics.
@@ -104,7 +123,9 @@ FROM events
 - IVF index for small batches; TreeAH for large batches.
 - Enables RAG, semantic search natively without external vector DB.
 
-**Continuous queries** (Preview):
-- `APPENDS()` for streaming. Stateless only. Minimum 100 slots.
+**Continuous queries** (GA):
+- Event-driven pipelines with Pub/Sub integration.
+- INSERT into BigQuery tables or EXPORT DATA to Pub/Sub topics.
+- Max 2 days for user accounts. Minimum 100 slots.
 
 **Legacy SQL deprecated June 1, 2026.**
