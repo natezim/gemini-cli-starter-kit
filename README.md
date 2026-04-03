@@ -45,6 +45,7 @@ output/                session-log.md, query-log.md, deliverables
 
 The `examples/skills/` folder contains skills you can copy into `.gemini/skills/`:
 
+- **bigquery/** -- BigQuery optimization expert (partitioning, clustering, joins, HLL++, cost control, schema design, scripting, 2024-2025 features)
 - **tableau-bigquery/** -- Tableau + BigQuery live connections (SQL push-down, cost control, auth, monitoring)
 
 ## License
