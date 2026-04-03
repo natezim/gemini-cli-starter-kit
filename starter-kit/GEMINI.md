@@ -60,7 +60,7 @@ Use the skill's reference files for detailed guidance on specific topics.
 
 ## Session Start
 
-Run /init. It handles everything:
+Run /start. It handles everything:
   - First time? Scans project, asks smart questions, builds CONTEXT.md.
   - Returning? Loads context, shows status, asks what you're doing.
 

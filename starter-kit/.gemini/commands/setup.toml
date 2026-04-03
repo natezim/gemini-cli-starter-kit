@@ -14,5 +14,5 @@ Ask only what's missing. One question at a time:
 Skip questions you can answer from files. Confirm each answer.
 
 Rewrite CONTEXT.md. Show a summary, ask for corrections.
-Say: "Context updated. Run /init to start."
+Say: "Context updated. Run /start to start."
 """

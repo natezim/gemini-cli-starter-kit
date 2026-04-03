@@ -4,13 +4,13 @@
 
 1. Copy `starter-kit/` contents into your project root.
 2. Drop any reference files into `context/` (specs, docs, schemas — auto-loaded every session).
-3. Run `/init`. It handles everything — first-time setup and every session after.
+3. Run `/start`. It handles everything — first-time setup and every session after.
 
 That's it. Checkpointing is on. Use `/restore` or double-Esc to undo any file change.
 
 ## How It Works
 
-**`/init`** is the only command you need to start. First time, it scans your project (context files, .env variable names, saved queries), asks a few questions to fill gaps, and writes CONTEXT.md. Every time after, it loads everything and asks what you're working on.
+**`/start`** is the only command you need to start. First time, it scans your project (context files, .env variable names, saved queries), asks a few questions to fill gaps, and writes CONTEXT.md. Every time after, it loads everything and asks what you're working on.
 
 **`/session:save`** ends a session — writes a handoff doc, checks /memory, and asks if anything should be permanent in CONTEXT.md.
 
@@ -22,7 +22,7 @@ rules/
   safety.md            Action classification, production guardrails, anti-patterns
   sql.md               Query library, testing, hygiene, execution logging
   workflow.md           Logging, output, session management, context & memory
-CONTEXT.md             Your project context — built by /init, updated by /context:update
+CONTEXT.md             Your project context — built by /start, updated by /context:update
 settings.json          Checkpointing, compression, session retention, safe tool pre-approvals
 .geminiignore          Keeps secrets and noise out of context
 
@@ -30,7 +30,7 @@ context/               Reference files — auto-loaded every session
 queries/               SQL query library — one .sql per query, iterated in place
 
 .gemini/
-  commands/            Slash commands (/init, /setup, /session:save, /context:update)
+  commands/            Slash commands (/start, /setup, /session:save, /context:update)
   skills/              Skill folders — each with a SKILL.md, activated when relevant
 
 output/
@@ -42,7 +42,7 @@ output/
 
 | Command | What it does |
 |---|---|
-| `/init` | Start a session (first-time setup or returning) |
+| `/start` | Start a session (first-time setup or returning) |
 | `/setup` | Rebuild context from scratch |
 | `/session:save` | End session — handoff doc + memory check |
 | `/context:update` | Add something permanent to CONTEXT.md |
