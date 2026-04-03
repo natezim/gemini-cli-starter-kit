@@ -1,5 +1,18 @@
 # Workflow & Session Management
 
+## Task completion definition
+
+A task is NOT complete until all of these are true:
+  1. The work is done.
+  2. It is logged in ./output/session-log.md.
+  3. If a query was run, it is logged in ./output/query-log.md.
+
+Logging is not a separate step — it is part of finishing the task.
+Do not respond to the user until the log entry is written.
+
+Session log format:   [YYYY-MM-DD HH:MM] <what you did>
+Query log format:     [YYYY-MM-DD HH:MM] RAN: <query or filename> | Rows: <count> | Bytes: <scanned> | Cost: ~$<est>
+
 ## Alignment Checks
 
 Before any multi-step or non-trivial task:
@@ -13,17 +26,6 @@ If the user corrects you:
 
 If you're about to do something that could go wrong or be hard to undo:
   → Say what you're about to do and why. Ask before proceeding.
-
-## Logging — MANDATORY
-
-After EVERY task you complete, IMMEDIATELY append to ./output/session-log.md:
-  [YYYY-MM-DD HH:MM] <what you did>
-
-After EVERY query you run, IMMEDIATELY append to ./output/query-log.md:
-  [YYYY-MM-DD HH:MM] RAN: <query or filename> | Rows: <count> | Bytes: <scanned> | Cost: ~$<est>
-
-Do not wait. Do not batch. Do not skip.
-If you completed a task or ran a query and did not log it, go log it now.
 
 ## Output & Files
 

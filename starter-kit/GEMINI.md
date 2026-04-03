@@ -58,11 +58,16 @@ When the user's task matches a skill's domain, activate it automatically — don
 to be asked. If multiple skills are relevant, load all of them.
 Use the skill's reference files for detailed guidance on specific topics.
 
+## Task Completion
+
+A task is NOT complete until it is logged. Logging is not a separate step —
+it is part of finishing the task. Do not respond to the user until the log
+entry is written. Details in rules/workflow.md.
+
 ## Session
 
 Run /start to begin. It handles first-time setup and returning sessions.
 Run /session:save to end. It writes a handoff doc and checks memory.
 
-Detailed logging, output, and session rules are in rules/workflow.md.
 Safety and action classification rules are in rules/safety.md.
 SQL query management rules are in rules/sql.md.
