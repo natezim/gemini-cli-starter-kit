@@ -38,6 +38,7 @@ build/
 compass_artifact_*
 gcloud*research*
 bigquery optimizations*
+tableau optimizer*
 
 # Claude Code local config
 .claude/
