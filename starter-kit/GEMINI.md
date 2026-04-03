@@ -60,13 +60,13 @@ Use the skill's reference files for detailed guidance on specific topics.
 
 ## Task Completion
 
-A task is NOT complete until it is logged. Logging is not a separate step —
-it is part of finishing the task. Do not respond to the user until the log
-entry is written. Details in rules/workflow.md.
+A task is NOT complete until:
+  1. It is logged (do not respond until the log entry is written).
+  2. If it produces output (code, queries, scripts, configs): you tested it and
+     the user confirmed it works. Write → test → show the user → fix if wrong →
+     save only after confirmation.
 
-A query is NOT done until the user confirms it. Write → dry run → test with
-LIMIT → show the user → if wrong, fix and loop → save only after confirmation.
-Never save a query the user hasn't approved. Details in rules/sql.md.
+Never hand back untested work. Never save something the user hasn't approved.
 
 ## Session
 

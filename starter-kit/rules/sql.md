@@ -14,9 +14,8 @@ Writing queries:
 Every query follows this cycle. Do not skip steps. Do not save until confirmed.
 
   1. WRITE the query.
-  2. DRY RUN — run --dry_run or EXPLAIN. Check: does it parse? How many bytes?
-     If >1 TB, warn before proceeding.
-  3. TEST — run with LIMIT to verify: correct columns, reasonable results, no errors.
+  2. VALIDATE — check syntax. Use EXPLAIN or a dry run if the database supports it.
+  3. TEST — run it and verify: correct columns, reasonable results, no errors.
      If something is wrong, fix it and go back to step 2.
   4. SHOW the user the results and the query. Ask: "Does this look right?"
   5. If the user says no or wants changes: adjust and go back to step 2.
@@ -29,18 +28,14 @@ If the user doesn't explicitly confirm, ask.
 
 Logging is part of query completion — not a separate step.
 After EVERY query execution, append to ./output/query-log.md:
-  [YYYY-MM-DD HH:MM] RAN: <filename> | Rows: <count> | Bytes: <scanned> | Cost: ~$<est>
+  [YYYY-MM-DD HH:MM] RAN: <filename or description> | Rows: <count> | Result: <summary>
 
 ## Query Hygiene
 
 - Never use SELECT * — always specify columns.
 - Always use LIMIT on exploratory queries.
-- Always set --maximum_bytes_billed as a cost guardrail.
-- Prefer BigQuery Views over Custom SQL (preserves join culling and query fusion).
-- LIMIT does not reduce bytes scanned on standard (non-clustered) tables.
-- Partition filters must use constant expressions to trigger pruning.
-  Works: WHERE event_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY)
-  Fails: WHERE EXTRACT(YEAR FROM event_date) = 2024
+- Estimate cost or impact before running expensive queries.
+- If the database supports cost guardrails (e.g., byte limits), use them.
 
 ## When User Asks "What Queries Do We Have"
 
