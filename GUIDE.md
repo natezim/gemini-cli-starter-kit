@@ -5,69 +5,60 @@
 1. Copy `starter-kit/` contents into your project root.
 2. Drop any reference files into `context/` (specs, docs, schemas — auto-loaded every session).
 3. Run `/start`. It handles everything — first-time setup and every session after.
+4. Run `/help` anytime to see what's available.
 
-That's it. Checkpointing is on. Use `/restore` or double-Esc to undo any file change.
+Checkpointing is on. Use `/restore` to undo any file change.
 
 ## How It Works
 
-**`/start`** is the only command you need to start. First time, it scans your project (context files, .env variable names, saved queries), asks a few questions to fill gaps, and writes CONTEXT.md. Every time after, it loads everything and asks what you're working on.
+**`/start`** is the only command you need. First time, it scans your project, asks smart questions, builds CONTEXT.md, and shows you everything available. Every time after, it loads everything and asks what you're working on. If you left off mid-project, it picks up from your last handoff.
 
-**`/session:save`** ends a session — writes a handoff doc, checks /memory, and asks if anything should be permanent in CONTEXT.md.
+**`/session:save`** ends a session — writes a handoff doc, checks /memory, asks if anything should be permanent.
+
+**`/help`** shows all commands and features anytime.
 
 ## What's in the Kit
 
 ```
-GEMINI.md              Core rules (~70 lines). Imports from rules/.
-rules/
-  safety.md            Action classification, production guardrails, anti-patterns
-  sql.md               Query library, testing, hygiene, execution logging
-  workflow.md           Logging, output, session management, context & memory
-CONTEXT.md             Your project context — built by /start, updated by /context:update
-.gemini/settings.json  Checkpointing, compression, session retention, safe tool pre-approvals
-.geminiignore          Keeps secrets and noise out of context
+GEMINI.md              Core rules (~65 lines). Imports rules/rules.md.
+rules/rules.md         Safety, queries, workflow, logging — all in one file.
+CONTEXT.md             Your project context — built by /start, updated by /context:update.
+PREFERENCES.md         Your personal preferences — tone, style, habits, whatever you want.
+.gemini/settings.json  Checkpointing, compression, session retention, safe tool pre-approvals.
+.geminiignore          Keeps noise and secrets out of context.
 
-context/               Reference files — auto-loaded every session
-queries/               SQL query library — one .sql per query, iterated in place
+context/               Reference files — auto-loaded every session.
+queries/               SQL query library — one .sql per query, iterated in place.
 
 .gemini/
-  commands/            Slash commands (/start, /setup, /session:save, /context:update)
-  skills/              Skill folders — each with a SKILL.md, activated when relevant
+  commands/            /start, /setup, /session:save, /context:update, /help
+  skills/              Skill folders — activated automatically based on your work.
 
 output/
-  session-log.md       Task log — auto-appended after every action
-  query-log.md         Query execution log — what ran, rows, bytes, cost
+  session-log.md       Task log — auto-appended after every action.
+  query-log.md         Query execution log.
 ```
 
 ## Commands
 
 | Command | What it does |
 |---|---|
-| `/start` | Start a session (first-time setup or returning) |
+| `/start` | Start or resume a session |
 | `/setup` | Rebuild context from scratch |
 | `/session:save` | End session — handoff doc + memory check |
 | `/context:update` | Add something permanent to CONTEXT.md |
-| `/stats` | Check context window usage |
+| `/help` | Show available commands and features |
 | `/memory add` | Persist a fact across sessions (survives compression) |
-| `/skills list` | View discovered skills |
 | `/restore` | Undo a file change |
 | `@./file` | Inject any file into context mid-session |
 
 ## Tips
 
 - **context/ is your library.** Drop anything Gemini should always know — auto-loaded, no injection needed.
+- **PREFERENCES.md is your personality file.** Want Gemini to be casual? Funny? Terse? Put it there.
 - **`/memory add` for critical facts.** Memory survives compression. Chat history doesn't.
 - **`@./CONTEXT.md` is your reset button.** If Gemini loses the thread, inject it.
 - **`/context:update` before closing.** One minute now saves re-explaining next session.
-
-## What Runs Automatically
-
-- Tasks logged after every action
-- Queries tested before saving, executions logged with cost
-- Dry run before expensive operations
-- Diffs shown before modifying existing files
-- No `SELECT *` — columns must be specified
-- Bulk operations require itemized approval
-- Failures explained with proposed fix
 
 ## Sources
 
@@ -76,4 +67,3 @@ output/
 - Google Cloud Community PRAR workflow (gated execution)
 - HumanLayer CLAUDE.md research (instruction design)
 - AGENTS.md standard (cross-tool compatibility)
-- addyosmani/gemini-cli-tips (compression-aware memory)

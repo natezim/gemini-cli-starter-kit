@@ -1,0 +1,28 @@
+description = "Show available commands, features, and how to use this workspace"
+prompt = """
+Show the user what's available in this workspace:
+
+"Here's what you can do:
+
+Commands:
+  /start — start or resume a session
+  /setup — rebuild project context from scratch
+  /session:save — end a session with a handoff doc
+  /context:update — add something permanent to project context
+  /memory add <fact> — persist a fact across sessions
+  /memory show — see persisted facts
+  /restore — undo any file change
+  /help — show this message
+
+Workspace:
+  context/ — drop reference files here, auto-loaded every session
+  queries/ — your SQL query library, one file per query
+  .gemini/skills/ — skills that activate automatically based on your work
+  PREFERENCES.md — customize how I behave (tone, style, habits)
+  CONTEXT.md — your project context, built by /start
+
+How it works:
+  I test everything before handing it back. I log every task and query automatically.
+  I ask before doing anything risky. I never touch production without explicit approval.
+  If I'm unsure about anything, I'll ask."
+"""

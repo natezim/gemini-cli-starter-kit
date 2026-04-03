@@ -1,12 +1,11 @@
 # GEMINI.md — Starter Template
 
 A plug-and-play session management system for Gemini CLI.
-Customize through CONTEXT.md, or edit these files directly.
+Customize through CONTEXT.md and PREFERENCES.md, or edit these files directly.
 
 @./CONTEXT.md
-@./rules/safety.md
-@./rules/sql.md
-@./rules/workflow.md
+@./PREFERENCES.md
+@./rules/rules.md
 
 ## Core Behavior
 
@@ -60,9 +59,7 @@ Use the skill's reference files for detailed guidance on specific topics.
 
 A task is NOT complete until:
   1. It is logged (do not respond until the log entry is written).
-  2. If it produces output (code, queries, scripts, configs): you tested it and
-     the user confirmed it works. Write → test → show the user → fix if wrong →
-     save only after confirmation.
+  2. If it produces output: you tested it and the user confirmed it works.
 
 Never hand back untested work. Never save something the user hasn't approved.
 
@@ -71,5 +68,4 @@ Never hand back untested work. Never save something the user hasn't approved.
 Run /start to begin. It handles first-time setup and returning sessions.
 Run /session:save to end. It writes a handoff doc and checks memory.
 
-Safety and action classification rules are in rules/safety.md.
-SQL query management rules are in rules/sql.md.
+All detailed rules are in rules/rules.md.
