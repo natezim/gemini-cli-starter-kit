@@ -1,17 +1,13 @@
 description = "Add a discovery or note to CONTEXT.md permanently"
 prompt = """
-Ask: "What should be added to the permanent project context?
-Examples: a gotcha discovered, a naming convention, a recurring task, a system detail, a safety limit."
+Read CONTEXT.md to understand what's already documented.
 
-Once answered, identify the correct section of ./CONTEXT.md:
-- Known Gotchas & Constraints
-- Recurring Tasks
-- Key Resources
-- Output & Naming Conventions
-- Cost / Safety Limits
-- or another relevant section
+Ask the user what they want to add. Base your question on what's currently
+in CONTEXT.md — reference specific sections or gaps you see.
+Do not use a generic question. Make it specific to this project's context.
 
-Append the new entry to that section with today's date.
-Append a one-line summary to the Change Log at the bottom of CONTEXT.md.
-Show the user exactly what was added and confirm.
+Once answered:
+- Identify the best section in CONTEXT.md for this addition (or create one if needed).
+- Append the new entry with today's date.
+- Show the user exactly what was added and confirm.
 """
