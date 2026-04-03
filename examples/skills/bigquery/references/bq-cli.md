@@ -271,7 +271,88 @@ WHERE table_name = "events" ORDER BY partition_id DESC
 
 ### __TABLES__ metatable (faster than INFORMATION_SCHEMA for quick audits)
 ```sql
-SELECT table_id, row_count, ROUND(size_bytes/POW(1024,3),3) AS size_gib,
+SELECT table_id,
+  CASE type WHEN 1 THEN "TABLE" WHEN 2 THEN "VIEW" WHEN 3 THEN "EXTERNAL" END AS type,
+  row_count, ROUND(size_bytes/POW(1024,3),3) AS size_gib,
   TIMESTAMP_MILLIS(last_modified_time) AS last_modified
 FROM `project.dataset.__TABLES__` ORDER BY size_bytes DESC
 ```
+
+### DDL recreation (reverse-engineer any table)
+```sql
+SELECT table_name, ddl FROM `dataset.INFORMATION_SCHEMA.TABLES`
+```
+
+### Single-partition metadata (free, no query)
+```bash
+bq show --format=prettyjson 'dataset.table$20260101'
+```
+Returns numBytes, numRows, numLongTermBytes for that partition.
+
+## Scheduled queries
+
+Without `--service_account_name`, queries break when the creating user leaves.
+```bash
+bq mk --transfer_config \
+  --data_source=scheduled_query \
+  --target_dataset=analytics \
+  --display_name="Daily Revenue" \
+  --schedule="every day 06:00" \
+  --location=US \
+  --service_account_name=scheduler@project.iam.gserviceaccount.com \
+  --params='{"query": "SELECT ...", "destination_table_name_template": "daily_{run_date|\"%Y%m%d\"}", "write_disposition": "WRITE_TRUNCATE"}'
+
+# List, trigger, delete
+bq ls --transfer_config --transfer_location=US --filter=dataSourceIds:scheduled_query
+bq mk --transfer_run --run_time="2026-04-03T06:00:00Z" projects/p/locations/us/transferConfigs/ID
+bq rm -f --transfer_config projects/p/locations/us/transferConfigs/ID
+```
+
+## Cross-region data movement
+
+Ranked by preference:
+1. **Dataset replication** (best): `ALTER SCHEMA dataset ADD REPLICA 'us-east4';`
+2. **Data Transfer Service**: `bq mk --transfer_config --data_source=cross_region_copy`
+3. **Extract + GCS copy + Load** (manual fallback)
+
+## Workload Identity Federation for GitHub Actions
+```yaml
+permissions:
+  contents: read
+  id-token: write  # REQUIRED — silently fails without it
+jobs:
+  pipeline:
+    steps:
+      - uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: 'projects/123/locations/global/workloadIdentityPools/pool/providers/github'
+          service_account: 'sa@project.iam.gserviceaccount.com'
+      - uses: google-github-actions/setup-gcloud@v2
+      - run: bq query --nouse_legacy_sql --project_id=project 'SELECT 1'
+```
+
+## Additional flags
+
+### --destination_table
+Syntax: `PROJECT:DATASET.TABLE` (colon between project and dataset).
+Without `--replace` or `--append_table`, fails if table exists.
+
+### --batch: server-side scheduling priority
+Batch queries may be queued up to 24 hours. Don't count against interactive concurrency limit (~100/project). Same cost.
+
+### --format values: pretty, sparse, json, prettyjson, csv, none
+`none` is useful for DML (suppresses output).
+
+### --apilog: REST API debugging
+```bash
+bq --apilog=/tmp/bq-debug.log query --nouse_legacy_sql 'SELECT 1'
+```
+
+### bq ls -j: no server-side status filter
+Filter client-side with jq:
+```bash
+bq ls -j -a --format=json -n 100 | jq '[.[] | select(.status.state == "RUNNING")]'
+```
+
+### .status.errorResult vs .status.errors[]
+`.errorResult` present = job failed. `.errors[]` = non-fatal warnings (job may have succeeded).

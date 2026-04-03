@@ -73,6 +73,30 @@ SELECT * FROM hierarchy
 - Each iteration is a separate execution stage.
 - Recursive CTEs ARE materialized (unlike non-recursive).
 
+## System variables
+
+Writable: `@@dataset_id`, `@@time_zone`, `@@query_label`.
+Read-only: `@@project_id`, `@@script.bytes_processed`, `@@script.slot_ms`, `@@row_count`.
+
+Session mode: top-level DECLARE'd variables and temp tables persist across submissions.
+Reference temp tables explicitly: `_SESSION.table_name` to avoid collisions.
+
+## FOR...IN with dynamic SQL
+
+```sql
+FOR tbl IN (
+  SELECT table_name FROM `project.dataset.INFORMATION_SCHEMA.TABLES`
+  WHERE table_type = 'BASE TABLE'
+) DO
+  EXECUTE IMMEDIATE FORMAT(
+    "SELECT '%s' AS tbl, COUNT(*) AS rows FROM `project.dataset.%s`",
+    tbl.table_name, tbl.table_name
+  );
+END FOR;
+```
+
+Labeled loops: `outer_loop: LOOP ... BREAK outer_loop; ... END LOOP;`
+
 ## Pipe syntax (GA February 2025)
 
 ```sql

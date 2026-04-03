@@ -22,6 +22,11 @@ ALTER TABLE dataset.order_items ADD FOREIGN KEY (order_id) REFERENCES dataset.or
 Zero-cost optimization. Enables join elimination, outer join elimination, join reordering.
 Combined with History-Based Optimizations, produces optimal plans.
 
+**Correlated subqueries**: BigQuery auto-decorrelates simple ones into JOINs.
+Error when it can't: "Correlated subqueries that reference other tables are not supported
+unless they can be de-correlated." Fix: pre-join in CTE, then aggregate.
+JOINs benchmarked at ~14s vs correlated scalar subqueries at ~45s.
+
 **No LATERAL JOIN** — use UNNEST:
 - `CROSS JOIN UNNEST(array)` drops rows with empty arrays.
 - `LEFT JOIN UNNEST(array)` preserves them.
@@ -67,6 +72,9 @@ GROUP BY GROUPING SETS (
 - RANGE compares ORDER BY values logically — handles ties, requires single numeric ORDER BY.
 - Default with ORDER BY: `RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW`.
 
+**Skew warning**: high-cardinality PARTITION BY keys distribute well. Low-cardinality
+(e.g., 200 countries) creates data skew. No PARTITION BY forces all data onto one slot.
+
 **Window specification reuse**: each unique PARTITION BY/ORDER BY forces re-shuffle.
 Use named WINDOW clause to share definitions:
 ```sql
@@ -88,5 +96,25 @@ Window function doesn't need to appear in SELECT — only in QUALIFY.
 
 - `APPROX_COUNT_DISTINCT`: <1% error, 5-10x faster than exact.
 - `APPROX_QUANTILES(col, 100)`: returns array of percentile values.
+  Access specific percentiles: `APPROX_QUANTILES(ms, 100)[OFFSET(50)]` for P50,
+  `[OFFSET(95)]` for P95.
 - `ARRAY_AGG(col ORDER BY x LIMIT n)`: BigQuery optimizes to track only top-N.
 - Max array size: 10,000 elements.
+
+## Reading execution plans
+
+BigQuery has NO EXPLAIN statement. Plans available post-execution:
+- Console Execution Graph tab
+- `bq show -j --format=prettyjson <job_id>`
+- `jobs.get()` REST API at `statistics.query.queryPlan`
+
+**Skew detection**: compare `computeRatioMax` vs `computeRatioAvg` — if max >2-3x avg, bottleneck.
+Non-zero `shuffleOutputBytesSpilled` = memory pressure.
+
+**Slot contention check**:
+```sql
+SELECT ROUND(COUNTIF(period_estimated_runnable_units > 0) / COUNT(*) * 100, 1)
+  AS pct_time_waiting_for_slots
+FROM `region-us`.INFORMATION_SCHEMA.JOBS_TIMELINE
+WHERE job_id = 'my_job_id'
+```

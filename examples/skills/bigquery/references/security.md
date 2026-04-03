@@ -61,6 +61,12 @@ for sensitive columns when the user lacks full access.
 | Manage datasets | `bigquery.dataOwner` |
 | Admin | `bigquery.admin` (use sparingly) |
 
+## Service account keys blocked by default
+
+Organizations created after May 3, 2024 have `iam.disableServiceAccountKeyCreation`
+enforced by default. Keys in public repos are automatically disabled since June 2024.
+Prefer impersonation or Workload Identity Federation.
+
 ## Audit logging
 
 - Enable Cloud Audit Logs for BigQuery to track all user activity.

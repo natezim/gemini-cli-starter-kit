@@ -28,6 +28,12 @@ CREATE TABLE orders (
 
 ## Search indexes — sub-second text search
 
+Health check:
+```sql
+SELECT table_name, index_name, index_status, coverage_percentage
+FROM `project.dataset.INFORMATION_SCHEMA.SEARCH_INDEXES`
+```
+
 ```sql
 CREATE SEARCH INDEX my_index ON dataset.logs (message)
 OPTIONS (analyzer = 'LOG_ANALYZER')
@@ -76,7 +82,20 @@ WHERE _TABLE_SUFFIX BETWEEN '20240101' AND '20241231'
 - Re-clustering base table causes clones to be charged full storage.
 
 ```sql
-CREATE TABLE dev.orders CLONE prod.orders;
-CREATE SNAPSHOT TABLE backups.orders_snap CLONE prod.orders;
+CREATE TABLE dev.orders CLONE prod.orders
+OPTIONS (expiration_timestamp = TIMESTAMP_ADD(CURRENT_TIMESTAMP(), INTERVAL 7 DAY));
+
+CREATE SNAPSHOT TABLE backups.orders_snap CLONE prod.orders
+FOR SYSTEM_TIME AS OF TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR);
+
 CREATE OR REPLACE TABLE prod.orders CLONE backups.orders_snap;  -- restore
+```
+
+## Migrating sharded tables to partitioned
+
+```sql
+CREATE TABLE events_partitioned
+PARTITION BY DATE(event_timestamp) AS
+SELECT *, PARSE_DATE('%Y%m%d', _TABLE_SUFFIX) AS shard_date
+FROM `project.analytics.events_*`
 ```
