@@ -8,9 +8,10 @@ Check CONTEXT.md. If empty or just placeholders:
   Write CONTEXT.md. Confirm. Move on.
 
 If context exists:
-  Load everything silently: CONTEXT.md, context/, queries/, session-log, /memory show, check .env.
+  Load everything silently: CONTEXT.md, context/, queries/, skills/, session-log, /memory show, check .env.
 
 Short status — what you know, what's available. Skip empty stuff.
+Include available skills if any exist (e.g., "Skills loaded: bigquery, tableau-bigquery").
 
 Ask: "What are we working on?"
 

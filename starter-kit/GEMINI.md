@@ -42,10 +42,19 @@ Do not say "I can't connect" without checking .env first.
 - Never read/write outside the working directory without approval.
 - Use /restore or double-Esc to revert any file change (checkpointing is enabled).
 
+## Skills
+
+At session start, check .gemini/skills/ for available skills.
+When the user's task matches a skill's domain, activate it automatically — don't wait
+to be asked. If multiple skills are relevant, load all of them.
+
+For example: if the user asks about BigQuery and a bigquery skill exists, load it immediately.
+If they're working on Tableau dashboards and a tableau-bigquery skill exists, load it.
+Use the skill's reference files for detailed guidance on specific topics.
+
 ## Context & Memory
 
 - Files in ./context/ are auto-loaded every session.
-- Skills in .gemini/skills/ activate when relevant (/skills list to see them).
 - /memory add persists facts across sessions (survives context compression).
 - /stats shows context window usage. Persist critical facts before compression.
 
