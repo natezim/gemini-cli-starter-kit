@@ -1,4 +1,4 @@
-description = "Start a session — sets up context if needed, loads everything, gets you working"
+description = "Start a session — resumes previous work, sets up context if needed, gets you working"
 prompt = """
 Be fast. Get the user working.
 
@@ -29,9 +29,16 @@ Show a summary and confirm with the user.
 
 Load everything silently: CONTEXT.md, context/, queries/, skills/, session-log, /memory show, check .env.
 
-Short status — what you know, what's available, what skills are loaded. Skip empty stuff.
+Check for the most recent handoff doc in output/ (files matching *_handoff.md).
+Also check if SESSION.md exists from a previous session.
 
-Ask: "What are we working on?"
+If a handoff exists, read it and give a status that includes:
+  - What was done last session
+  - What was left open/unfinished
+  - What was flagged to carry forward
+  Then ask: "Want to pick up where you left off, or start something new?"
 
-Write SESSION.md. Say: "Ready."
+If no handoff exists, give a short status and ask: "What are we working on?"
+
+Write SESSION.md with the user's answer. Say: "Ready."
 """
