@@ -163,16 +163,16 @@ Output structure:
   ./output/               all other deliverables — reports, exports, analysis
   ./output/query-log.md   execution log — what was run, when, cost
 
-## Logging
+## Logging — THIS IS MANDATORY
 
-Keep a single, lightweight session log. No separate prompt logs, changelogs, or decision logs.
+After EVERY task you complete, IMMEDIATELY append to ./output/session-log.md:
+  [YYYY-MM-DD HH:MM] <what you did>
 
-SESSION LOG — append after every completed task or notable event:
-  File: ./output/session-log.md
-  Format: [YYYY-MM-DD HH:MM] <what was done or learned>
-  Rule: append-only. Keep entries short — one or two lines each.
+After EVERY query you run, IMMEDIATELY append to ./output/query-log.md:
+  [YYYY-MM-DD HH:MM] RAN: <query or filename> | Rows: <count> | Bytes: <scanned> | Cost: ~$<est>
 
-This is the only log file. Everything else lives in the conversation or in /memory.
+Do not wait until session end. Do not batch. Do not skip.
+If you completed a task or ran a query and did not log it, you made an error — go log it now.
 
 ## Error Handling
 
@@ -207,12 +207,10 @@ Files in ./context/ are auto-loaded every session. For one-off injection mid-ses
 
 ## Session Start
 
-Begin every session with one of:
-  /init   — full onboarding: loads context, checks history, runs intake, writes SESSION.md
-  /brief  — fast start: one question, writes minimal SESSION.md
-
-Both commands load CONTEXT.md automatically.
-Never begin working without running one of these first.
+Run /init to start every session. It handles everything:
+  - First time? Collects context and writes CONTEXT.md.
+  - Returning? Loads context, shows status, asks what you're doing.
+One command. No ceremony. Never start working without it.
 
 ## Session End
 

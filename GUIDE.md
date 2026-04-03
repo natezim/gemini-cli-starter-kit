@@ -20,11 +20,9 @@ any tool, any user. Drop it in, run /setup, and go.
 
   .gemini/
     commands/
-      /setup             First-time wizard — builds CONTEXT.md via interview
-      /init              Full session start with intake interview
-      /brief             Fast session start, one question
+      /init              Start a session — handles first-time setup + returning
+      /setup             Rebuild context from scratch
       /session:save      Session end — handoff doc + memory check
-      /learnings:add     Log a discovery immediately
       /context:update    Add something permanently to CONTEXT.md
     skills/              Drop skill folders here — each with a SKILL.md
 
@@ -56,23 +54,12 @@ any tool, any user. Drop it in, run /setup, and go.
 
 ## STARTING A SESSION
 
-  /init    Full onboarding. Use this when starting something new, coming back
-           after time away, or when you want a structured documented session.
+  /init    The only command you need. Handles everything.
 
-           Gemini will:
-           → Read CONTEXT.md and summarize your environment
-           → Check the last 3 session log entries
-           → Read the last 5 learnings
-           → Surface anything persisted from past sessions via /memory show
-           → Ask 4 intake questions (goal, scope, constraints, definition of done)
-           → Write SESSION.md
-           → Say "Ready. What's the first task?"
+           First time? Scans your project, asks smart questions, builds CONTEXT.md.
+           Returning? Loads context, shows status, asks what you're doing. Ready.
 
-  /brief   Fast start. Use for routine sessions when you know what you're doing.
-
-           Gemini asks one question:
-           "Quick brief — what are we doing today and anything I need to know?"
-           Reads CONTEXT.md silently, writes SESSION.md, ready in under 10 seconds.
+           Use /setup only if you want to rebuild your context from scratch.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -124,9 +111,8 @@ Gemini will:
 
 ## COMMAND REFERENCE
 
-  /setup            First-time only — builds CONTEXT.md via interview
-  /init             Full session start with intake
-  /brief            Fast session start, one question
+  /init             Start a session — first-time setup or returning
+  /setup            Rebuild context from scratch
   /session:save     Session end, handoff doc, memory check
   /context:update   Add something permanent to CONTEXT.md
   /stats            Check context window usage

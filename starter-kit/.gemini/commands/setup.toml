@@ -1,20 +1,18 @@
-description = "First-time setup — scans what exists, asks smart questions, writes CONTEXT.md"
+description = "Redo project context from scratch — re-interviews you and rewrites CONTEXT.md"
 prompt = """
+The user wants to rebuild their project context.
+
 Scan everything: context/ files, .env variable names (not values), queries/.
+Summarize what you found.
 
-Summarize what you found. Then ask only what's missing — skip what you already know.
-If .env exists, list the variable names and ask: "What do these connect to?"
-
-Default questions (skip any you can answer from files):
+Ask only what's missing. One question at a time:
 1. What's this project and what does the end result look like?
-2. Walk me through your stack — tools, services, databases, and how they connect.
-3. What does a typical work session look like?
-4. What's bitten you before? Gotchas, fragile systems, things to never touch?
-5. How do you know a task is done?
-6. What are you focused on right now?
+2. Walk me through your stack. (If .env exists, list variable names and ask what they connect to)
+3. Any gotchas, fragile systems, or things to never touch?
+4. What are you focused on right now?
 
-One question at a time. Confirm each answer.
+Skip questions you can answer from files. Confirm each answer.
 
-Write CONTEXT.md with everything. Show a summary, ask for corrections.
-Say: "Done. Run /init to start."
+Rewrite CONTEXT.md. Show a summary, ask for corrections.
+Say: "Context updated. Run /init to start."
 """
