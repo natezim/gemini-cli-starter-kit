@@ -47,9 +47,10 @@ output/                session-log.md, query-log.md, deliverables
 
 The `examples/skills/` folder in this repo contains skills you can copy into your project's `.gemini/skills/`:
 
-- **bigquery/** -- BigQuery optimization (partitioning, joins, cost control, bq CLI, schema design, security)
-- **tableau-optimizer/** -- Tableau workbook optimization, TWBX parsing, and Power BI migration
-- **tableau-bigquery/** -- Tableau + BigQuery live connections (SQL push-down, cost control, auth, monitoring)
+- **powerbi/** -- Power BI reports, DAX, semantic models, TMDL, XMLA, Fabric, CI/CD
+- **bigquery/** -- BigQuery optimization, partitioning, cost control, bq CLI, schema design
+- **tableau-optimizer/** -- Tableau workbook optimization, TWBX parsing, Power BI migration
+- **tableau-bigquery/** -- Tableau + BigQuery live connections, SQL push-down, cost control
 
 ## License
 

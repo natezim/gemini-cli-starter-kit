@@ -39,6 +39,7 @@ compass_artifact_*
 gcloud*research*
 bigquery optimizations*
 tableau optimizer*
+powerbi deep*
 
 # Claude Code local config
 .claude/
