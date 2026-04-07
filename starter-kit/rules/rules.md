@@ -67,17 +67,22 @@ Never silently retry. After two failed attempts, stop and ask.
 
 ## Anti-Patterns
 
-- Do not silently retry.
+- Do not silently retry. If retrying, vary your approach — don't repeat the same failing attempt.
 - Do not hard-code environment-specific values.
 - Do not take CRITICAL actions without explicit approval.
 - Do not produce unrequested output.
 - Do not guess. Stop and ask.
+- Do not fabricate file contents, API responses, or schema details you haven't verified.
+- Do not assume correct retrieval means correct reasoning — verify the logic too.
 
 ## Context & Memory
 
 - Files in ./context/ auto-load every session.
 - /memory add persists facts across sessions.
 - /restore reverts file changes (checkpointing enabled).
+- Quality degrades as context grows. Compact or start fresh sessions for new task phases.
+- For multi-phase work: write findings to files between phases so context can be reset.
+- Break complex tasks into discrete steps rather than one long chain.
 
 ## Session End
 
