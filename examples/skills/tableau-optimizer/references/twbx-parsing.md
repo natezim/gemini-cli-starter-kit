@@ -17,11 +17,17 @@ Always check these first when parsing.
 Connection types via `<connection class='...'>`:
 excel-direct, sqlserver, postgres, redshift, bigquery, snowflake, mysql, dataengine (Hyper extracts).
 
+## Relations and joins
+`<relation>` inside `<connection>`: `type='table'` (native), `type='text'` (Custom SQL), `type='join'`.
+JOINs nest "middle-out" — each additional JOIN wraps around existing relations.
+Join conditions in `<clause type='join'>` with `<expression op='='>` containing field references.
+
 ## Extract vs live detection
 - Extract: `<extract enabled='true'>` within `<datasource>`
 - Inner `<connection class='dataengine'>` points to .hyper file
 - No `<extract>` or `enabled='false'` = live connection
 - Incremental refresh: `<refresh incremental-updates='true' increment-key='[FieldName]'>`
+- `update-time` attribute gives last refresh timestamp
 - Outer `<connection>` retains live connection info regardless
 
 ## Calculated fields
@@ -62,12 +68,16 @@ Notation: `[Datasource].[aggregation:Field:suffix]`
 - 'none:Category:nk' = dimension (no agg, nominal key)
 - 'sum:Sales:qk' = measure (SUM agg, quantitative key)
 
+Mark card encodings in `<panes>` → `<pane>` → `<encodings>` (color, size, detail, label).
 Mark type in `<mark class='...'>`.
+Collect all dimensions from `<rows>`, `<cols>`, `<detail>`, `<lod>` to determine worksheet LOD.
 Filters: `class='categorical'`, `class='quantitative'`, `class='relative-date'`.
+Relative-date filters have `period-type`, `first-period`, `last-period` attributes.
 
 ## Dashboards
 Nested `<zone>` elements. Match `name` to worksheet names.
 Zone types: 'layout-basic' (containers), 'text', 'bitmap', 'web'.
+Zone coordinates: 100000 = 100%.
 Actions: `<action>` with types 'filter', 'highlight', 'url', 'sheet'.
 
 ## Two highest-value automated checks

@@ -1,5 +1,11 @@
 # Tableau Performance Optimization
 
+## Workbook Optimizer (2022.1+)
+Built-in tool that flags: excessive visible sheets, excessive filters/sheet, excessive LODs,
+excessive layout containers, non-fixed sizing, unused data sources, unused fields,
+non-materialized calcs, live connections, data blending, "Only Relevant Values" filters,
+nested calcs, long calcs, conditional filter logic. Run it before publishing.
+
 ## Dashboard thresholds
 - ~4 worksheets per dashboard max (each fires its own query)
 - <2,000 marks per view optimal. >4,000 = slow.

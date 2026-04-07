@@ -7,8 +7,9 @@ A plug-and-play best practices system for [Gemini CLI](https://github.com/google
 ## Quick Start
 
 1. Copy `starter-kit/` contents into your project root.
-2. Drop any reference files into `context/`.
-3. Run `/start`.
+2. Copy any skills you need from `examples/skills/` into `.gemini/skills/`.
+3. Drop any reference files into `context/`.
+4. Run `/start`.
 
 First time? It scans your project, asks smart questions, builds your context, and shows you everything available.
 Returning? Loads everything, resumes from your last session. One command.

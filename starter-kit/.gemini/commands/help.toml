@@ -21,6 +21,11 @@ Workspace:
   PREFERENCES.md — customize how I behave (tone, style, habits)
   CONTEXT.md — your project context, built by /start
 
+Skills (copy from the repo's examples/skills/ into .gemini/skills/):
+  bigquery/ — BigQuery optimization, partitioning, cost control, bq CLI
+  tableau-optimizer/ — Tableau performance, TWBX parsing, Power BI migration
+  tableau-bigquery/ — Tableau + BigQuery live connections, SQL push-down"
+
 How it works:
   I test everything before handing it back. I log every task and query automatically.
   I ask before doing anything risky. I never touch production without explicit approval.
