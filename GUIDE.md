@@ -1,10 +1,14 @@
-# Gemini CLI Starter Kit — Guide
+# Gemini CLI Starter Kit for Data Analysts — Guide
+
+Built for data analysts who work with SQL, Excel, Python, BigQuery, Power BI, and Tableau.
+This kit gives Gemini CLI structured sessions, query management, production safety, and
+deep domain skills -- out of the box.
 
 ## Setup
 
 1. Copy `starter-kit/` contents into your project root.
-2. Copy any relevant skills from `skills/` into `.gemini/skills/`.
-3. Drop any reference files into `context/` (specs, docs, schemas — auto-loaded every session).
+2. Copy relevant skills from `skills/` into `.gemini/skills/` (Excel, Python, BigQuery, etc.).
+3. Drop reference files into `context/` (schemas, docs, specs — auto-loaded every session).
 4. Run `/start`. It handles everything — first-time setup and every session after.
 5. Run `/help` anytime to see what's available.
 
@@ -12,32 +16,29 @@ Checkpointing is on. Use `/restore` to undo any file change.
 
 ## How It Works
 
-**`/start`** is the only command you need. First time, it scans your project, asks smart questions, builds CONTEXT.md, and shows you everything available. Every time after, it loads everything and asks what you're working on. If you left off mid-project, it picks up from your last handoff.
+**`/start`** is the only command you need. First time, it scans your project (files, .env, queries, skills), asks smart questions, and builds your context. Every time after, it loads everything and asks what you're working on. If you left off mid-project, it picks up from your last handoff.
 
-**`/session:save`** ends a session — writes a handoff doc, checks /memory, asks if anything should be permanent.
+**Skills activate automatically.** If you ask about BigQuery and the bigquery skill is installed, it loads. Same for Excel, Python, Power BI, Tableau. No manual activation needed.
 
-**`/help`** shows all commands and features anytime.
+**Queries are managed.** Write → test → show you → confirm → save. Every execution is logged with row counts and results. Your query library lives in `queries/`.
+
+**`/session:save`** ends a session — writes a handoff doc so next session picks up where you left off.
 
 ## What's in the Kit
 
 ```
-GEMINI.md              Core rules (~65 lines). Imports rules/rules.md.
-rules/rules.md         Safety, queries, workflow, logging — all in one file.
-CONTEXT.md             Your project context — built by /start, updated by /context:update.
-PREFERENCES.md         Your personal preferences — tone, style, habits, whatever you want.
-.gemini/settings.json  Checkpointing, compression, session retention, safe tool pre-approvals.
-.geminiignore          Keeps noise and secrets out of context.
+GEMINI.md              Core rules. Imports rules/rules.md.
+rules/rules.md         Safety, queries, workflow, logging.
+CONTEXT.md             Your project context — built by /start.
+PREFERENCES.md         Your preferences — tone, style, habits.
+.gemini/settings.json  Checkpointing, compression, safe tool pre-approvals.
+.geminiignore          Keeps secrets out of context.
 
 context/               Reference files — auto-loaded every session.
-queries/               SQL query library — one .sql per query, iterated in place.
-
-.gemini/
-  commands/            /start, /setup, /session:save, /context:update, /help
-  skills/              Skill folders — activated automatically based on your work.
-
-output/
-  session-log.md       Task log — auto-appended after every action.
-  query-log.md         Query execution log.
+queries/               SQL query library — one .sql per query.
+.gemini/commands/      /start, /setup, /session:save, /context:update, /help
+.gemini/skills/        Skills that activate based on your work.
+output/                session-log.md, query-log.md, deliverables.
 ```
 
 ## Commands
@@ -55,10 +56,10 @@ output/
 
 ## Tips
 
-- **context/ is your library.** Drop anything Gemini should always know — auto-loaded, no injection needed.
-- **PREFERENCES.md is your personality file.** Want Gemini to be casual? Funny? Terse? Put it there.
+- **context/ is your library.** Drop schemas, docs, specs — auto-loaded, no injection needed.
+- **queries/ is your query library.** One .sql per query, iterated in place, execution logged.
+- **PREFERENCES.md is your personality file.** Casual? Terse? Funny? Put it there.
 - **`/memory add` for critical facts.** Memory survives compression. Chat history doesn't.
-- **`@./CONTEXT.md` is your reset button.** If Gemini loses the thread, inject it.
 - **`/context:update` before closing.** One minute now saves re-explaining next session.
 
 ## Sources
@@ -68,3 +69,4 @@ output/
 - Google Cloud Community PRAR workflow (gated execution)
 - HumanLayer CLAUDE.md research (instruction design)
 - AGENTS.md standard (cross-tool compatibility)
+- LLM limitations research (context management, verification, fabrication prevention)
