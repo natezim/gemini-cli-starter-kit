@@ -50,6 +50,7 @@ The `examples/skills/` folder in this repo contains skills you can copy into you
 - **python/** -- Python data analysis, ML pipelines, pandas/NumPy, visualization, testing, deployment
 - **powerbi/** -- Power BI reports, DAX, semantic models, TMDL, XMLA, Fabric, CI/CD
 - **bigquery/** -- BigQuery optimization, partitioning, cost control, bq CLI, schema design
+- **tableau-server/** -- Tableau Server admin via PostgreSQL repository, RMT, jobs, permissions, auditing
 - **tableau-optimizer/** -- Tableau workbook optimization, TWBX parsing, Power BI migration
 - **tableau-bigquery/** -- Tableau + BigQuery live connections, SQL push-down, cost control
 

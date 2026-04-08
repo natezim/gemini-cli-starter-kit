@@ -25,6 +25,7 @@ Skills (copy from the repo's examples/skills/ into .gemini/skills/):
   python/ — Data analysis, ML pipelines, pandas/NumPy, visualization, testing
   powerbi/ — Power BI reports, DAX, semantic models, TMDL, XMLA, Fabric
   bigquery/ — BigQuery optimization, partitioning, cost control, bq CLI
+  tableau-server/ — Tableau Server admin, PostgreSQL repository, RMT, jobs, auditing
   tableau-optimizer/ — Tableau performance, TWBX parsing, Power BI migration
   tableau-bigquery/ — Tableau + BigQuery live connections, SQL push-down"
 
