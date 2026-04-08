@@ -77,3 +77,19 @@ def extract_background_sla(**_):
 | RMT repository | Infra/perf monitoring | Requires Advanced Management |
 | JMX | JVM process metrics | Security-sensitive, admin-enabled |
 | Hyper API | Extract file automation | Not for ops telemetry |
+
+## Sensitive metadata exposure risk
+Compromised Workgroup database reveals: confidential dashboard titles, executive user
+activity patterns, exact IP addresses and database names of upstream infrastructure.
+Use RLS with `USERNAME()` on admin dashboards to restrict by viewer identity.
+
+## Monitoring paradox
+Heavy analytical queries against the operational repository can degrade production performance.
+ETL pipeline to warehouse solves this: the monitoring doesn't slow down what it monitors.
+
+## Tableau Server Insights (community resource)
+Community-maintained GitHub repo with curated `.tds` files, version-controlled per Tableau Server release:
+- **TS Events**: stitches historical_events + types + hist_* tables; resolves complex FKs
+- **TS Users**: links site users to system users; identifies Creator-licensed users with Viewer behavior
+- **TS Data Connections**: handles polymorphic owner_type/owner_id joins
+- **TS Background Tasks**: join logic linking projects, system_users, licensing_roles; avoids parsing `args`
