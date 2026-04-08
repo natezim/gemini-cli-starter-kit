@@ -47,6 +47,7 @@ output/                session-log.md, query-log.md, deliverables
 
 The `examples/skills/` folder in this repo contains skills you can copy into your project's `.gemini/skills/`:
 
+- **python/** -- Python data analysis, ML pipelines, pandas/NumPy, visualization, testing, deployment
 - **powerbi/** -- Power BI reports, DAX, semantic models, TMDL, XMLA, Fabric, CI/CD
 - **bigquery/** -- BigQuery optimization, partitioning, cost control, bq CLI, schema design
 - **tableau-optimizer/** -- Tableau workbook optimization, TWBX parsing, Power BI migration
