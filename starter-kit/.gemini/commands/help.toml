@@ -21,7 +21,7 @@ Workspace:
   PREFERENCES.md — customize how I behave (tone, style, habits)
   CONTEXT.md — your project context, built by /start
 
-Skills (copy from the repo's skills/ into .gemini/skills/):
+Skills (copy from the repo's skills/ folder into .gemini/skills/ — only installed skills are active):
   excel/ — Formulas, dynamic arrays, Power Query, Power Pivot/DAX, VBA, Office Scripts
   python/ — Data analysis, ML pipelines, pandas/NumPy, visualization, testing
   powerbi/ — Power BI reports, DAX, semantic models, TMDL, XMLA, Fabric
