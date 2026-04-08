@@ -35,7 +35,7 @@ context/               Reference files -- auto-loaded every session
 queries/               SQL query library -- one .sql per query
 .gemini/
   settings.json        Checkpointing, compression, safe tool pre-approvals
-  commands/            /start, /setup, /session:save, /context:update, /help
+  commands/            /start, /setup, /session:save, /context:update, /info
   skills/              Skill folders (each with a SKILL.md)
 output/                session-log.md, query-log.md, deliverables
 ```
@@ -48,7 +48,7 @@ output/                session-log.md, query-log.md, deliverables
 | `/setup` | Rebuild context from scratch |
 | `/session:save` | End session -- handoff doc + memory check |
 | `/context:update` | Add something permanent to CONTEXT.md |
-| `/help` | Show available commands and features |
+| `/info` | Show available commands and features |
 | `/memory add` | Persist a fact across sessions |
 | `/restore` | Undo a file change |
 

@@ -10,7 +10,7 @@ deep domain skills -- out of the box.
 2. Copy relevant skills from `skills/` into `.gemini/skills/` (Excel, Python, BigQuery, etc.).
 3. Drop reference files into `context/` (schemas, docs, specs — auto-loaded every session).
 4. Run `/start`. It handles everything — first-time setup and every session after.
-5. Run `/help` anytime to see what's available.
+5. Run `/info` anytime to see what's available.
 
 Checkpointing is on. Use `/restore` to undo any file change.
 
@@ -36,7 +36,7 @@ PREFERENCES.md         Your preferences — tone, style, habits.
 
 context/               Reference files — auto-loaded every session.
 queries/               SQL query library — one .sql per query.
-.gemini/commands/      /start, /setup, /session:save, /context:update, /help
+.gemini/commands/      /start, /setup, /session:save, /context:update, /info
 .gemini/skills/        Skills that activate based on your work.
 output/                session-log.md, query-log.md, deliverables.
 ```
@@ -49,7 +49,7 @@ output/                session-log.md, query-log.md, deliverables.
 | `/setup` | Rebuild context from scratch |
 | `/session:save` | End session — handoff doc + memory check |
 | `/context:update` | Add something permanent to CONTEXT.md |
-| `/help` | Show available commands and features |
+| `/info` | Show available commands and features |
 | `/memory add` | Persist a fact across sessions (survives compression) |
 | `/restore` | Undo a file change |
 | `@./file` | Inject any file into context mid-session |

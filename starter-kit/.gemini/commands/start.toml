@@ -25,7 +25,7 @@ Stop when you have a clear picture.
 Write CONTEXT.md with whatever sections make sense for THIS project.
 Show a summary and confirm with the user.
 
-After context is confirmed, run /help to show the user everything that's available.
+After context is confirmed, run /info to show the user everything that's available.
 Then ask: "What are we working on?"
 
 --- RETURNING SESSION ---

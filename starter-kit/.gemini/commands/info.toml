@@ -12,7 +12,7 @@ Commands:
   /memory add <fact> — persist a fact across sessions
   /memory show — see persisted facts
   /restore — undo any file change
-  /help — show this message
+  /info — show this message
 
 Workspace:
   context/ — drop reference files here, auto-loaded every session
