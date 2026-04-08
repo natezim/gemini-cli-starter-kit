@@ -7,7 +7,7 @@ A plug-and-play best practices system for [Gemini CLI](https://github.com/google
 ## Quick Start
 
 1. Copy `starter-kit/` contents into your project root.
-2. Copy any skills you need from `examples/skills/` into `.gemini/skills/`.
+2. Copy any skills you need from `skills/` into `.gemini/skills/`.
 3. Drop any reference files into `context/`.
 4. Run `/start`.
 
@@ -45,7 +45,7 @@ output/                session-log.md, query-log.md, deliverables
 
 ## Example Skills
 
-The `examples/skills/` folder in this repo contains skills you can copy into your project's `.gemini/skills/`:
+The `skills/` folder in this repo contains skills you can copy into your project's `.gemini/skills/`:
 
 - **python/** -- Python data analysis, ML pipelines, pandas/NumPy, visualization, testing, deployment
 - **powerbi/** -- Power BI reports, DAX, semantic models, TMDL, XMLA, Fabric, CI/CD

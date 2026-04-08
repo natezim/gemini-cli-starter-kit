@@ -3,7 +3,7 @@
 ## Setup
 
 1. Copy `starter-kit/` contents into your project root.
-2. Copy any relevant skills from `examples/skills/` into `.gemini/skills/`.
+2. Copy any relevant skills from `skills/` into `.gemini/skills/`.
 3. Drop any reference files into `context/` (specs, docs, schemas — auto-loaded every session).
 4. Run `/start`. It handles everything — first-time setup and every session after.
 5. Run `/help` anytime to see what's available.
