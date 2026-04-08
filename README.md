@@ -47,6 +47,7 @@ output/                session-log.md, query-log.md, deliverables
 
 The `skills/` folder in this repo contains skills you can copy into your project's `.gemini/skills/`:
 
+- **excel/** -- Excel formulas, dynamic arrays, Power Query M, Power Pivot/DAX, VBA, Office Scripts, Graph API
 - **python/** -- Python data analysis, ML pipelines, pandas/NumPy, visualization, testing, deployment
 - **powerbi/** -- Power BI reports, DAX, semantic models, TMDL, XMLA, Fabric, CI/CD
 - **bigquery/** -- BigQuery optimization, partitioning, cost control, bq CLI, schema design
