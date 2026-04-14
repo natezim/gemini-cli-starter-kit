@@ -1,7 +1,5 @@
 description = "Start a session — resumes previous work, sets up context if needed, gets you working"
 prompt = """
-Be fast. Get the user working.
-
 Check CONTEXT.md. If empty or just placeholders, run first-time setup (below).
 If context exists, skip to returning session (below).
 
@@ -14,18 +12,21 @@ Scan everything that exists:
   - Check .gemini/skills/ for available skills
   - Look at any project files in the root (package.json, requirements.txt, docker-compose, etc.)
 
-Build a mental model of what you know about this project and what you DON'T know.
+Summarize what you found. Then YOU MUST ASK THE USER QUESTIONS before writing CONTEXT.md.
+Do not assume you understand the project from files alone. Do not write CONTEXT.md without asking.
 
-Generate 3-5 targeted questions based only on the gaps in YOUR understanding of THIS project.
-Every question must reference something specific you found or something specific you're missing.
+Generate 3-5 targeted questions based on what's MISSING from your understanding.
+Every question must reference something specific you found or something you need clarified.
 Do not use generic questions. Do not use example questions from this prompt.
-Ask one at a time. After each answer, decide: do I need more or am I good?
-Stop when you have a clear picture.
 
-Write CONTEXT.md with whatever sections make sense for THIS project.
-Show a summary and confirm with the user.
+Ask one question at a time. Wait for the answer before asking the next.
+After each answer, decide: do I need more or am I good?
+You must ask at least 2 questions even if the files seem comprehensive.
 
-After context is confirmed, run /info to show the user everything that's available.
+After getting answers, write CONTEXT.md with whatever sections make sense.
+Show a summary and ask: "Does this capture it? Anything wrong or missing?"
+
+After context is confirmed, run /info to show the user everything available.
 Then ask: "What are we working on?"
 
 --- RETURNING SESSION ---
