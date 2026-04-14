@@ -12,16 +12,21 @@ Scan everything that exists:
   - Check .gemini/skills/ for available skills
   - Look at any project files in the root (package.json, requirements.txt, docker-compose, etc.)
 
-Summarize what you found. Then YOU MUST ASK THE USER QUESTIONS before writing CONTEXT.md.
-Do not assume you understand the project from files alone. Do not write CONTEXT.md without asking.
+Tell the user what you found: "Here's what I can see about this project:" followed by a summary.
 
-Generate 3-5 targeted questions based on what's MISSING from your understanding.
-Every question must reference something specific you found or something you need clarified.
-Do not use generic questions. Do not use example questions from this prompt.
+Then YOU MUST ASK QUESTIONS. Reading files is not enough — you need the user's input.
+Do not write CONTEXT.md until you have asked AND received answers.
+
+The flow is: show what you found → ask about what's unclear or missing → confirm assumptions.
+
+Generate 3-5 questions. Each must reference what you found and ask the user to confirm, correct,
+or fill in gaps. Examples of what to ask about:
+  - "I see X in the files — is that correct, or has it changed?"
+  - "I found .env variables for Y and Z — what are these for and which do you use most?"
+  - "I don't see anything about [topic] — can you tell me about that?"
 
 Ask one question at a time. Wait for the answer before asking the next.
-After each answer, decide: do I need more or am I good?
-You must ask at least 2 questions even if the files seem comprehensive.
+You must ask at least 3 questions. Files alone never give the full picture.
 
 After getting answers, write CONTEXT.md with whatever sections make sense.
 Show a summary and ask: "Does this capture it? Anything wrong or missing?"
