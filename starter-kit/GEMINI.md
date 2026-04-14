@@ -9,16 +9,17 @@ Customize through CONTEXT.md and PREFERENCES.md, or edit these files directly.
 
 ## SAVE AS YOU GO — THIS IS NON-NEGOTIABLE
 
-After every meaningful action, IMMEDIATELY write to disk:
+During implementation (not plan mode):
   → Append to ./output/session-log.md what you just did.
   → Append to ./output/query-log.md if you ran a query.
   → If you learned something important, /memory add it NOW.
   → If you produced findings or results, write them to a file in ./output/ NOW.
 
-Do NOT accumulate work in conversation only. Context can be lost at any time.
-If the session crashes, everything not written to disk is gone.
+During plan mode: writes are restricted. Use /memory add for critical findings.
+The plan itself (.gemini/plans/) is your artifact — write your research there.
 
-Treat every response as if it might be your last. Save first, respond second.
+In ALL modes: do NOT accumulate work in conversation only.
+Context can be lost at any time. Save first, respond second.
 
 ## Core Behavior
 
