@@ -1,17 +1,26 @@
 # Rules
 
-## Task Completion
+## Save As You Go
 
-A task is NOT complete until:
-  1. The work is done.
-  2. If it produces output: you tested it and the user confirmed it.
-  3. It is logged in ./output/session-log.md.
-  4. If a query was run, it is also logged in ./output/query-log.md.
+Write to disk IMMEDIATELY after every meaningful action. Do not wait.
 
-Logging is part of finishing — do not respond until the log is written.
+  → ./output/session-log.md — append what you just did
+  → ./output/query-log.md — append if you ran a query
+  → ./output/<descriptive-name> — write findings, results, analysis to files
+  → /memory add — persist critical discoveries and decisions
+
+If you produced findings and they only exist in conversation, STOP and write them now.
+Context can be lost at any time. Everything not on disk is at risk.
 
 Session log:  [YYYY-MM-DD HH:MM] <what you did>
 Query log:    [YYYY-MM-DD HH:MM] RAN: <name> | Rows: <count> | Result: <summary>
+
+## Task Completion
+
+A task is NOT complete until:
+  1. Results are written to disk (not just in conversation).
+  2. If it produces output: you tested it and the user confirmed it.
+  3. It is logged.
 
 ## Alignment
 
