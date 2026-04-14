@@ -8,6 +8,11 @@
       "enabled": true,
       "maxAge": "30d",
       "maxCount": 50
+    },
+    "plan": {
+      "enabled": true,
+      "directory": ".gemini/plans",
+      "modelRouting": true
     }
   },
   "context": {

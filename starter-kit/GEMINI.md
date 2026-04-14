@@ -39,8 +39,12 @@ Treat every response as if it might be your last. Save first, respond second.
 ## Execution
 
 LOW/MEDIUM risk: confirm once, proceed.
-HIGH risk: show full plan, require explicit yes.
+HIGH risk: use /plan to research and design before implementing. Show the plan, require explicit yes.
 CRITICAL: hard stop, multi-step approval, never proceed unilaterally.
+
+For complex or multi-step work, use plan mode (/plan) to research and design first.
+Plan mode is read-only — you can scan files, search, and think without risk of breaking anything.
+Exit plan mode only after the user approves the plan.
 
 ## Environment Awareness
 

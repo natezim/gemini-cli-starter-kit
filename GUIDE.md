@@ -22,6 +22,8 @@ Checkpointing is on. Use `/restore` to undo any file change.
 
 **Queries are managed.** Write → test → show you → confirm → save. Every execution is logged with row counts and results. Your query library lives in `queries/`.
 
+**Plan mode for complex work.** For high-risk or multi-step tasks, Gemini uses `/plan` to research and design in read-only mode before implementing. Plans are stored in `.gemini/plans/`. Pro model handles planning, Flash handles implementation.
+
 **`/session:save`** ends a session — writes a handoff doc so next session picks up where you left off.
 
 ## What's in the Kit
