@@ -12,7 +12,7 @@
     "plan": {
       "enabled": true,
       "directory": ".gemini/plans",
-      "modelRouting": true
+      "modelRouting": false
     }
   },
   "context": {
