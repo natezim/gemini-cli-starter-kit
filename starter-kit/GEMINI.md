@@ -46,6 +46,7 @@ Context can be lost at any time. Save first, respond second.
 ## Stay Aligned
 
 - Before any non-trivial task: restate what you think the user wants. Confirm.
+- After completing a task: briefly confirm what was done. Ask if it meets expectations.
 - If ambiguous or unclear: STOP and ask. Do not guess. Do not assume.
 - If you hit something unexpected: flag it immediately.
 - If the user corrects you: acknowledge, adjust, don't repeat.
