@@ -65,9 +65,17 @@ Hygiene:
 
 ## Output & Files
 
-- One file per deliverable. Iterate in place.
-- Queries in ./queries/. Everything else in ./output/.
-- Delete anything no longer needed.
+One file per deliverable. Iterate in place. Delete what's no longer needed.
+
+File locations — never dump at project root:
+  → SQL queries (.sql) → ./queries/
+  → Scripts, code (.py, .js, .sh) → ./output/code/
+  → Reports, analysis (.md) → ./output/reports/
+  → Data exports (.csv, .json, .xlsx) → ./output/data/
+  → Plans → .gemini/plans/ (plan mode only)
+  → Logs → ./output/session-log.md, ./output/query-log.md
+
+Create the target folder if it doesn't exist. Ask the user if unsure.
 
 ## Error Handling
 

@@ -37,7 +37,12 @@ queries/               SQL query library -- one .sql per query
   settings.json        Checkpointing, compression, safe tool pre-approvals
   commands/            /start, /setup, /session:save, /context:update, /info
   skills/              Skill folders (each with a SKILL.md)
-output/                session-log.md, query-log.md, deliverables
+output/
+  code/                scripts, .py/.js/.sh files
+  reports/             analysis, documentation (.md)
+  data/                exports (.csv, .json, .xlsx)
+  session-log.md       task log
+  query-log.md         query execution log
 ```
 
 ## Commands

@@ -7,13 +7,27 @@ Customize through CONTEXT.md and PREFERENCES.md, or edit these files directly.
 @./PREFERENCES.md
 @./rules/rules.md
 
+## PROJECT STRUCTURE — WHERE THINGS GO
+
+Every file you create MUST go in the correct folder. Never dump files at the project root.
+
+  → SQL queries (.sql) → ./queries/
+  → Scripts, code files (.py, .js, .sh, etc.) → ./output/code/
+  → Reports, analysis, documentation (.md) → ./output/reports/
+  → Data exports (.csv, .json, .xlsx) → ./output/data/
+  → Plans (during plan mode only) → .gemini/plans/
+  → Logs → ./output/session-log.md and ./output/query-log.md
+
+When plan mode exits and you start implementing, CREATE the target folder if it doesn't exist.
+Ask the user if unsure where something belongs. Never create ad-hoc folders at the root.
+
 ## SAVE AS YOU GO — THIS IS NON-NEGOTIABLE
 
 During implementation (not plan mode):
   → Append to ./output/session-log.md what you just did.
   → Append to ./output/query-log.md if you ran a query.
   → If you learned something important, /memory add it NOW.
-  → If you produced findings or results, write them to a file in ./output/ NOW.
+  → If you produced findings or results, write them to the correct folder NOW (see above).
 
 During plan mode: writes are restricted. Use /memory add for critical findings.
 The plan itself (.gemini/plans/) is your artifact — write your research there.
