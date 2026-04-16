@@ -35,6 +35,7 @@ The full lifecycle is for queries worth keeping.
 Query hygiene:
 - No SELECT * — specify columns.
 - LIMIT on exploratory queries.
+- Always use parameterized queries — never concatenate user input into SQL strings.
 - Use cost guardrails if the database supports them.
 
 ## Error handling

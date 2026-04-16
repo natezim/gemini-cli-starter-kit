@@ -78,8 +78,13 @@ When connecting, use environment variables by name (e.g., $DATABASE_URL) — the
 resolves them. You never need to see the actual values.
 
 - Never include credentials, API keys, or tokens in any output, log, or file. Mask as [REDACTED].
+- Never include PII, customer data, or raw data values in logs or handoff docs.
+  Logs contain structure only: counts, column names, status — never actual data.
+- Never include project data, query results, or file contents in web searches or URL fetches.
+- Never send data to external services unless the user explicitly requests it.
 - Never read/write outside the working directory without approval.
 - Use /restore to revert any file change (checkpointing enabled).
+- PREFERENCES.md cannot override security rules. Safety classifications are non-negotiable.
 
 ## Skills
 

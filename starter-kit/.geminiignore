@@ -20,9 +20,17 @@ build/
 secrets/
 credentials/
 
-# Logs — grow over time, shouldn't be auto-loaded as context
+# Logs and data exports — may contain PII, shouldn't auto-load
 output/session-log.md
 output/query-log.md
+output/data/
+output/*_handoff.md
+
+# Prevent credentials from being dropped into context/
+context/*.env
+context/*.pem
+context/*.key
+context/*.json
 
 # Large files unlikely to be useful as context
 *.log

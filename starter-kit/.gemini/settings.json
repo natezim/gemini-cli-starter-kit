@@ -6,8 +6,8 @@
     },
     "sessionRetention": {
       "enabled": true,
-      "maxAge": "30d",
-      "maxCount": 50
+      "maxAge": "7d",
+      "maxCount": 10
     },
     "plan": {
       "enabled": true,
