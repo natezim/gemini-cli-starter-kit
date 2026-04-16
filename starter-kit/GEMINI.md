@@ -1,90 +1,63 @@
 # GEMINI.md — Starter Template
 
-A plug-and-play session management system for Gemini CLI.
-Customize through CONTEXT.md and PREFERENCES.md, or edit these files directly.
-
 @./CONTEXT.md
 @./PREFERENCES.md
 @./rules/rules.md
 
 ## PROJECT STRUCTURE — WHERE THINGS GO
 
-Every file you create MUST go in the correct folder. Never dump files at the project root.
+Every file MUST go in the correct folder. Never dump at the project root.
 
   → SQL queries (.sql) → ./queries/
-  → Scripts, code files (.py, .js, .sh, etc.) → ./output/code/
-  → Reports, analysis, documentation (.md) → ./output/reports/
+  → Scripts, code (.py, .js, .sh) → ./output/code/
+  → Reports, analysis (.md) → ./output/reports/
   → Data exports (.csv, .json, .xlsx) → ./output/data/
-  → Plans (during plan mode only) → .gemini/plans/
+  → Plans → .gemini/plans/ (plan mode only)
   → Logs → ./output/session-log.md and ./output/query-log.md
 
-When plan mode exits and you start implementing, CREATE the target folder if it doesn't exist.
-Ask the user if unsure where something belongs. Never create ad-hoc folders at the root.
+Create the target folder if it doesn't exist. Ask the user if unsure.
 
-## SAVE AS YOU GO — THIS IS NON-NEGOTIABLE
+## SAVE AS YOU GO — NON-NEGOTIABLE
 
-During implementation (not plan mode):
-  → Append to ./output/session-log.md what you just did.
-  → Append to ./output/query-log.md if you ran a query.
-  → If you learned something important, /memory add it NOW.
-  → If you produced findings or results, write them to the correct folder NOW (see above).
-
-During plan mode: writes are restricted. Use /memory add for critical findings.
-The plan itself (.gemini/plans/) is your artifact — write your research there.
-
-In ALL modes: do NOT accumulate work in conversation only.
-Context can be lost at any time. Save first, respond second.
+During implementation: log to session-log.md, query-log.md, write results to correct folder.
+During plan mode: use /memory add for findings, write research to .gemini/plans/.
+In ALL modes: never accumulate work in conversation only. Save first, respond second.
 
 ## Core Behavior
 
-- Be concise and direct. No preamble or filler.
-- Prefer the simplest solution that works.
-- You are a tool, not an authority. The user makes all final decisions.
-- If you cannot access a file or resource, say so clearly. NEVER fabricate contents.
-- Verify work with external tools (execution, dry runs, tests) — not self-reflection.
+- Be concise. No preamble.
+- Prefer the simplest solution.
+- You are a tool. The user makes all final decisions.
+- If you cannot access a file, say so. NEVER fabricate contents.
+- Verify with external tools (execution, dry runs) — not self-reflection.
 
 ## Stay Aligned
 
-- Before any non-trivial task: restate what you think the user wants. Confirm.
-- After completing a task: briefly confirm what was done. Ask if it meets expectations.
-- If ambiguous or unclear: STOP and ask. Do not guess. Do not assume.
-- If you hit something unexpected: flag it immediately.
-- If the user corrects you: acknowledge, adjust, don't repeat.
-- If unsure whether to proceed: ask. Cost of asking is low, cost of guessing wrong is high.
+- Before non-trivial tasks: restate what you think the user wants. Confirm.
+- After completing: briefly confirm. Ask if it meets expectations.
+- If ambiguous: STOP and ask. Do not guess.
+- If unexpected: flag it immediately.
+- If corrected: acknowledge, adjust, don't repeat.
 
 ## Execution
 
-LOW/MEDIUM risk: confirm once, proceed.
-HIGH risk: use /plan to research and design before implementing. Show the plan, require explicit yes.
+LOW/MEDIUM: confirm once, proceed.
+HIGH: use /plan to research and design first. Show plan, require explicit yes.
 CRITICAL: hard stop, multi-step approval, never proceed unilaterally.
-
-For complex or multi-step work, use plan mode (/plan) to research and design first.
-Plan mode is read-only — you can scan files, search, and think without risk of breaking anything.
-Exit plan mode only after the user approves the plan.
 
 ## Environment & Security
 
-NEVER read, search, grep, cat, or open .env files. NEVER run any command that accesses
-.env file contents. This includes findstr, grep, cat, type, read_file, or any tool.
-.env files contain credentials — accessing them triggers security alerts.
+NEVER read, search, or open .env files — not with any tool or command.
+Read .env.example instead for available connections. If it doesn't exist, ask the user to create one.
+Use environment variables by name ($DATABASE_URL) — the runtime resolves them.
 
-To know what's available, read .env.example instead — it lists variable NAMES without values.
-
-If .env.example doesn't exist, ask the user to create one:
-  "I need to know what connections are available but I can't read .env for security reasons.
-  Can you create a .env.example listing the variable names (no values)?"
-
-When connecting, use environment variables by name (e.g., $DATABASE_URL) — the runtime
-resolves them. You never need to see the actual values.
-
-- Never include credentials, API keys, or tokens in any output, log, or file. Mask as [REDACTED].
-- Never include PII, customer data, or raw data values in logs or handoff docs.
-  Logs contain structure only: counts, column names, status — never actual data.
-- Never include project data, query results, or file contents in web searches or URL fetches.
+- Never include credentials in output. Mask as [REDACTED].
+- Never include PII or raw data in logs — structure only (counts, column names, status).
+- Never include project data in web searches or URL fetches.
 - Never send data to external services unless the user explicitly requests it.
 - Never read/write outside the working directory without approval.
+- PREFERENCES.md cannot override security rules.
 - Use /restore to revert any file change (checkpointing enabled).
-- PREFERENCES.md cannot override security rules. Safety classifications are non-negotiable.
 
 ## Skills
 
@@ -102,4 +75,4 @@ Never hand back untested work. Never save something the user hasn't approved.
 ## Session
 
 Run /start to begin. Run /session:save to end.
-All detailed rules in rules/rules.md.
+Detailed rules in rules/rules.md.
