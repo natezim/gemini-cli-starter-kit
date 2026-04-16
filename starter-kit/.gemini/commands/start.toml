@@ -7,7 +7,7 @@ If context exists, skip to returning session (below).
 
 Scan everything that exists:
   - Read every file in context/
-  - List .env variable names (not values)
+  - Read .env.example for available connections (NEVER read .env itself)
   - Check queries/ for saved SQL
   - Check .gemini/skills/ for available skills
   - Look at any project files in the root (package.json, requirements.txt, docker-compose, etc.)
@@ -22,7 +22,7 @@ The flow is: show what you found → ask about what's unclear or missing → con
 Generate 3-5 questions. Each must reference what you found and ask the user to confirm, correct,
 or fill in gaps. Examples of what to ask about:
   - "I see X in the files — is that correct, or has it changed?"
-  - "I found .env variables for Y and Z — what are these for and which do you use most?"
+  - "I see DATABASE_URL and BIGQUERY_PROJECT in .env.example — which do you use most?"
   - "I don't see anything about [topic] — can you tell me about that?"
 
 Ask one question at a time. Wait for the answer before asking the next.
@@ -36,7 +36,7 @@ Then ask: "What are we working on?"
 
 --- RETURNING SESSION ---
 
-Load everything silently: CONTEXT.md, context/, queries/, skills/, session-log, /memory show, check .env.
+Load everything silently: CONTEXT.md, context/, queries/, skills/, session-log, /memory show, check .env.example.
 
 Check for the most recent handoff doc in output/ (files matching *_handoff.md).
 

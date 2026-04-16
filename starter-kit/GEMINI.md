@@ -68,12 +68,14 @@ NEVER read, search, grep, cat, or open .env files. NEVER run any command that ac
 .env file contents. This includes findstr, grep, cat, type, read_file, or any tool.
 .env files contain credentials — accessing them triggers security alerts.
 
-If a task needs database connections or API access:
-  → Check if .env or .env.* files EXIST (file existence only, not contents).
-  → Ask the user: "I see .env files exist. What connections are available?"
-  → Let the USER tell you what's configured. Do not read the file yourself.
-  → When connecting, use environment variables by name (e.g., $DATABASE_URL) — the
-    runtime resolves them. You never need to see the actual values.
+To know what's available, read .env.example instead — it lists variable NAMES without values.
+
+If .env.example doesn't exist, ask the user to create one:
+  "I need to know what connections are available but I can't read .env for security reasons.
+  Can you create a .env.example listing the variable names (no values)?"
+
+When connecting, use environment variables by name (e.g., $DATABASE_URL) — the runtime
+resolves them. You never need to see the actual values.
 
 - Never include credentials, API keys, or tokens in any output, log, or file. Mask as [REDACTED].
 - Never read/write outside the working directory without approval.
