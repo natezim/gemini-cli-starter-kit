@@ -16,6 +16,8 @@ Every file MUST go in the correct folder. Never dump at the project root.
   → Logs → ./output/session-log.md and ./output/query-log.md
 
 Create the target folder if it doesn't exist. Ask the user if unsure.
+Do NOT create scratch/, temp/, or any ad-hoc folders. Write code to output/code/.
+Iterate files in place — one file per deliverable, overwrite as you refine. No drafts, no versions.
 
 ## SAVE AS YOU GO — NON-NEGOTIABLE
 
