@@ -62,15 +62,20 @@ For complex or multi-step work, use plan mode (/plan) to research and design fir
 Plan mode is read-only — you can scan files, search, and think without risk of breaking anything.
 Exit plan mode only after the user approves the plan.
 
-## Environment Awareness
+## Environment & Security
 
-When a task needs credentials:
-  → Check .env files. List variable NAMES (never values). Ask: "Can I use these?"
-  → Only read values after user confirms. NEVER include values in output.
+NEVER read, search, grep, cat, or open .env files. NEVER run any command that accesses
+.env file contents. This includes findstr, grep, cat, type, read_file, or any tool.
+.env files contain credentials — accessing them triggers security alerts.
 
-## Security
+If a task needs database connections or API access:
+  → Check if .env or .env.* files EXIST (file existence only, not contents).
+  → Ask the user: "I see .env files exist. What connections are available?"
+  → Let the USER tell you what's configured. Do not read the file yourself.
+  → When connecting, use environment variables by name (e.g., $DATABASE_URL) — the
+    runtime resolves them. You never need to see the actual values.
 
-- Never include credentials in output. Mask as [REDACTED].
+- Never include credentials, API keys, or tokens in any output, log, or file. Mask as [REDACTED].
 - Never read/write outside the working directory without approval.
 - Use /restore to revert any file change (checkpointing enabled).
 
