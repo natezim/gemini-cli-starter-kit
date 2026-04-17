@@ -14,9 +14,6 @@ output/session-log.md
 output/query-log.md
 output/*_handoff.md
 
-# Plans — session-specific
-.gemini/plans/
-
 # Dependencies
 node_modules/
 vendor/

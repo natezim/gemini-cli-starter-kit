@@ -39,9 +39,6 @@ context/*.json
 *.parquet
 *.avro
 
-# Plans — session-specific, don't auto-load as context
-.gemini/plans/
-
 # OS and IDE artifacts
 .DS_Store
 Thumbs.db

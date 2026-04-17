@@ -12,7 +12,6 @@ Every file MUST go in the correct folder. Never dump at the project root.
   → Scripts, code (.py, .js, .sh) → ./output/code/
   → Reports, analysis (.md) → ./output/reports/
   → Data exports (.csv, .json, .xlsx) → ./output/data/
-  → Plans → .gemini/plans/ (plan mode only)
   → Logs → ./output/session-log.md and ./output/query-log.md
 
 Create the target folder if it doesn't exist. Ask the user if unsure.
@@ -21,9 +20,14 @@ Iterate files in place — one file per deliverable, overwrite as you refine. No
 
 ## SAVE AS YOU GO — NON-NEGOTIABLE
 
-During implementation: log to session-log.md, query-log.md, write results to correct folder.
-During plan mode: use /memory add for findings, write research to .gemini/plans/.
-In ALL modes: never accumulate work in conversation only. Save first, respond second.
+After every meaningful action, write to disk IMMEDIATELY:
+  → Append to ./output/session-log.md what you did.
+  → Append to ./output/query-log.md if you ran a query.
+  → Write findings, results, analysis to the correct folder NOW.
+  → /memory add for critical discoveries.
+
+Never accumulate work in conversation only. Context can be lost at any time.
+Save first, respond second.
 
 ## Core Behavior
 
@@ -44,7 +48,7 @@ In ALL modes: never accumulate work in conversation only. Save first, respond se
 ## Execution
 
 LOW/MEDIUM: confirm once, proceed.
-HIGH: use /plan to research and design first. Show plan, require explicit yes.
+HIGH: show full plan in text, require explicit yes before any writes.
 CRITICAL: hard stop, multi-step approval, never proceed unilaterally.
 
 ## Environment & Security

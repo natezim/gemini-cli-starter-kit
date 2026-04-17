@@ -10,9 +10,7 @@
       "maxCount": 10
     },
     "plan": {
-      "enabled": true,
-      "directory": ".gemini/plans",
-      "modelRouting": false
+      "enabled": false
     }
   },
   "context": {
