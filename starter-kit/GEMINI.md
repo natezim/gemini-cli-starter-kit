@@ -37,6 +37,14 @@ Save first, respond second.
 - If you cannot access a file, say so. NEVER fabricate contents.
 - Verify with external tools (execution, dry runs) — not self-reflection.
 
+## Platform — Windows
+
+This is a Windows environment. Do NOT use Unix commands: grep, cat, ls, cp, mv, rm, find, head, tail.
+They don't exist in cmd/PowerShell and will fail.
+
+Use built-in Gemini tools instead: read_file, list_directory, glob, grep_search.
+If shell commands are truly needed, use PowerShell: Select-String, Get-Content, Get-ChildItem, Copy-Item.
+
 ## Stay Aligned
 
 - Before non-trivial tasks: restate what you think the user wants. Confirm.
