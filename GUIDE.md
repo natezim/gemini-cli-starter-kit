@@ -20,7 +20,7 @@ Checkpointing is on. Use `/restore` to undo any file change.
 
 **Skills activate automatically.** If you ask about BigQuery and the bigquery skill is installed, it loads. Same for Excel, Python, Power BI, Tableau. No manual activation needed.
 
-**Queries are managed.** Write → test → show you → confirm → save. Every execution is logged with row counts and results. Your query library lives in `queries/`.
+**Queries are managed.** Write → test → show you → confirm → save. Every execution is logged with row counts and results. Your query library lives in `output/queries/`.
 
 **Gated execution for risky work.** Low/medium-risk actions proceed with one confirmation. High-risk actions require an explicit plan and user approval before any writes. Critical actions (production DDL, deletes) require multi-step approval.
 
@@ -37,10 +37,16 @@ PREFERENCES.md         Your preferences — tone, style, habits.
 .geminiignore          Keeps secrets out of context.
 
 context/               Reference files — auto-loaded every session.
-queries/               SQL query library — one .sql per query.
-.gemini/commands/      /start, /setup, /session:save, /context:update, /info
+.gemini/commands/      /start, /setup, /session:save, /context:update,
+                       /version, /info
 .gemini/skills/        Skills that activate based on your work.
-output/                session-log.md, query-log.md, deliverables.
+output/                Workspace — everything Gemini produces:
+  queries/             SQL query library — one .sql per query.
+  code/                Scripts (.py, .js, .sh, etc.).
+  reports/             Analysis, docs (.md).
+  data/                Exports (.csv, .json, .xlsx).
+  temp/                Throwaway test files — auto-wiped at session end.
+  audit-log.md, session-log.md, query-log.md, prompts/, *_handoff.md
 ```
 
 ## Commands
@@ -59,7 +65,7 @@ output/                session-log.md, query-log.md, deliverables.
 ## Tips
 
 - **context/ is your library.** Drop schemas, docs, specs — auto-loaded, no injection needed.
-- **queries/ is your query library.** One .sql per query, iterated in place, execution logged.
+- **output/queries/ is your query library.** One .sql per query, iterated in place, execution logged.
 - **PREFERENCES.md is your personality file.** Casual? Terse? Funny? Put it there.
 - **`/memory add` for critical facts.** Memory survives compression. Chat history doesn't.
 - **`/context:update` before closing.** One minute now saves re-explaining next session.

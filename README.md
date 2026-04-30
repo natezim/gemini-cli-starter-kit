@@ -38,7 +38,6 @@ PREFERENCES.md         Your preferences + workflow overrides
 .geminiignore          Keeps secrets and PII out of context
 
 context/               Reference files — READ-ONLY, auto-loaded
-queries/               SQL query library — one .sql per query
 
 .gemini/
   settings.json        Checkpointing, compression, session retention
@@ -46,10 +45,12 @@ queries/               SQL query library — one .sql per query
                        /version, /info
   skills/              Skill folders that activate automatically
 
-output/
+output/                Workspace — everything Gemini produces
+  queries/             SQL query library — one .sql per query
   code/                Scripts (.py, .js, .sh, .ipynb, configs)
   reports/             Analysis, docs (.md)
   data/                Exports (.csv, .json, .xlsx, .parquet)
+  temp/                Throwaway test/debug files — auto-wiped at session end
   audit-log.md         Structured audit trail (every write/exec/query)
   session-log.md       Narrative task log
   query-log.md         Query execution log
@@ -80,7 +81,9 @@ output/
 
 **User identity** — captured at session start from the working directory path. Used in every audit entry. No need for separate auth.
 
-**Auto versioning** — at session end, modified files in `output/code/`, `output/reports/`, `queries/` get snapshotted as `_v1`, `_v2`, `_v3`. Rotates oldest out. Live working file keeps its base name.
+**Auto versioning** — at session end, modified files in `output/code/`, `output/reports/`, `output/queries/` get snapshotted as `_v1`, `_v2`, `_v3`. Rotates oldest out. Live working file keeps base name.
+
+**Temp folder** — `output/temp/` is for throwaway test/debug files. Auto-wiped at every session end (no review prompt). Use freely for experimentation.
 
 **Chat log** — substantive user prompts saved to `output/prompts/<date>_prompts.md` at session end. Filters out short confirmations (yes, ok, go, etc.).
 
