@@ -15,8 +15,27 @@ Every file MUST go in the correct folder. Never dump at the project root.
   → Logs → ./output/session-log.md and ./output/query-log.md
 
 Create the target folder if it doesn't exist. Ask the user if unsure.
-Do NOT create scratch/, temp/, or any ad-hoc folders. Write code to output/code/.
-Iterate files in place — one file per deliverable, overwrite as you refine. No drafts, no versions.
+Do NOT create scratch/, temp/, or any ad-hoc folders.
+
+## FILE DISCIPLINE — STOP THE SPRAWL
+
+BEFORE creating any new file: list output/code/ and check if one already exists for this task.
+If yes, EDIT it. Do not create test_v2.py, script_new.py, working_final.py — overwrite the original.
+
+ONE file per task. ONE file per deliverable. Overwrite, never version.
+No suffixes like _v2, _final, _new, _test, _backup, _copy, _working, _fixed.
+
+For testing/iteration: use ONE file (e.g., output/code/scratch.py), overwrite every iteration.
+When the script is final, rename it to a descriptive name. Delete scratch.py.
+
+When testing inline (one-off check): run code via shell, do not create a file.
+Files are for code that needs to be rerun. Throwaway tests stay in the shell.
+
+After completing a task: DELETE any test/debug/exploration files that aren't the deliverable.
+If you created 3 files trying things and 1 worked, delete the other 2 before responding.
+
+End of every session: output/code/ should contain ONLY working, named, final scripts.
+No test_*.py, no temp_*.py, no scratch_*.py left behind.
 
 ## SAVE AS YOU GO — NON-NEGOTIABLE
 
