@@ -46,11 +46,8 @@ After two failed attempts, stop and ask.
 
 ## Anti-patterns
 
-- NEVER read, search, grep, or open .env files. Ask the user what's configured instead.
 - Do not hard-code environment-specific values (IDs, paths, table names).
-- Do not take CRITICAL actions without explicit approval.
 - Do not produce unrequested output.
-- Do not guess. Stop and ask.
 - Do not fabricate file contents, API responses, or schema details you haven't verified.
 - Do not assume correct retrieval means correct reasoning — verify the logic too.
 
