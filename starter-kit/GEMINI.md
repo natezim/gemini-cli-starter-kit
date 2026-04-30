@@ -18,31 +18,45 @@ Before writing ANY file, do these in order:
 | `.md` (reports, docs) | `./output/reports/` |
 | `.csv`, `.json` (data), `.xlsx`, `.parquet` | `./output/data/` |
 | `.yaml`, `.yml`, `.toml` (configs) | `./output/code/` |
-| Logs | `./output/session-log.md`, `./output/query-log.md` |
+| Logs | `./output/session-log.md`, `./output/query-log.md`, `./output/audit-log.md` |
 | Handoff docs | `./output/<date>_handoff.md` |
+| Chat prompts | `./output/prompts/<date>_prompts.md` |
 
 Project root is OFF LIMITS. No scratch/, temp/, drafts/, or ad-hoc folders.
 If a file doesn't fit any category, ASK before creating.
 
-ONE file per deliverable. Overwrite, never version.
-NO suffixes: _v2, _final, _new, _test, _backup, _copy, _working, _fixed.
+`./context/` is READ-ONLY. Never modify, rename, or delete files there.
+To work with content, COPY to `output/code/` first. Originals stay pristine.
 
-Iteration: use ONE file (e.g., `scratch.py`), overwrite each pass. When final, rename and delete scratch.
-One-off checks: run inline via shell — do NOT create a file.
+ONE file per deliverable during work. Iterate in place — overwrite, no `_v2_test_final` chaos.
+Versions are managed automatically at session end (see `/session:save`).
 
-After every task: DELETE test/debug files that aren't the deliverable.
-End of session: `output/code/` contains ONLY working, named, final scripts.
+For one-off checks: run inline via shell — do NOT create a file.
 
-## SAVE AS YOU GO — NON-NEGOTIABLE
+## AUDIT LOG — EVERY WRITE, EVERY EXEC, EVERY QUERY
+
+Append to `./output/audit-log.md` IMMEDIATELY after every write, exec, or query.
+Format (one line per action):
+
+```
+[YYYY-MM-DD HH:MM:SS] | <user> | <ACTION> | <target> | <result>
+```
+
+ACTION ∈ {WRITE, EDIT, DELETE, EXEC, QUERY, READ-EXT}.
+`<user>` is captured at session start from the working directory path (e.g., `C:\Users\jsmith\...` → `jsmith`).
+
+This is non-negotiable. If you ran something and didn't audit it, you've broken the rule.
+
+## SAVE AS YOU GO
 
 After every meaningful action, write to disk IMMEDIATELY:
-  → Append to ./output/session-log.md what you did.
-  → Append to ./output/query-log.md if you ran a query.
+  → Append to `./output/session-log.md` what you did (narrative).
+  → Append to `./output/query-log.md` if you ran a query (rows, result).
+  → Append to `./output/audit-log.md` (structured, see above).
   → Write findings, results, analysis to the correct folder NOW.
-  → /memory add for critical discoveries.
+  → `/memory add` for critical discoveries.
 
-Never accumulate work in conversation only. Context can be lost at any time.
-Save first, respond second.
+Never accumulate work in conversation only. Save first, respond second.
 
 ## Core Behavior
 
@@ -54,11 +68,9 @@ Save first, respond second.
 
 ## Platform — Windows
 
-This is a Windows environment. Do NOT use Unix commands: grep, cat, ls, cp, mv, rm, find, head, tail.
-They don't exist in cmd/PowerShell and will fail.
-
-Use built-in Gemini tools instead: read_file, list_directory, glob, grep_search.
-If shell commands are truly needed, use PowerShell: Select-String, Get-Content, Get-ChildItem, Copy-Item.
+Do NOT use Unix commands: grep, cat, ls, cp, mv, rm, find, head, tail. They fail in cmd/PowerShell.
+Use Gemini built-in tools: read_file, list_directory, glob, grep_search.
+If shell needed: PowerShell (Select-String, Get-Content, Get-ChildItem, Copy-Item).
 
 ## Stay Aligned
 
@@ -77,7 +89,7 @@ CRITICAL: hard stop, multi-step approval, never proceed unilaterally.
 ## Environment & Security
 
 NEVER read, search, or open .env files — not with any tool or command.
-Read .env.example instead for available connections. If it doesn't exist, ask the user to create one.
+Read .env.example instead. If it doesn't exist, ask the user to create one.
 Use environment variables by name ($DATABASE_URL) — the runtime resolves them.
 
 - Never include credentials in output. Mask as [REDACTED].
@@ -98,10 +110,12 @@ Load multiple if relevant. Use reference files for detailed guidance.
 A task is NOT complete until:
   1. Results are written to disk (log, output file, or /memory).
   2. If it produces output: tested and user confirmed.
+  3. Audit log entry written.
 
 Never hand back untested work. Never save something the user hasn't approved.
 
 ## Session
 
 Run /start to begin. Run /session:save to end.
+/session:save handles versioning, cleanup review, and chat log capture.
 Detailed rules in rules/rules.md.
