@@ -4,38 +4,46 @@
 @./PREFERENCES.md
 @./rules/rules.md
 
-## PROJECT STRUCTURE — WHERE THINGS GO
+## FILE DISCIPLINE — READ BEFORE EVERY WRITE
 
-Every file MUST go in the correct folder. Never dump at the project root.
+Before writing ANY file, you MUST do these three things in order:
 
-  → SQL queries (.sql) → ./queries/
-  → Scripts, code (.py, .js, .sh) → ./output/code/
-  → Reports, analysis (.md) → ./output/reports/
-  → Data exports (.csv, .json, .xlsx) → ./output/data/
-  → Logs → ./output/session-log.md and ./output/query-log.md
+1. STATE the full path you're about to write to.
+2. CONFIRM it matches the structure below by file type.
+3. CHECK if a file for this task already exists (list the folder). If yes, EDIT — don't create new.
 
-Create the target folder if it doesn't exist. Ask the user if unsure.
-Do NOT create scratch/, temp/, or any ad-hoc folders.
+If you skip these steps and dump a file in the wrong place, you've failed the rule.
 
-## FILE DISCIPLINE — STOP THE SPRAWL
+### Where files go (by type):
 
-BEFORE creating any new file: list output/code/ and check if one already exists for this task.
-If yes, EDIT it. Do not create test_v2.py, script_new.py, working_final.py — overwrite the original.
+| Extension / kind | Folder |
+|---|---|
+| `.sql` (queries) | `./queries/` |
+| `.py`, `.js`, `.sh`, `.ipynb` (code) | `./output/code/` |
+| `.md` (reports, analysis, docs) | `./output/reports/` |
+| `.csv`, `.json` (data), `.xlsx`, `.parquet` | `./output/data/` |
+| `.yaml`, `.yml`, `.toml` (configs) | `./output/code/` (alongside the code that uses them) |
+| Logs | `./output/session-log.md`, `./output/query-log.md` |
+| Handoff docs | `./output/<date>_handoff.md` |
+
+Project root is OFF LIMITS. Do NOT create scratch/, temp/, drafts/, or any ad-hoc folder.
+Create the target subfolder if it doesn't exist. If a file doesn't fit any category, ASK.
+
+### Naming & sprawl
 
 ONE file per task. ONE file per deliverable. Overwrite, never version.
-No suffixes like _v2, _final, _new, _test, _backup, _copy, _working, _fixed.
+NO suffixes: _v2, _final, _new, _test, _backup, _copy, _working, _fixed, _old.
 
-For testing/iteration: use ONE file (e.g., output/code/scratch.py), overwrite every iteration.
-When the script is final, rename it to a descriptive name. Delete scratch.py.
+For iteration: use ONE file (e.g., `output/code/scratch.py`), overwrite each pass.
+When final, rename to a descriptive name. DELETE scratch.py.
 
-When testing inline (one-off check): run code via shell, do not create a file.
+For one-off checks: run inline via shell, do NOT create a file.
 Files are for code that needs to be rerun. Throwaway tests stay in the shell.
 
-After completing a task: DELETE any test/debug/exploration files that aren't the deliverable.
+After completing a task: DELETE any test/debug files that aren't the deliverable.
 If you created 3 files trying things and 1 worked, delete the other 2 before responding.
 
-End of every session: output/code/ should contain ONLY working, named, final scripts.
-No test_*.py, no temp_*.py, no scratch_*.py left behind.
+End of session: `output/code/` should contain ONLY working, named, final scripts.
 
 ## SAVE AS YOU GO — NON-NEGOTIABLE
 
