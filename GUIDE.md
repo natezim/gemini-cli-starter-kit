@@ -46,7 +46,7 @@ output/                Workspace — everything Gemini produces:
   reports/             Analysis, docs (.md).
   data/                Exports (.csv, .json, .xlsx).
   temp/                Throwaway test files — auto-wiped at session end.
-  audit-log.md, session-log.md, query-log.md, prompts/, *_handoff.md
+  audit-log.md, prompts/, *_handoff.md
 ```
 
 ## Commands

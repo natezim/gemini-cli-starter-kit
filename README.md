@@ -51,9 +51,7 @@ output/                Workspace — everything Gemini produces
   reports/             Analysis, docs (.md)
   data/                Exports (.csv, .json, .xlsx, .parquet)
   temp/                Throwaway test/debug files — auto-wiped at session end
-  audit-log.md         Structured audit trail (every write/exec/query)
-  session-log.md       Narrative task log
-  query-log.md         Query execution log
+  audit-log.md         Structured audit trail (silent, only on state changes)
   prompts/             Your chat prompts saved per session
   <date>_handoff.md    Session wrap-up docs
 ```
