@@ -21,6 +21,7 @@
 - `./context/` is READ-ONLY — copy to `output/code/` to work with it.
 - ONE file per deliverable. Iterate in place. No `_v2`, `_final`, `_new` suffixes — versions are auto-managed at `/session:save`.
 - For one-off shell checks: run inline, no file.
+- **THROWAWAY = `./output/temp/`, NO EXCEPTIONS.** Test scripts, scratch SQL, debug helpers, profiling probes, "let me just check this" files — all go in `temp/`. It auto-wipes at session end with no review prompt. Never put exploratory work in `code/`, `reports/`, `queries/`, or `data/` — those are reserved for deliverables you actually want kept.
 
 ## Audit log (silent, state changes only)
 
