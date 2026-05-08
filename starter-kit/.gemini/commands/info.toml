@@ -35,15 +35,19 @@ Subagents (invoke with @name — runs in an isolated context window):
     @codebase_investigator — deep file/dependency tracing
     @cli_help — Gemini CLI questions
   Custom (read-only, parallel-safe):
-    @query-validator — SQL syntax + dry-run cost check before running
-    @schema-explorer — answers schema questions from context/ without dumping DDL
-    @data-profiler — shape/nulls/cardinality on a dataset, scripts in temp/
-    @tableau-auditor — Tableau Server inventory, usage, permissions, extracts
-    @viz-optimizer — workbook/report performance issues, ranked
-    @dax-reviewer — DAX measure review (correctness, perf, maintainability)
-    @migration-mapper — Tableau↔Power BI migration plan + effort
+    @query-validator     — SQL syntax + dry-run cost check before running
+    @schema-explorer     — answers schema questions from context/ without dumping DDL
+    @data-profiler       — shape/nulls/cardinality on a dataset, scripts in temp/
+    @stats-advisor       — recommends statistical method, assumptions, library calls
+    @sas-migrator        — translates SAS DATA/PROC/macros to Python
+    @excel-reviewer      — Excel formulas, dynamic arrays, Power Pivot review
+    @powerquery-reviewer — M language review (Excel + Power BI), query folding
+    @dax-reviewer        — DAX measure review (correctness, perf, maintainability)
+    @tableau-auditor     — Tableau Server inventory, usage, permissions, extracts
+    @viz-optimizer       — workbook/report performance issues, ranked
+    @migration-mapper    — Tableau↔Power BI migration plan + effort
   Custom (write-scoped, sequential):
-    @report-drafter — writes markdown reports to output/reports/ only
+    @report-drafter      — writes markdown reports to output/reports/ only
 
 Skills (copy from the repo's skills/ folder into .gemini/skills/ — only installed skills are active):
   excel/ — Formulas, dynamic arrays, Power Query, Power Pivot/DAX, VBA, Office Scripts
