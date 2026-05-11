@@ -1,10 +1,7 @@
-# Session file -- generated fresh each session, don't commit
-SESSION.md
+# Public repo-level .gitignore
+# (starter-kit/.gitignore handles user-project ignores separately)
 
-# Scratch -- temp files only, always cleaned up
-output/scratch/
-
-# Secrets and credentials
+# Local secrets — never commit
 .env
 .env.*
 *.pem
@@ -14,43 +11,26 @@ output/scratch/
 secrets/
 credentials/
 
-# Dependencies
+# Dev cruft
 node_modules/
 vendor/
 .venv/
 __pycache__/
 *.pyc
 *.class
-
-# Build output
 dist/
 build/
-
-# Large files
 *.log
-*.zip
-*.tar.gz
-*.parquet
-*.avro
-
-# Skill archives and research artifacts
-*.skill
-compass_artifact_*
-gcloud*research*
-bigquery optimizations*
-tableau optimizer*
-powerbi deep*
-LLM Limitations*
-deep-research-report*
-deep-research*
-*deep research*
 
 # Claude Code local config
 .claude/
 
-# OS and IDE artifacts
+# OS and IDE
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
-Tableau repo*
+
+# Scratch
+*.tmp
+*.bak
